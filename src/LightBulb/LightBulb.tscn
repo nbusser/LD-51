@@ -7,10 +7,9 @@
 [sub_resource type="CircleShape2D" id=1]
 radius = 37.0135
 
-[node name="LightBulb" type="Light2D"]
-texture = ExtResource( 1 )
-energy = 0.8
-shadow_enabled = true
+[node name="LightBulb" type="Area2D"]
+collision_layer = 0
+collision_mask = 768
 script = ExtResource( 3 )
 
 [node name="Sprite" type="Sprite" parent="."]
@@ -18,7 +17,13 @@ texture = ExtResource( 2 )
 
 [node name="SoundFx" type="Node" parent="."]
 
-[node name="Area2D" type="Area2D" parent="."]
+[node name="Light2D" type="Light2D" parent="."]
+texture = ExtResource( 1 )
+energy = 0.8
+shadow_enabled = true
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+[node name="EnemyBlindZone" type="CollisionShape2D" parent="."]
+shape = SubResource( 1 )
+
+[node name="PlayerInteractZone" type="CollisionShape2D" parent="."]
 shape = SubResource( 1 )
