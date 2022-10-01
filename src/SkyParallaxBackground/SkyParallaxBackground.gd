@@ -13,6 +13,6 @@ func _ready():
 	self._update_parallax(0)
 	
 
-func _process(delta: float):
+func _physics_process(delta: float):
 	self._update_parallax(1)
-	self.scroll_base_offset += Vector2(delta, delta)*200
+	self.scroll_base_offset += Vector2(delta, delta) * 200 * self.scroll_base_scale
