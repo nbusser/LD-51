@@ -1,10 +1,13 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://src/Character/Character.tscn" type="PackedScene" id=1]
-[ext_resource path="res://assets/sprites/light_shape.png" type="Texture" id=2]
+[ext_resource path="res://src/Character/Enemy/Enemy.gd" type="Script" id=2]
+[ext_resource path="res://assets/sprites/light_shape.png" type="Texture" id=3]
+
+[sub_resource type="CircleShape2D" id=1]
 
 [node name="Enemy" instance=ExtResource( 1 )]
-script = null
+script = ExtResource( 2 )
 
 [node name="MoveTick" parent="." index="2"]
 wait_time = 2.0
@@ -12,7 +15,14 @@ wait_time = 2.0
 [node name="Halo" type="Light2D" parent="." index="3"]
 position = Vector2( 83, 78 )
 scale = Vector2( 0.324219, 0.314453 )
-texture = ExtResource( 2 )
+texture = ExtResource( 3 )
 texture_scale = 2.0
 color = Color( 0.627451, 0.270588, 0.219608, 1 )
 shadow_enabled = true
+
+[node name="EnemyBlindZone" type="Area2D" parent="." index="4"]
+collision_layer = 256
+collision_mask = 256
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="EnemyBlindZone" index="0"]
+shape = SubResource( 1 )

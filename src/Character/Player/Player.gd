@@ -2,6 +2,8 @@ signal cat_saved(pos)
 
 extends Character
 
+var interactible = null
+
 func _init().("../../../"):
 	pass
 
@@ -17,6 +19,16 @@ func _process(delta):
 	if direction != Vector2.ZERO:
 		move(direction)
 
+	if(Input.get_action_strength("ui_select")):
+		print('TODO: interract with collided object')
+
 func _on_Tween_tween_completed(hey, useless):
 	if (map.get_node("Navigation2D/Items").get_cellv(get_map_position()) == Globals.CATS.CAT):
 		emit_signal("cat_saved", get_map_position())
+
+func _on_InteractZone_area_entered(area):
+	interactible = area
+
+func _on_InteractZone_area_exited(area):
+	if interactible == area:
+		interactible = null
