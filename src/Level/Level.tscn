@@ -19,4 +19,7 @@ script = ExtResource( 4 )
 wait_time = 10.0
 autostart = true
 
+[node name="CanvasModulate" type="CanvasModulate" parent="."]
+color = Color( 0.0156863, 0, 0.141176, 1 )
+
 [connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]

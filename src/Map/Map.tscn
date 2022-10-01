@@ -1,10 +1,11 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://src/Map/Map.gd" type="Script" id=1]
 [ext_resource path="res://src/Player/Player.tscn" type="PackedScene" id=2]
 [ext_resource path="res://assets/sprites/tileset.tres" type="TileSet" id=3]
 [ext_resource path="res://assets/sprites/products/products_tileset.tres" type="TileSet" id=4]
 [ext_resource path="res://assets/sprites/lights.tres" type="TileSet" id=5]
+[ext_resource path="res://assets/sprites/light_shape.png" type="Texture" id=6]
 
 [node name="Map" type="Node2D"]
 script = ExtResource( 1 )
@@ -36,3 +37,75 @@ cell_size = Vector2( 32, 32 )
 bake_navigation = true
 format = 1
 tile_data = PoolIntArray( -589816, 0, 0, -589807, 0, 0, -196598, 0, 0, -196592, 0, 0, -196588, 0, 0, 196628, 0, 0, 327690, 0, 0, 917506, 0, 0, 917514, 0, 0 )
+
+[node name="Light2D" type="Light2D" parent="Navigation2D"]
+position = Vector2( 249, -257 )
+texture = ExtResource( 6 )
+texture_scale = 0.2
+shadow_enabled = true
+shadow_gradient_length = 4096.0
+shadow_filter_smooth = 64.0
+
+[node name="Light2D2" type="Light2D" parent="Navigation2D"]
+position = Vector2( 335, -80 )
+texture = ExtResource( 6 )
+texture_scale = 0.2
+shadow_enabled = true
+shadow_gradient_length = 4096.0
+shadow_filter_smooth = 64.0
+
+[node name="Light2D3" type="Light2D" parent="Navigation2D"]
+position = Vector2( 529, -75 )
+texture = ExtResource( 6 )
+texture_scale = 0.2
+shadow_enabled = true
+shadow_gradient_length = 4096.0
+shadow_filter_smooth = 64.0
+
+[node name="Light2D4" type="Light2D" parent="Navigation2D"]
+position = Vector2( 654, -75 )
+texture = ExtResource( 6 )
+texture_scale = 0.2
+shadow_enabled = true
+shadow_gradient_length = 4096.0
+shadow_filter_smooth = 64.0
+
+[node name="Light2D5" type="Light2D" parent="Navigation2D"]
+position = Vector2( 564, -263 )
+texture = ExtResource( 6 )
+texture_scale = 0.2
+shadow_enabled = true
+shadow_gradient_length = 4096.0
+shadow_filter_smooth = 64.0
+
+[node name="Light2D6" type="Light2D" parent="Navigation2D"]
+position = Vector2( 661, 113 )
+texture = ExtResource( 6 )
+texture_scale = 0.2
+shadow_enabled = true
+shadow_gradient_length = 4096.0
+shadow_filter_smooth = 64.0
+
+[node name="Light2D7" type="Light2D" parent="Navigation2D"]
+position = Vector2( 338, 175 )
+texture = ExtResource( 6 )
+texture_scale = 0.2
+shadow_enabled = true
+shadow_gradient_length = 4096.0
+shadow_filter_smooth = 64.0
+
+[node name="Light2D8" type="Light2D" parent="Navigation2D"]
+position = Vector2( 335, 464 )
+texture = ExtResource( 6 )
+texture_scale = 0.2
+shadow_enabled = true
+shadow_gradient_length = 4096.0
+shadow_filter_smooth = 64.0
+
+[node name="Light2D9" type="Light2D" parent="Navigation2D"]
+position = Vector2( 82, 467 )
+texture = ExtResource( 6 )
+texture_scale = 0.2
+shadow_enabled = true
+shadow_gradient_length = 4096.0
+shadow_filter_smooth = 64.0
