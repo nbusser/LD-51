@@ -7,7 +7,7 @@
 [ext_resource path="res://assets/sprites/sky.png" type="Texture" id=5]
 [ext_resource path="res://assets/sprites/sky2.png" type="Texture" id=6]
 
-[sub_resource type="OpenSimplexNoise" id=1]
+[sub_resource type="OpenSimplexNoise" id=3]
 period = 137.1
 persistence = 0.252
 lacunarity = 2.89
@@ -16,7 +16,7 @@ lacunarity = 2.89
 width = 1024
 height = 600
 seamless = true
-noise = SubResource( 1 )
+noise = SubResource( 3 )
 
 [node name="Level" type="Node"]
 script = ExtResource( 1 )
