@@ -13,8 +13,12 @@ current = true
 zoom = Vector2( 0.5, 0.5 )
 
 [node name="Light2D" type="Light2D" parent="." index="5"]
-position = Vector2( 104, 273 )
+position = Vector2( 68, 157 )
 texture = ExtResource( 3 )
+offset = Vector2( 8, 261 )
 texture_scale = 2.0
 color = Color( 0.682353, 0.658824, 0, 1 )
 energy = 0.5
+shadow_enabled = true
+shadow_filter = 5
+shadow_filter_smooth = 64.0
