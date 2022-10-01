@@ -7,14 +7,12 @@ class_name Character
 onready var move_tick_timer = $MoveTick
 
 var map
-var manager = get_parent()
+onready var manager = get_parent()
 
 var _map_path = null
-var _manager_path = null
 
-func _init(map_path, manager_path):
+func _init(map_path):
 	_map_path = map_path
-	_manager_path = manager_path
 
 func _ready():
 	# Waits for Game.gd to run randomize()
@@ -24,7 +22,6 @@ func _ready():
 	map = get_node(_map_path)
 	self.position = map.tilemap.map_to_world(map.tilemap.world_to_map(global_position))
 	
-	manager = get_node(_manager_path)
 	self.connect("position_changed", manager, "update_position")
 
 func can_move():
