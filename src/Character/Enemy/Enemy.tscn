@@ -1,9 +1,18 @@
-[gd_scene load_steps=2 format=2]
+[gd_scene load_steps=3 format=2]
 
 [ext_resource path="res://src/Character/Character.tscn" type="PackedScene" id=1]
+[ext_resource path="res://assets/sprites/light_shape.png" type="Texture" id=2]
 
 [node name="Enemy" instance=ExtResource( 1 )]
 script = null
 
 [node name="MoveTick" parent="." index="2"]
 wait_time = 2.0
+
+[node name="Halo" type="Light2D" parent="." index="3"]
+position = Vector2( 83, 78 )
+scale = Vector2( 0.324219, 0.314453 )
+texture = ExtResource( 2 )
+texture_scale = 2.0
+color = Color( 0.627451, 0.270588, 0.219608, 1 )
+shadow_enabled = true
