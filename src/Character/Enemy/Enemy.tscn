@@ -4,3 +4,6 @@
 
 [node name="Enemy" instance=ExtResource( 1 )]
 script = null
+
+[node name="MoveTick" parent="." index="2"]
+wait_time = 2.0
