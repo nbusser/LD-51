@@ -12,6 +12,6 @@ func increment_coins():
 	current_coins_count = current_coins_count + 1
 	coins_label.text = str(current_coins_count) + "/" + str(nb_coins_total)
 
-func set_coins(nb_coins_total):
-	nb_coins_total = nb_coins_total
+func set_coins(nb_coins):
+	nb_coins_total = nb_coins
 	coins_label.text = "0/" + str(nb_coins_total)
