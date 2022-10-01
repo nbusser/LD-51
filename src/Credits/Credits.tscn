@@ -12,28 +12,28 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 
 [node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer"]
-margin_left = 362.0
-margin_top = 142.0
-margin_right = 662.0
-margin_bottom = 457.0
-rect_min_size = Vector2( 300, 0 )
+margin_left = 287.0
+margin_top = 157.0
+margin_right = 737.0
+margin_bottom = 442.0
+rect_min_size = Vector2( 450, 0 )
 
 [node name="Label" type="Label" parent="CenterContainer/VBoxContainer"]
-margin_right = 300.0
+margin_right = 450.0
 margin_bottom = 14.0
 text = "Credits"
 align = 1
 
 [node name="MarginContainer" type="MarginContainer" parent="CenterContainer/VBoxContainer"]
 margin_top = 18.0
-margin_right = 300.0
+margin_right = 450.0
 margin_bottom = 48.0
 rect_min_size = Vector2( 0, 30 )
 
 [node name="RichTextLabel" type="RichTextLabel" parent="CenterContainer/VBoxContainer"]
 margin_top = 52.0
-margin_right = 300.0
-margin_bottom = 277.0
+margin_right = 450.0
+margin_bottom = 247.0
 bbcode_enabled = true
 bbcode_text = "[center]
 A game by Ludum Darons team (and friends)
@@ -65,19 +65,19 @@ fit_content_height = true
 scroll_active = false
 
 [node name="MarginContainer2" type="MarginContainer" parent="CenterContainer/VBoxContainer"]
-margin_top = 281.0
-margin_right = 300.0
-margin_bottom = 291.0
+margin_top = 251.0
+margin_right = 450.0
+margin_bottom = 261.0
 rect_min_size = Vector2( 0, 10 )
 
 [node name="CenterContainer4" type="CenterContainer" parent="CenterContainer/VBoxContainer"]
-margin_top = 295.0
-margin_right = 300.0
-margin_bottom = 315.0
+margin_top = 265.0
+margin_right = 450.0
+margin_bottom = 285.0
 
 [node name="Back" type="Button" parent="CenterContainer/VBoxContainer/CenterContainer4"]
-margin_left = 129.0
-margin_right = 171.0
+margin_left = 204.0
+margin_right = 246.0
 margin_bottom = 20.0
 size_flags_horizontal = 0
 text = "Back"
