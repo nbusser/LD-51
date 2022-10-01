@@ -14,6 +14,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://src/Astar.gd"
 }, {
+"base": "Node2D",
+"class": "Character",
+"language": "GDScript",
+"path": "res://src/Character/Character.gd"
+}, {
 "base": "Reference",
 "class": "DirWalker",
 "language": "GDScript",
@@ -61,6 +66,7 @@ _global_script_classes=[ {
 } ]
 _global_script_class_icons={
 "Astar": "",
+"Character": "",
 "DirWalker": "",
 "FileItem": "",
 "Finder": "",
