@@ -8,3 +8,7 @@ enum TILE_TYPES {
 	DOOR_OPEN = 13,
 	DOOR_CLOSED = 15,
 }
+
+enum CATS {
+	CAT = 9
+}

@@ -31,3 +31,5 @@ texture = ExtResource( 4 )
 texture_scale = 2.0
 color = Color( 0.85098, 0.819608, 0.623529, 1 )
 shadow_enabled = true
+
+[connection signal="tween_completed" from="Tween" to="." method="_on_Tween_tween_completed"]

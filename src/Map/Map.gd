@@ -1,9 +1,11 @@
 extends Node2D
 
-var door_cells = null
 onready var tilemap = $Navigation2D/TileMap
 onready var astar = Astar.new(tilemap)
 onready var characters = $Navigation2D/Characters
+onready var items = $Navigation2D/Items
+
+var door_cells = null
 
 func _ready():
 	door_cells = tilemap.get_used_cells_by_id(Globals.TILE_TYPES.DOOR_OPEN) + tilemap.get_used_cells_by_id(Globals.TILE_TYPES.DOOR_CLOSED)

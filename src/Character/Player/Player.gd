@@ -8,6 +8,10 @@ func _process(delta):
 	# No diagonal move
 	if(direction.x != 0 and direction.y != 0):
 		direction.y = 0
-
+	
 	if direction != Vector2.ZERO:
 		move(direction)
+
+func _on_Tween_tween_completed(hey, useless):
+	if (map.get_node("Navigation2D/Items").get_cellv(get_map_position()) == Globals.CATS.CAT):
+		print("miaou")
