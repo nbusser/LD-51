@@ -39,19 +39,6 @@ margin_bottom = 600.0
 texture = ExtResource( 5 )
 stretch_mode = 2
 
-[node name="ParallaxLayer2" type="ParallaxLayer" parent="Background/ParallaxBackground"]
-motion_scale = Vector2( 0.05, 0.05 )
-motion_mirroring = Vector2( 1024, 600 )
-
-[node name="TextureRect" type="TextureRect" parent="Background/ParallaxBackground/ParallaxLayer2"]
-modulate = Color( 1, 1, 1, 0.784314 )
-anchor_right = 1.0
-anchor_bottom = 1.0
-margin_right = 1024.0
-margin_bottom = 600.0
-texture = ExtResource( 6 )
-stretch_mode = 2
-
 [node name="ParallaxLayer3" type="ParallaxLayer" parent="Background/ParallaxBackground"]
 motion_scale = Vector2( 0.1, 0.1 )
 motion_mirroring = Vector2( 1024, 600 )
@@ -63,6 +50,19 @@ anchor_bottom = 1.0
 margin_right = 1024.0
 margin_bottom = 600.0
 texture = SubResource( 2 )
+stretch_mode = 2
+
+[node name="ParallaxLayer2" type="ParallaxLayer" parent="Background/ParallaxBackground"]
+motion_scale = Vector2( 0.05, 0.05 )
+motion_mirroring = Vector2( 1024, 600 )
+
+[node name="TextureRect" type="TextureRect" parent="Background/ParallaxBackground/ParallaxLayer2"]
+modulate = Color( 1, 1, 1, 0.784314 )
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_right = 1024.0
+margin_bottom = 600.0
+texture = ExtResource( 6 )
 stretch_mode = 2
 
 [node name="Map" parent="." instance=ExtResource( 2 )]
