@@ -5,7 +5,7 @@
 [ext_resource path="res://assets/sprites/tileset.tres" type="TileSet" id=3]
 [ext_resource path="res://assets/sprites/products/products_tileset.tres" type="TileSet" id=4]
 [ext_resource path="res://src/Character/Characters.gd" type="Script" id=5]
-[ext_resource path="res://assets/sprites/light_shape.png" type="Texture" id=6]
+[ext_resource path="res://src/LightBulb/LightBulb.tscn" type="PackedScene" id=6]
 [ext_resource path="res://src/Character/Enemy/Enemy.tscn" type="PackedScene" id=7]
 [ext_resource path="res://src/Character/Enemy/Enemy.gd" type="Script" id=8]
 
@@ -41,66 +41,16 @@ bake_navigation = true
 format = 1
 tile_data = PoolIntArray( -589813, 9, 0, -524268, 9, 0, -262125, 9, 0, -131063, 9, 0, 262163, 9, 0, 393225, 9, 0, 983041, 9, 0, 983053, 9, 0 )
 
-[node name="Light2D" type="Light2D" parent="Navigation2D"]
-position = Vector2( 260, -265 )
-texture = ExtResource( 6 )
-energy = 0.8
-shadow_enabled = true
-shadow_color = Color( 0.47451, 0.0588235, 0.0588235, 0 )
-shadow_filter = 5
+[node name="LightBulbs" type="Node" parent="Navigation2D"]
 
-[node name="Light2D2" type="Light2D" parent="Navigation2D"]
-position = Vector2( 551, -267 )
-texture = ExtResource( 6 )
-energy = 0.8
-shadow_enabled = true
-shadow_color = Color( 0.47451, 0.0588235, 0.0588235, 0 )
-shadow_filter = 5
+[node name="LightBulb" parent="Navigation2D/LightBulbs" instance=ExtResource( 6 )]
+position = Vector2( 312, -282 )
 
-[node name="Light2D3" type="Light2D" parent="Navigation2D"]
-position = Vector2( 469, -84 )
-texture = ExtResource( 6 )
-energy = 0.8
-shadow_enabled = true
-shadow_color = Color( 0.47451, 0.0588235, 0.0588235, 0 )
-shadow_filter = 5
+[node name="LightBulb2" parent="Navigation2D/LightBulbs" instance=ExtResource( 6 )]
+position = Vector2( 300, -78 )
 
-[node name="Light2D4" type="Light2D" parent="Navigation2D"]
-position = Vector2( 644, -62 )
-texture = ExtResource( 6 )
-energy = 0.8
-shadow_enabled = true
-shadow_color = Color( 0.47451, 0.0588235, 0.0588235, 0 )
-shadow_filter = 5
+[node name="LightBulb3" parent="Navigation2D/LightBulbs" instance=ExtResource( 6 )]
+position = Vector2( 591, -290 )
 
-[node name="Light2D6" type="Light2D" parent="Navigation2D"]
-position = Vector2( 644, 114 )
-texture = ExtResource( 6 )
-energy = 0.8
-shadow_enabled = true
-shadow_color = Color( 0.47451, 0.0588235, 0.0588235, 0 )
-shadow_filter = 5
-
-[node name="Light2D7" type="Light2D" parent="Navigation2D"]
-position = Vector2( 328, 178 )
-texture = ExtResource( 6 )
-energy = 0.8
-shadow_enabled = true
-shadow_color = Color( 0.47451, 0.0588235, 0.0588235, 0 )
-shadow_filter = 5
-
-[node name="Light2D8" type="Light2D" parent="Navigation2D"]
-position = Vector2( 328, 465 )
-texture = ExtResource( 6 )
-energy = 0.8
-shadow_enabled = true
-shadow_color = Color( 0.47451, 0.0588235, 0.0588235, 0 )
-shadow_filter = 5
-
-[node name="Light2D9" type="Light2D" parent="Navigation2D"]
-position = Vector2( 96, 435 )
-texture = ExtResource( 6 )
-energy = 0.8
-shadow_enabled = true
-shadow_color = Color( 0.47451, 0.0588235, 0.0588235, 0 )
-shadow_filter = 5
+[node name="LightBulb4" parent="Navigation2D/LightBulbs" instance=ExtResource( 6 )]
+position = Vector2( 657, -86 )
