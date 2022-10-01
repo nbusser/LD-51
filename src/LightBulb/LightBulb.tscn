@@ -12,18 +12,22 @@ collision_layer = 0
 collision_mask = 768
 script = ExtResource( 3 )
 
-[node name="Sprite" type="Sprite" parent="."]
-texture = ExtResource( 2 )
-
-[node name="SoundFx" type="Node" parent="."]
-
 [node name="Light2D" type="Light2D" parent="."]
 texture = ExtResource( 1 )
 energy = 0.8
 shadow_enabled = true
+
+[node name="Sprite" type="Sprite" parent="."]
+texture = ExtResource( 2 )
+
+[node name="SoundFx" type="Node" parent="."]
 
 [node name="EnemyBlindZone" type="CollisionShape2D" parent="."]
 shape = SubResource( 1 )
 
 [node name="PlayerInteractZone" type="CollisionShape2D" parent="."]
 shape = SubResource( 1 )
+
+[node name="Tween" type="Tween" parent="."]
+
+[connection signal="tween_completed" from="Tween" to="." method="_on_Tween_tween_completed"]

@@ -20,7 +20,8 @@ func _process(delta):
 		move(direction)
 
 	if(Input.get_action_strength("ui_select")):
-		print('TODO: interract with collided object')
+		if interactible != null:
+			print('TODO: interract with collided object')
 
 func _on_Tween_tween_completed(hey, useless):
 	if (map.get_node("Navigation2D/Items").get_cellv(get_map_position()) == Globals.CATS.CAT):

@@ -2,6 +2,12 @@ extends Node
 
 const SAMPLE_GLOBAL_VARIABLE = 1
 
+enum LightingState {
+	ON
+	ALERT
+	OFF
+}
+
 enum TILE_TYPES {
 	WALL = 0,
 	GROUND = 12,
