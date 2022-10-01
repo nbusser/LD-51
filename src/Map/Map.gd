@@ -1,7 +1,7 @@
 extends Node2D
 
 var door_cells = null
-onready var tilemap = $TileMap
+onready var tilemap = $Navigation2D/TileMap
 
 enum TILE_TYPES {
 	AISLE = 0,
