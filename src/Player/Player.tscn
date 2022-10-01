@@ -1,50 +1,11 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=3 format=2]
 
-[ext_resource path="res://assets/sprites/player.png" type="Texture" id=1]
+[ext_resource path="res://src/Character/Character.tscn" type="PackedScene" id=1]
 [ext_resource path="res://src/Player/Player.gd" type="Script" id=2]
-[ext_resource path="res://src/AudioBankPlayer.gd" type="Script" id=3]
-[ext_resource path="res://assets/sounds/Player/spawn/spawn1.wav" type="AudioStream" id=4]
-[ext_resource path="res://assets/sounds/Player/spawn/spawn0.wav" type="AudioStream" id=5]
-[ext_resource path="res://assets/sounds/Player/spawn/spawn2.wav" type="AudioStream" id=6]
-[ext_resource path="res://assets/sounds/Player/spawn/spawn3.wav" type="AudioStream" id=7]
 
-[sub_resource type="AtlasTexture" id=3]
-flags = 4
-atlas = ExtResource( 1 )
-region = Rect2( 0, 0, 128, 128 )
-
-[sub_resource type="AtlasTexture" id=4]
-flags = 4
-atlas = ExtResource( 1 )
-region = Rect2( 128, 0, 128, 128 )
-
-[sub_resource type="SpriteFrames" id=2]
-animations = [ {
-"frames": [ SubResource( 3 ), SubResource( 4 ) ],
-"loop": true,
-"name": "default",
-"speed": 5.0
-} ]
-
-[node name="Player" type="Node2D"]
+[node name="Player" instance=ExtResource( 1 )]
 script = ExtResource( 2 )
 
-[node name="Sprite" type="AnimatedSprite" parent="."]
-position = Vector2( 79, 78 )
-frames = SubResource( 2 )
-
-[node name="Camera2D" type="Camera2D" parent="."]
+[node name="Camera2D" type="Camera2D" parent="." index="4"]
 position = Vector2( 79, 78 )
 current = true
-
-[node name="SoundFx" type="Node" parent="."]
-
-[node name="SpawnSound" type="AudioStreamPlayer" parent="SoundFx"]
-script = ExtResource( 3 )
-sounds = [ ExtResource( 5 ), ExtResource( 4 ), ExtResource( 6 ), ExtResource( 7 ) ]
-
-[node name="MoveTick" type="Timer" parent="."]
-wait_time = 0.2
-one_shot = true
-
-[node name="Tween" type="Tween" parent="."]
