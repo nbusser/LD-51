@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://src/Map/Map.gd" type="Script" id=1]
 [ext_resource path="res://src/Player/Player.tscn" type="PackedScene" id=2]
 [ext_resource path="res://assets/sprites/tileset.tres" type="TileSet" id=3]
 [ext_resource path="res://assets/sprites/products/products_tileset.tres" type="TileSet" id=4]
+[ext_resource path="res://assets/sprites/lights.tres" type="TileSet" id=5]
 
 [node name="Map" type="Node2D"]
 script = ExtResource( 1 )
@@ -25,3 +26,9 @@ tile_set = ExtResource( 4 )
 cell_size = Vector2( 32, 32 )
 format = 1
 tile_data = PoolIntArray( -589813, 9, 0, -524268, 9, 0, -262125, 9, 0, -131063, 9, 0, 262163, 9, 0, 393225, 9, 0, 983041, 9, 0, 983053, 9, 0 )
+
+[node name="Lights" type="TileMap" parent="."]
+tile_set = ExtResource( 5 )
+cell_size = Vector2( 32, 32 )
+format = 1
+tile_data = PoolIntArray( -589816, 0, 0, -589807, 0, 0, -196598, 0, 0, -196592, 0, 0, -196588, 0, 0, 196628, 0, 0, 327690, 0, 0, 917506, 0, 0, 917514, 0, 0 )
