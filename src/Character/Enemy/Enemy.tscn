@@ -10,7 +10,7 @@
 script = ExtResource( 2 )
 
 [node name="MoveTick" parent="." index="2"]
-wait_time = 2.0
+wait_time = 1.0
 
 [node name="Halo" type="Light2D" parent="." index="3"]
 position = Vector2( 83, 78 )
@@ -26,3 +26,6 @@ collision_mask = 256
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="EnemyBlindZone" index="0"]
 shape = SubResource( 1 )
+
+[connection signal="area_entered" from="EnemyBlindZone" to="." method="_on_EnemyBlindZone_area_entered"]
+[connection signal="area_exited" from="EnemyBlindZone" to="." method="_on_EnemyBlindZone_area_exited"]
