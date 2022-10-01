@@ -14,8 +14,7 @@ onready var change_level = preload("res://src/EndLevel/EndLevel.tscn")
 onready var credits = preload("res://src/Credits/Credits.tscn")
 onready var game_over = preload("res://src/GameOver/GameOver.tscn")
 
-onready var viewport = $ViewportContainer/Viewport
-
+onready var viewport = $"%MainViewport"
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
