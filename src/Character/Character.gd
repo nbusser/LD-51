@@ -9,7 +9,6 @@ onready var map = get_parent().get_parent();
 var _map_path = null
 
 func _init(map_path):
-	print('caca', map_path)
 	_map_path = map_path
 
 func _ready():
