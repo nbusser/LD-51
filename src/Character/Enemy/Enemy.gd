@@ -1,6 +1,6 @@
 extends Character
 
-func _init().("../../../../", "../../"):
+func _init().("../../../"):
 	pass
 
 func _process(delta):
