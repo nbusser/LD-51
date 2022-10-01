@@ -13,8 +13,8 @@ script = ExtResource( 1 )
 [node name="Navigation2D" type="Navigation2D" parent="."]
 
 [node name="Player" parent="Navigation2D" instance=ExtResource( 2 )]
-position = Vector2( 251, -258 )
-scale = Vector2( 0.3, 0.3 )
+position = Vector2( 241, -240 )
+scale = Vector2( 0.2, 0.2 )
 z_index = 1
 
 [node name="TileMap" type="TileMap" parent="Navigation2D"]

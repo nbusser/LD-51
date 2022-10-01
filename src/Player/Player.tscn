@@ -33,14 +33,12 @@ extents = Vector2( 50, 52 )
 script = ExtResource( 2 )
 
 [node name="RigidBody2D" type="KinematicBody2D" parent="."]
+position = Vector2( 79, 78 )
 
 [node name="Sprite" type="AnimatedSprite" parent="RigidBody2D"]
-position = Vector2( 64, -64 )
 frames = SubResource( 2 )
-playing = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="RigidBody2D"]
-position = Vector2( 20, -20 )
 shape = SubResource( 1 )
 
 [node name="Camera2D" type="Camera2D" parent="RigidBody2D"]
@@ -53,6 +51,7 @@ script = ExtResource( 3 )
 sounds = [ ExtResource( 5 ), ExtResource( 4 ), ExtResource( 6 ), ExtResource( 7 ) ]
 
 [node name="MoveTick" type="Timer" parent="."]
+wait_time = 0.2
 one_shot = true
 
 [node name="Tween" type="Tween" parent="."]

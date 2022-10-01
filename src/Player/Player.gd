@@ -8,7 +8,7 @@ func _ready():
 	yield(get_tree(), "idle_frame")
 	$SoundFx/SpawnSound.play_sound()
 	
-	self.position -= Vector2(int(self.position.x) % 32, int(self.position.y) % 32)
+	self.position = map.tilemap.map_to_world(map.tilemap.world_to_map(global_position))
 
 func can_move():
 	return move_tick_timer.is_stopped()
@@ -22,15 +22,16 @@ func _process(delta):
 	if(direction.x != 0 and direction.y != 0):
 		direction.y = 0
 
-
-	if direction != Vector2.ZERO and can_move():
+	var destinationTile = map.tilemap.world_to_map(global_position) + direction
+	
+	if direction != Vector2.ZERO and can_move() and map.isNavigable(destinationTile):
 		move_tick_timer.start()
 		
 		var destination = map.tilemap.map_to_world(
-			map.tilemap.world_to_map(global_position) + direction
+			destinationTile
 		)
 		
 		$Tween.interpolate_property(
-			self, "position", self.position, destination, get_player_speed(), Tween.TRANS_CUBIC, Tween.EASE_IN_OUT
+			self, "position", self.position, destination, get_player_speed(), Tween.TRANS_LINEAR, Tween.EASE_IN_OUT
 		)
 		$Tween.start()
