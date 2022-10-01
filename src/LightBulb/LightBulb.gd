@@ -15,9 +15,11 @@ func _change_color(new_color, length=0.5):
 
 func change_state(new_state):
 	if new_state == Globals.LightingState.OFF:
-		$Light2D.enabled = false
+		$Light2D.color.a = 0
+		$BlinkingOffTimer.wait_time = 0.1
+		$BlinkingOffTimer.start()
 	else:
-		$Light2D.enabled = true
+		self.monitorable = true
 		if new_state == Globals.LightingState.ON:
 			_change_color(Color(1, 1, 1, 1))
 		else:
@@ -30,3 +32,14 @@ func _on_Tween_tween_completed(object, key):
 	if state == Globals.LightingState.ALERT:
 		var current_alpha = $Light2D.color.a
 		_change_color(Color(1, 0, 0, 1-current_alpha), 0.7)
+
+
+func _on_BlinkingOffTimer_timeout():
+	$Light2D.color.a = 1
+	$LastBlink.wait_time = randf()*2
+	$LastBlink.start()
+
+
+func _on_LastBlink_timeout():
+	$Light2D.color.a = 0
+	self.monitorable = false
