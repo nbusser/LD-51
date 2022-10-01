@@ -1,0 +1,54 @@
+[gd_resource type="Theme" load_steps=9 format=2]
+
+[ext_resource path="res://assets/fonts/upheaval.tres" type="DynamicFont" id=1]
+
+[sub_resource type="StreamTexture" id=4]
+load_path = "res://.import/button.png-01faf565b773239305f3664038f20e61.stex"
+
+[sub_resource type="AtlasTexture" id=2]
+atlas = SubResource( 4 )
+region = Rect2( 0, 32, 53, 32 )
+
+[sub_resource type="StyleBoxTexture" id=5]
+texture = SubResource( 2 )
+region_rect = Rect2( 0, 0, 53, 32 )
+margin_left = 25.0
+margin_right = 23.0
+axis_stretch_horizontal = 1
+axis_stretch_vertical = 1
+
+[sub_resource type="AtlasTexture" id=7]
+atlas = SubResource( 4 )
+region = Rect2( 0, 0, 53, 32 )
+
+[sub_resource type="StyleBoxTexture" id=3]
+texture = SubResource( 7 )
+region_rect = Rect2( 0, 0, 53, 32 )
+margin_left = 25.0
+margin_right = 23.0
+axis_stretch_horizontal = 1
+axis_stretch_vertical = 1
+
+[sub_resource type="AtlasTexture" id=8]
+atlas = SubResource( 4 )
+region = Rect2( 0, 64, 53, 32 )
+
+[sub_resource type="StyleBoxTexture" id=6]
+texture = SubResource( 8 )
+region_rect = Rect2( 0, 0, 53, 32 )
+margin_left = 25.0
+margin_right = 23.0
+axis_stretch_horizontal = 1
+axis_stretch_vertical = 1
+
+[resource]
+Button/colors/font_color = Color( 0.870588, 0.796078, 0.623529, 1 )
+Button/colors/font_color_disabled = Color( 0.45098, 0.317647, 0.301961, 1 )
+Button/colors/font_color_focus = Color( 0.870588, 0.796078, 0.623529, 1 )
+Button/colors/font_color_hover = Color( 0.933333, 0.92549, 0.870588, 1 )
+Button/colors/font_color_pressed = Color( 0.67451, 0.541176, 0.443137, 1 )
+Button/fonts/font = ExtResource( 1 )
+Button/styles/focus = SubResource( 5 )
+Button/styles/hover = SubResource( 5 )
+Button/styles/normal = SubResource( 3 )
+Button/styles/pressed = SubResource( 6 )
