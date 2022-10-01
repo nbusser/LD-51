@@ -44,64 +44,65 @@ format = 1
 tile_data = PoolIntArray( -589813, 9, 0, -524268, 9, 0, -262125, 9, 0, -131063, 9, 0, 262163, 9, 0, 393225, 9, 0, 983041, 9, 0, 983053, 9, 0 )
 
 [node name="Light2D" type="Light2D" parent="Navigation2D"]
-position = Vector2( 269, -265 )
+position = Vector2( 260, -265 )
 texture = ExtResource( 6 )
-texture_scale = 2.0
-color = Color( 0.913725, 0.815686, 0.694118, 1 )
+energy = 0.8
 shadow_enabled = true
+shadow_color = Color( 0.47451, 0.0588235, 0.0588235, 0 )
+shadow_filter = 5
 
 [node name="Light2D2" type="Light2D" parent="Navigation2D"]
-position = Vector2( 560, -267 )
+position = Vector2( 551, -267 )
 texture = ExtResource( 6 )
-texture_scale = 2.0
-color = Color( 0.913725, 0.815686, 0.694118, 1 )
+energy = 0.8
 shadow_enabled = true
+shadow_color = Color( 0.47451, 0.0588235, 0.0588235, 0 )
+shadow_filter = 5
 
 [node name="Light2D3" type="Light2D" parent="Navigation2D"]
-position = Vector2( 527, -78 )
+position = Vector2( 469, -84 )
 texture = ExtResource( 6 )
-texture_scale = 2.0
-color = Color( 0.913725, 0.815686, 0.694118, 1 )
+energy = 0.8
 shadow_enabled = true
+shadow_color = Color( 0.47451, 0.0588235, 0.0588235, 0 )
+shadow_filter = 5
 
 [node name="Light2D4" type="Light2D" parent="Navigation2D"]
-position = Vector2( 658, -75 )
+position = Vector2( 644, -62 )
 texture = ExtResource( 6 )
-texture_scale = 2.0
-color = Color( 0.913725, 0.815686, 0.694118, 1 )
+energy = 0.8
 shadow_enabled = true
-
-[node name="Light2D5" type="Light2D" parent="Navigation2D"]
-position = Vector2( 336, -79 )
-texture = ExtResource( 6 )
-texture_scale = 2.0
-color = Color( 0.913725, 0.815686, 0.694118, 1 )
-shadow_enabled = true
+shadow_color = Color( 0.47451, 0.0588235, 0.0588235, 0 )
+shadow_filter = 5
 
 [node name="Light2D6" type="Light2D" parent="Navigation2D"]
-position = Vector2( 653, 114 )
+position = Vector2( 644, 114 )
 texture = ExtResource( 6 )
-texture_scale = 2.0
-color = Color( 0.913725, 0.815686, 0.694118, 1 )
+energy = 0.8
 shadow_enabled = true
+shadow_color = Color( 0.47451, 0.0588235, 0.0588235, 0 )
+shadow_filter = 5
 
 [node name="Light2D7" type="Light2D" parent="Navigation2D"]
-position = Vector2( 337, 178 )
+position = Vector2( 328, 178 )
 texture = ExtResource( 6 )
-texture_scale = 2.0
-color = Color( 0.913725, 0.815686, 0.694118, 1 )
+energy = 0.8
 shadow_enabled = true
+shadow_color = Color( 0.47451, 0.0588235, 0.0588235, 0 )
+shadow_filter = 5
 
 [node name="Light2D8" type="Light2D" parent="Navigation2D"]
-position = Vector2( 337, 465 )
+position = Vector2( 328, 465 )
 texture = ExtResource( 6 )
-texture_scale = 2.0
-color = Color( 0.913725, 0.815686, 0.694118, 1 )
+energy = 0.8
 shadow_enabled = true
+shadow_color = Color( 0.47451, 0.0588235, 0.0588235, 0 )
+shadow_filter = 5
 
 [node name="Light2D9" type="Light2D" parent="Navigation2D"]
-position = Vector2( 105, 435 )
+position = Vector2( 96, 435 )
 texture = ExtResource( 6 )
-texture_scale = 2.0
-color = Color( 0.913725, 0.815686, 0.694118, 1 )
+energy = 0.8
 shadow_enabled = true
+shadow_color = Color( 0.47451, 0.0588235, 0.0588235, 0 )
+shadow_filter = 5
