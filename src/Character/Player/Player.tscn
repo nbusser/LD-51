@@ -30,3 +30,4 @@ scale = Vector2( 0.324219, 0.314453 )
 texture = ExtResource( 4 )
 texture_scale = 2.0
 color = Color( 0.85098, 0.819608, 0.623529, 1 )
+shadow_enabled = true
