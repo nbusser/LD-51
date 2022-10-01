@@ -7,7 +7,7 @@ var level_number
 var nb_coins
 
 onready var hud = $UI/HUD
-
+onready var map = $Map
 
 func _ready():
 	assert(
@@ -23,7 +23,4 @@ func init(level_number, nb_coins):
 
 
 func _on_Timer_timeout():
-	if randi() % 2:
-		emit_signal("end_of_level")
-	else:
-		emit_signal("game_over")
+	map.add_door()
