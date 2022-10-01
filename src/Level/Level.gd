@@ -4,7 +4,7 @@ signal end_of_level
 signal game_over
 
 var level_number
-var nb_coins
+var nb_coins = 1
 
 onready var hud = $UI/HUD
 onready var map = $Map

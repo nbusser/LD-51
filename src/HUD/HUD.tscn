@@ -32,12 +32,12 @@ margin_right = 1024.0
 margin_bottom = 32.0
 
 [node name="Label" type="Label" parent="VBoxContainer/VBoxContainer/CoinNumber"]
-margin_right = 43.0
+margin_right = 35.0
 margin_bottom = 14.0
-text = "Coins: "
+text = "Cats: "
 
 [node name="CoinNumberValue" type="Label" parent="VBoxContainer/VBoxContainer/CoinNumber"]
-margin_left = 47.0
-margin_right = 52.0
+margin_left = 39.0
+margin_right = 44.0
 margin_bottom = 14.0
 text = "/"
