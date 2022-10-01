@@ -20,9 +20,12 @@ func _ready():
 	$SoundFx/SpawnSound.play_sound()
 
 	map = get_node(_map_path)
-	self.position = map.tilemap.map_to_world(map.tilemap.world_to_map(global_position))
+	self.position = map.tilemap.map_to_world(get_map_position())
 	
 	self.connect("position_changed", manager, "update_position")
+
+func get_map_position():
+	return map.tilemap.world_to_map(position)
 
 func can_move():
 	return move_tick_timer.is_stopped()
@@ -31,9 +34,11 @@ func get_character_speed():
 	return move_tick_timer.wait_time
 
 func move(direction):
-	var destination_tile = map.tilemap.world_to_map(global_position) + direction
-	
-	if direction != Vector2.ZERO and can_move() and map.isNavigable(destination_tile):
+	var destination_tile = get_map_position() + direction
+	move_to(destination_tile)
+
+func move_to(destination_tile):
+	if get_map_position() != destination_tile and can_move() and map.isNavigable(destination_tile):
 		move_tick_timer.start()
 		
 		var destination = map.tilemap.map_to_world(
@@ -46,4 +51,3 @@ func move(direction):
 			self, "position", self.position, destination, get_character_speed(), Tween.TRANS_LINEAR, Tween.EASE_IN_OUT
 		)
 		$Tween.start()
-	

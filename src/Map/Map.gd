@@ -24,3 +24,6 @@ func rebake(changed_tile):
 
 func isNavigable(tile):
 	return astar.is_navigable_simple(tile) and not characters.is_cell_occupied(tile)
+
+func get_path_to_target(origin, target):
+	return astar.get_path_to_target(origin, target)

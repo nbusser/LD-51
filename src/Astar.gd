@@ -36,7 +36,7 @@ func path_from_backtrack_map(bm, current):
 	path.invert()
 	return path
 
-func get_path_(origin, destination):
+func get_path_to_target(origin, destination):
 	var origin_tile = tilemap.world_to_map(origin)
 	var destination_tile = tilemap.world_to_map(destination)
 	
