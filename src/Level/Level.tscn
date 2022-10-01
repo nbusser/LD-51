@@ -77,7 +77,7 @@ wait_time = 10.0
 autostart = true
 
 [node name="CanvasModulate" type="CanvasModulate" parent="."]
-color = Color( 0.0156863, 0, 0.141176, 1 )
+color = Color( 0.203922, 0.203922, 0.203922, 1 )
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
