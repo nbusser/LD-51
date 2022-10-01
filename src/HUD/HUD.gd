@@ -8,7 +8,7 @@ var current_coins_count = 0
 func set_level_number(level_number):
 	level_label.text = str(level_number + 1)
 
-func inc_coins():
+func increment_coins():
 	current_coins_count = current_coins_count + 1
 	coins_label.text = str(current_coins_count) + "/" + str(nb_coins_total)
 

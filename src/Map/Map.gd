@@ -4,6 +4,7 @@ onready var tilemap = $Navigation2D/TileMap
 onready var astar = Astar.new(tilemap)
 onready var characters = $Navigation2D/Characters
 onready var items = $Navigation2D/Items
+onready var hud = get_node("../UI/HUD")
 
 var door_cells = null
 
@@ -29,3 +30,7 @@ func isNavigable(tile):
 
 func get_path_to_target(origin, target):
 	return astar.get_path_to_target(origin, target)
+
+func save_cat(pos):
+	$Navigation2D/Items.set_cellv(pos, -1)
+	hud.increment_coins()
