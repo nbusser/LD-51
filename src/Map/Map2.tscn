@@ -45,6 +45,9 @@ position = Vector2( 289, -256 )
 position = Vector2( -0.5, 22 )
 shape = SubResource( 1 )
 
+[node name="PatrolPath" parent="Navigation2D/Rooms/Room/RoomArea/RoomShape" index="0"]
+points = PoolVector2Array( -79.5, -40, 80.5, -37, 80.5, 20, -78.5, 17, -80.5, -33 )
+
 [node name="LightBulb" parent="Navigation2D/Rooms/Room/LightBulbs" index="0" instance=ExtResource( 2 )]
 position = Vector2( 294, -277 )
 
@@ -54,6 +57,9 @@ position = Vector2( 351, -78 )
 [node name="RoomShape" parent="Navigation2D/Rooms/Room2/RoomArea" index="0"]
 position = Vector2( 9, -11.5 )
 shape = SubResource( 2 )
+
+[node name="PatrolPath" parent="Navigation2D/Rooms/Room2/RoomArea/RoomShape" index="0"]
+points = PoolVector2Array( -55, -25.5, 10, -25.5, 13, 37.5, -57, 40.5, -54, -21.5 )
 
 [node name="LightBulb" parent="Navigation2D/Rooms/Room2/LightBulbs" index="0" instance=ExtResource( 2 )]
 position = Vector2( 297, -75 )
@@ -81,6 +87,9 @@ position = Vector2( 575, -256 )
 position = Vector2( 1, 24.5 )
 shape = SubResource( 4 )
 
+[node name="PatrolPath" parent="Navigation2D/Rooms/Room4/RoomArea/RoomShape" index="0"]
+points = PoolVector2Array( -79, -43.5, 76, -47.5, 78, 15.5, -81, 16.5, -80, -36.5 )
+
 [node name="LightBulb" parent="Navigation2D/Rooms/Room4/LightBulbs" index="0" instance=ExtResource( 2 )]
 position = Vector2( 573, -267 )
 
@@ -90,6 +99,9 @@ position = Vector2( 654, 127 )
 [node name="RoomShape" parent="Navigation2D/Rooms/Room5/RoomArea" index="0"]
 position = Vector2( 2, -22 )
 shape = SubResource( 5 )
+
+[node name="PatrolPath" parent="Navigation2D/Rooms/Room5/RoomArea/RoomShape" index="0"]
+points = PoolVector2Array( -29, -26, 37, -27, 35, 49, -36, 45, -33, -20 )
 
 [editable path="Navigation2D/Rooms/Room"]
 [editable path="Navigation2D/Rooms/Room2"]
