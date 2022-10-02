@@ -32,8 +32,8 @@ func _process(_delta):
 		if not interact_button_pressed or interactible == null or not interactible.is_interactible():
 			$InteractTimer.stop()
 
-func _on_Tween_tween_completed(_hey, _useless):
-	if (map.get_node("Navigation2D/Items").get_cellv(get_map_position()) == Globals.CATS.CAT):
+func _on_Tween_tween_completed(hey, useless):
+	if (map.get_node("Navigation2D/Items").get_cellv(get_map_position()) == Globals.ITEMS.CAT):
 		emit_signal("cat_saved", get_map_position())
 
 func _on_InteractZone_area_entered(area):

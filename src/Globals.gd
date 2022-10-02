@@ -21,6 +21,6 @@ enum TILE_TYPES {
 	DOOR_CLOSED = 15,
 }
 
-enum CATS {
+enum ITEMS {
 	CAT = 9
 }

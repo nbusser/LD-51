@@ -9,4 +9,4 @@ func init(level_number):
 	get_node("UI/HUD").set_level_decoration(level_number, level_names[level_number])
 
 func _on_Timer_timeout():
-	map.add_door()
+	map.switch_random_door()
