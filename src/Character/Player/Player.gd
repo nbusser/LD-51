@@ -27,7 +27,7 @@ func _process(_delta):
 		and interactible != null
 		and interactible.is_interactible()
 	):
-			$InteractTimer.start()
+		$InteractTimer.start()
 	elif is_interacting():
 		if not interact_button_pressed or interactible == null or not interactible.is_interactible():
 			$InteractTimer.stop()
@@ -36,7 +36,7 @@ func _process(_delta):
 	$Flashlight.rotation = gaze_angle.angle() - PI/2
 
 func _on_Tween_tween_completed(hey, useless):
-	if (map.get_node("Navigation2D/Items").get_cellv(get_map_position()) == Globals.ITEMS.CAT):
+	if (map.get_node("Navigation2D/TallMap").get_cellv(get_map_position()) == Globals.ITEMS.CAT):
 		emit_signal("cat_saved", get_map_position())
 
 func _on_InteractZone_area_entered(area):

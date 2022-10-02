@@ -1,6 +1,6 @@
 extends Node
 
-onready var tilemap = get_parent().get_node('TileMap')
+onready var tilemap = get_parent().get_node("WalkableMap")
 
 var character_positions = {}
 

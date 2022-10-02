@@ -7,7 +7,7 @@ func _init(new_tilemap: TileMap):
 	self.tilemap = new_tilemap
 
 func is_navigable_type(tile_type):
-	return tile_type == Globals.TILE_TYPES.GROUND || tile_type == Globals.TILE_TYPES.DOOR_OPEN
+	return tile_type != -1
 
 func is_navigable_simple(tile):
 	return is_navigable_type(tilemap.get_cell(tile.x, tile.y))

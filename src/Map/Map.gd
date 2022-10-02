@@ -1,10 +1,10 @@
 extends Node2D
 
-onready var tilemap = $Navigation2D/TileMap
+onready var tilemap = $Navigation2D/WalkableMap
 onready var astar = Astar.new(tilemap)
 onready var characters = $Navigation2D/Characters
 onready var player = $Navigation2D/Characters/Player
-onready var items = $Navigation2D/Items
+onready var items = $Navigation2D/TallMap
 onready var hud = get_node("../UI/HUD")
 onready var doors = $Navigation2D/Doors
 onready var rooms = $Navigation2D/Rooms
@@ -31,7 +31,7 @@ func get_path_to_target(origin, target):
 	return astar.get_path_to_target(origin, target)
 
 func save_cat(pos):
-	$Navigation2D/Items.set_cellv(pos, -1)
+	$Navigation2D/TallMap.set_cellv(pos, -1)
 	hud.increment_coins()
 
 func lights_off():
@@ -63,8 +63,9 @@ func room_alert():
 	room.trigger_alert()
 	
 func neighbour_room_alert():
-	var rooms = rooms.get_neighbours(rooms.locate_player())
-	var room = rooms[randi() % len(rooms)]
+	print(rooms)
+	var room_list = rooms.get_neighbours(rooms.locate_player())
+	var room = room_list[randi() % len(room_list)]
 	room.trigger_alert()
 
 func spawn_monster():

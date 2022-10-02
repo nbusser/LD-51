@@ -1,0 +1,212 @@
+[gd_resource type="TileSet" load_steps=22 format=2]
+
+[ext_resource path="res://assets/sprites/tileset_walls_v2.png" type="Texture" id=1]
+[ext_resource path="res://assets/sprites/tileset_futuristic.png" type="Texture" id=2]
+
+[sub_resource type="OccluderPolygon2D" id=1]
+polygon = PoolVector2Array( 8.1875, 0, 24.0625, 0, 23.9375, 31.9375, 8.125, 32 )
+
+[sub_resource type="OccluderPolygon2D" id=2]
+polygon = PoolVector2Array( 8.468, 0, 8.252, 54.024, 13.22, 59.748, 18.62, 59.856, 23.912, 53.592, 24.02, 0 )
+
+[sub_resource type="OccluderPolygon2D" id=3]
+polygon = PoolVector2Array( 14.084, 5.95401, 8.036, 11.03, 8.144, 53.852, 13.112, 60.116, 18.944, 60.116, 24.02, 53.852, 24.128, 11.084, 18.08, 6.00803 )
+
+[sub_resource type="OccluderPolygon2D" id=4]
+polygon = PoolVector2Array( 32, 59.875, 24.0625, 59.9375, 24.0625, 59.9375, 23.9664, 31.9904, 8.15522, 32.12, 8.15522, 11.1248, 16.8384, 4.904, 32, 4.85 )
+
+[sub_resource type="OccluderPolygon2D" id=5]
+polygon = PoolVector2Array( 8.0625, 0, 8.125, 64, 23.9375, 64, 24.125, 60.0625, 32, 60.25, 32, 4.8125, 27.0625, 3.1875, 23.8125, 0 )
+
+[sub_resource type="OccluderPolygon2D" id=6]
+polygon = PoolVector2Array( 8.02562, 0, 8.1875, 53.8125, 10.0992, 57.8257, 13.1875, 60, 32, 60.0289, 32, 4.81924, 26.688, 3.13443, 24.096, 0 )
+
+[sub_resource type="OccluderPolygon2D" id=7]
+polygon = PoolVector2Array( 32, 5.0625, 16.0625, 5, 10.0625, 7.9375, 7.125, 11.0625, 7, 53.6875, 9, 58, 12, 60.0625, 32, 59.8736 )
+
+[sub_resource type="OccluderPolygon2D" id=8]
+polygon = PoolVector2Array( 8.03683, 32.12, 8.16643, 59.984, 0, 59.875, 0.00161743, 4.77441, 32, 4.85, 32, 60.11, 24.2368, 59.8544, 23.9776, 32.12 )
+
+[sub_resource type="OccluderPolygon2D" id=9]
+polygon = PoolVector2Array( 7.99001, 59.92, 8.0625, 64, 23.92, 64, 23.9375, 59.9375, 32, 60.0625, 32, 4.9375, 27.79, 2.95001, 23.6875, 0, 8.125, 0, 4.12001, 3.04001, 0, 4.8125, 0, 60.0625 )
+
+[sub_resource type="OccluderPolygon2D" id=10]
+polygon = PoolVector2Array( 8.1875, 0, 23.8125, 0, 27.0625, 3.0625, 32, 5.0625, 32, 59.9375, 0, 59.9375, 0, 4.9375, 5, 3.0625 )
+
+[sub_resource type="OccluderPolygon2D" id=11]
+polygon = PoolVector2Array( 32, 60, 0, 59.8736, 0, 4.92322, 32, 5 )
+
+[sub_resource type="OccluderPolygon2D" id=12]
+polygon = PoolVector2Array( 0, 4.76, 14.87, 5.03001, 23.87, 11.24, 23.96, 32.03, 8.12001, 32.03, 8.03001, 60.02, 0, 60.2 )
+
+[sub_resource type="OccluderPolygon2D" id=13]
+polygon = PoolVector2Array( 23.96, 0, 24.05, 64, 8.12001, 64, 8.12001, 59.83, 0, 59.92, 0, 4.75002, 4.16001, 3.22002, 8.39001, 0 )
+
+[sub_resource type="OccluderPolygon2D" id=14]
+polygon = PoolVector2Array( 0, 5.125, 4.9375, 3.125, 8.375, 0, 24, 0, 24.0625, 54.1875, 22.875, 57, 19.25, 59.9375, 0, 59.9375 )
+
+[sub_resource type="OccluderPolygon2D" id=15]
+polygon = PoolVector2Array( 0, 5, 13.8125, 5.0625, 18.875, 7, 22.875, 11, 23.0625, 53.875, 20.9375, 58.125, 18.0625, 60.0625, 0, 60.0625 )
+
+[sub_resource type="OccluderPolygon2D" id=16]
+polygon = PoolVector2Array( 0, 5.125, 5.09999, 2.92999, 8.1875, 0, 23.9375, 0, 26.88, 2.75, 32, 4.8125, 32, 60.125, 24.09, 60.08, 24.1875, 64, 0, 64 )
+
+[sub_resource type="OccluderPolygon2D" id=17]
+polygon = PoolVector2Array( 1, 0, 0, 0, 0, 1, 1, 1 )
+
+[sub_resource type="OccluderPolygon2D" id=18]
+polygon = PoolVector2Array( 1, 0.625, 0, 0.625, 0, 0, 1, 0 )
+
+[sub_resource type="OccluderPolygon2D" id=19]
+polygon = PoolVector2Array( -568.075, -1312, -552.175, -1312.07, -552.1, -1334.12, -557.875, -1339.9, -561.85, -1339.9, -567.925, -1333.9 )
+
+[resource]
+0/name = "tileset_walls_v2.png 0"
+0/texture = ExtResource( 1 )
+0/tex_offset = Vector2( 0, -32 )
+0/modulate = Color( 1, 1, 1, 1 )
+0/region = Rect2( 0, 0, 384, 256 )
+0/tile_mode = 1
+0/autotile/bitmask_mode = 1
+0/autotile/bitmask_flags = [ Vector2( 0, 0 ), 144, Vector2( 0, 1 ), 146, Vector2( 0, 2 ), 18, Vector2( 0, 3 ), 16, Vector2( 1, 0 ), 176, Vector2( 1, 1 ), 178, Vector2( 1, 2 ), 50, Vector2( 1, 3 ), 48, Vector2( 2, 0 ), 184, Vector2( 2, 1 ), 186, Vector2( 2, 2 ), 58, Vector2( 2, 3 ), 56, Vector2( 3, 0 ), 152, Vector2( 3, 1 ), 154, Vector2( 3, 2 ), 26, Vector2( 3, 3 ), 24, Vector2( 4, 0 ), 187, Vector2( 4, 1 ), 434, Vector2( 4, 2 ), 182, Vector2( 4, 3 ), 250, Vector2( 5, 0 ), 440, Vector2( 5, 1 ), 510, Vector2( 5, 2 ), 447, Vector2( 5, 3 ), 62, Vector2( 6, 0 ), 248, Vector2( 6, 1 ), 507, Vector2( 6, 2 ), 255, Vector2( 6, 3 ), 59, Vector2( 7, 0 ), 190, Vector2( 7, 1 ), 218, Vector2( 7, 2 ), 155, Vector2( 7, 3 ), 442, Vector2( 8, 0 ), 432, Vector2( 8, 1 ), 438, Vector2( 8, 2 ), 446, Vector2( 8, 3 ), 54, Vector2( 9, 0 ), 506, Vector2( 9, 1 ), 222, Vector2( 9, 2 ), 511, Vector2( 9, 3 ), 63, Vector2( 10, 0 ), 504, Vector2( 10, 2 ), 435, Vector2( 10, 3 ), 191, Vector2( 11, 0 ), 216, Vector2( 11, 1 ), 251, Vector2( 11, 2 ), 219, Vector2( 11, 3 ), 27 ]
+0/autotile/icon_coordinate = Vector2( 2, 3 )
+0/autotile/tile_size = Vector2( 32, 64 )
+0/autotile/spacing = 0
+0/autotile/occluder_map = [ Vector2( 0, 1 ), SubResource( 1 ), Vector2( 0, 2 ), SubResource( 2 ), Vector2( 0, 3 ), SubResource( 3 ), Vector2( 1, 0 ), SubResource( 4 ), Vector2( 1, 1 ), SubResource( 5 ), Vector2( 1, 2 ), SubResource( 6 ), Vector2( 1, 3 ), SubResource( 7 ), Vector2( 2, 0 ), SubResource( 8 ), Vector2( 2, 1 ), SubResource( 9 ), Vector2( 2, 2 ), SubResource( 10 ), Vector2( 2, 3 ), SubResource( 11 ), Vector2( 3, 0 ), SubResource( 12 ), Vector2( 3, 1 ), SubResource( 13 ), Vector2( 3, 2 ), SubResource( 14 ), Vector2( 3, 3 ), SubResource( 15 ), Vector2( 4, 3 ), SubResource( 16 ), Vector2( 16, 28 ), SubResource( 17 ), Vector2( 17, 22 ), SubResource( 18 ), Vector2( 18, 21 ), SubResource( 19 ) ]
+0/autotile/navpoly_map = [  ]
+0/autotile/priority_map = [  ]
+0/autotile/z_index_map = [  ]
+0/occluder_offset = Vector2( 0, 0 )
+0/navigation_offset = Vector2( 0, 0 )
+0/shape_offset = Vector2( 0, 0 )
+0/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+0/shape_one_way = false
+0/shape_one_way_margin = 0.0
+0/shapes = [  ]
+0/z_index = 0
+1/name = "tileset_futuristic.png 1"
+1/texture = ExtResource( 2 )
+1/tex_offset = Vector2( 0, -32 )
+1/modulate = Color( 1, 1, 1, 1 )
+1/region = Rect2( 320, 288, 32, 64 )
+1/tile_mode = 0
+1/occluder_offset = Vector2( 0, 0 )
+1/navigation_offset = Vector2( 0, 0 )
+1/shape_offset = Vector2( 0, 0 )
+1/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+1/shape_one_way = false
+1/shape_one_way_margin = 0.0
+1/shapes = [  ]
+1/z_index = 0
+2/name = "tileset_futuristic.png 2"
+2/texture = ExtResource( 2 )
+2/tex_offset = Vector2( 0, -32 )
+2/modulate = Color( 1, 1, 1, 1 )
+2/region = Rect2( 352, 192, 32, 64 )
+2/tile_mode = 0
+2/occluder_offset = Vector2( 0, 0 )
+2/navigation_offset = Vector2( 0, 0 )
+2/shape_offset = Vector2( 0, 0 )
+2/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+2/shape_one_way = false
+2/shape_one_way_margin = 0.0
+2/shapes = [  ]
+2/z_index = 0
+3/name = "tileset_futuristic.png 3"
+3/texture = ExtResource( 2 )
+3/tex_offset = Vector2( 0, -32 )
+3/modulate = Color( 1, 1, 1, 1 )
+3/region = Rect2( 384, 192, 32, 64 )
+3/tile_mode = 0
+3/occluder_offset = Vector2( 0, 0 )
+3/navigation_offset = Vector2( 0, 0 )
+3/shape_offset = Vector2( 0, 0 )
+3/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+3/shape_one_way = false
+3/shape_one_way_margin = 0.0
+3/shapes = [  ]
+3/z_index = 0
+4/name = "tileset_futuristic.png 4"
+4/texture = ExtResource( 2 )
+4/tex_offset = Vector2( 0, -32 )
+4/modulate = Color( 1, 1, 1, 1 )
+4/region = Rect2( 352, 288, 32, 64 )
+4/tile_mode = 0
+4/occluder_offset = Vector2( 0, 0 )
+4/navigation_offset = Vector2( 0, 0 )
+4/shape_offset = Vector2( 0, 0 )
+4/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+4/shape_one_way = false
+4/shape_one_way_margin = 0.0
+4/shapes = [  ]
+4/z_index = 0
+5/name = "tileset_futuristic.png 5"
+5/texture = ExtResource( 2 )
+5/tex_offset = Vector2( 0, -32 )
+5/modulate = Color( 1, 1, 1, 1 )
+5/region = Rect2( 288, 128, 32, 64 )
+5/tile_mode = 0
+5/occluder_offset = Vector2( 0, 0 )
+5/navigation_offset = Vector2( 0, 0 )
+5/shape_offset = Vector2( 0, 0 )
+5/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+5/shape_one_way = false
+5/shape_one_way_margin = 0.0
+5/shapes = [  ]
+5/z_index = 0
+6/name = "tileset_futuristic.png 6"
+6/texture = ExtResource( 2 )
+6/tex_offset = Vector2( 0, -32 )
+6/modulate = Color( 1, 1, 1, 1 )
+6/region = Rect2( 352, 128, 32, 64 )
+6/tile_mode = 0
+6/occluder_offset = Vector2( 0, 0 )
+6/navigation_offset = Vector2( 0, 0 )
+6/shape_offset = Vector2( 0, 0 )
+6/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+6/shape_one_way = false
+6/shape_one_way_margin = 0.0
+6/shapes = [  ]
+6/z_index = 0
+7/name = "tileset_futuristic.png 7"
+7/texture = ExtResource( 2 )
+7/tex_offset = Vector2( 0, -32 )
+7/modulate = Color( 1, 1, 1, 1 )
+7/region = Rect2( 384, 128, 32, 64 )
+7/tile_mode = 0
+7/occluder_offset = Vector2( 0, 0 )
+7/navigation_offset = Vector2( 0, 0 )
+7/shape_offset = Vector2( 0, 0 )
+7/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+7/shape_one_way = false
+7/shape_one_way_margin = 0.0
+7/shapes = [  ]
+7/z_index = 0
+8/name = "tileset_futuristic.png 8"
+8/texture = ExtResource( 2 )
+8/tex_offset = Vector2( 0, -32 )
+8/modulate = Color( 1, 1, 1, 1 )
+8/region = Rect2( 416, 128, 32, 64 )
+8/tile_mode = 0
+8/occluder_offset = Vector2( 0, 0 )
+8/navigation_offset = Vector2( 0, 0 )
+8/shape_offset = Vector2( 0, 0 )
+8/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+8/shape_one_way = false
+8/shape_one_way_margin = 0.0
+8/shapes = [  ]
+8/z_index = 0
+9/name = "tileset_futuristic.png 9"
+9/texture = ExtResource( 2 )
+9/tex_offset = Vector2( -3, -12 )
+9/modulate = Color( 1, 1, 1, 1 )
+9/region = Rect2( 351, 91, 35, 37 )
+9/tile_mode = 0
+9/occluder_offset = Vector2( 0, 0 )
+9/navigation_offset = Vector2( 0, 0 )
+9/shape_offset = Vector2( 0, 0 )
+9/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+9/shape_one_way = false
+9/shape_one_way_margin = 0.0
+9/shapes = [  ]
+9/z_index = 0

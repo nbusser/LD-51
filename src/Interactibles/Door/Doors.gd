@@ -2,7 +2,7 @@ extends Node
 
 onready var door = preload("res://src/Interactibles/Door/Door.tscn")
 onready var map = $"../../"
-onready var tilemap = $"../TileMap"
+onready var tilemap = $"../TallMap"
 
 var door_cells = {}
 
