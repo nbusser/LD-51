@@ -16,10 +16,13 @@ seamless = true
 noise = SubResource( 3 )
 
 [node name="ParallaxBackground" type="ParallaxBackground"]
+scale = Vector2( 2, 2 )
+transform = Transform2D( 2, 0, 0, 2, 0, 0 )
+scroll_ignore_camera_zoom = true
 script = ExtResource( 3 )
 
 [node name="DistantStars" type="ParallaxLayer" parent="."]
-motion_scale = Vector2( 0.045, 0.02 )
+motion_scale = Vector2( 0.045, 0.045 )
 motion_mirroring = Vector2( 1024, 600 )
 
 [node name="TextureRect" type="TextureRect" parent="DistantStars"]

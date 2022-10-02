@@ -42,7 +42,5 @@ one_shot = true
 [node name="CanvasModulate" type="CanvasModulate" parent="."]
 color = Color( 0.152941, 0.152941, 0.235294, 1 )
 
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
-
 [connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]
 [connection signal="timeout" from="MusicTimer" to="." method="_on_MusicTimer_timeout"]
