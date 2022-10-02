@@ -32,6 +32,7 @@ tile_set = ExtResource( 3 )
 cell_size = Vector2( 32, 32 )
 bake_navigation = true
 format = 1
+tile_data = PoolIntArray( 327707, 36, 524288, 655377, 36, 524288, 1769520, 36, 524288, 1966129, 36, 524288 )
 
 [node name="Items" type="TileMap" parent="Navigation2D"]
 tile_set = ExtResource( 4 )
