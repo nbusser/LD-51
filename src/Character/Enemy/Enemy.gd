@@ -86,7 +86,7 @@ func _on_StartMoving_timeout():
 
 
 func _on_PatrolMode_timeout():
-	if true or randi()%2:
+	if randf() < 0.7:
 		var neighbours = rooms_manager.get_neighbours(rooms_manager.locate_player())
 		patrol_room = neighbours[randi()%len(neighbours)]
 		patrol_index = 0
