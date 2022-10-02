@@ -1,6 +1,7 @@
 extends Node
 
 const SAMPLE_GLOBAL_VARIABLE = 1
+const SCENE_TRANSITION_DURATION: float = 0.5
 
 enum Interactibles {
 	LIGHT

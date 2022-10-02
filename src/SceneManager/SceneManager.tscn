@@ -19,6 +19,11 @@ size = Vector2( 1024, 600 )
 handle_input_locally = false
 render_target_update_mode = 3
 
+[node name="SceneTransition" type="ColorRect" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color( 0, 0, 0, 1 )
+
 [node name="Musics" type="Node" parent="."]
 
 [node name="Music1" type="AudioStreamPlayer" parent="Musics"]
