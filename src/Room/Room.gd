@@ -2,6 +2,7 @@ signal declare_neighbour(neighbour)
 
 extends Node2D
 
+onready var map = $"../../../"
 onready var tilemap = $"../../WalkableMap"
 onready var doors_manager = $"../../Doors"
 onready var lights = $LightBulbs
@@ -13,6 +14,16 @@ var contained_characters = []
 var _patrol_points
 var _patrol_cells = []
 
+func _check_patrol_accessible():
+	var i = 1
+	var first_point = _patrol_points[i]
+	while i < len(_patrol_points):
+		var second_point = _patrol_points[i]
+		if map.get_path_to_target(first_point, second_point) == null:
+			return false
+		first_point = second_point
+	return true
+
 func _ready():
 	if $RoomArea/RoomShape.shape == null:
 		print('ERROR: missing room shape for ', self)
@@ -20,11 +31,16 @@ func _ready():
 	patrol_path.visible = false
 	
 	_patrol_points = patrol_path.get_points()
-	for point in _patrol_points:
-		_patrol_cells.append(tilemap.world_to_map(point))
+	for i in range(len(_patrol_points)):
+		_patrol_points[i] += global_position
+		_patrol_cells.append(tilemap.world_to_map(_patrol_points[i]))
 
 	if len(_patrol_points) == 0:
 		print('ERROR: missing patrol for ', self)
+	else:
+		yield(get_tree().root, "ready")
+		if not _check_patrol_accessible():
+			print('ERROR: patrol is not accessible ', self)
 
 func _on_RoomArea_area_entered(area):
 	if (area.is_in_group('room')):
