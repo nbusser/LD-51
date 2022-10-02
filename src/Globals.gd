@@ -29,5 +29,5 @@ enum WALKABLE {
 }
 
 enum ITEMS {
-	CAT = 9
+	CAT = 11
 }
