@@ -5,3 +5,4 @@ convert -crop 96x64 horizontal_door.png horizontal_door/horizontal_door.png
 convert -crop 32x32 lampe_sol_1.png lampe_sol_1/lampe_sol_1.png
 convert -crop 24x24 vent.png vent/vent.png
 convert -crop 32x128 vertical_door.png vertical_door/vertical_door.png
+convert -crop 49x39 chat.png chat/chat.png
