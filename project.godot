@@ -52,7 +52,7 @@ _global_script_classes=[ {
 "base": "Area2D",
 "class": "Interactible",
 "language": "GDScript",
-"path": "res://src/Interactible.gd"
+"path": "res://src/Interactibles/Interactible.gd"
 }, {
 "base": "Reference",
 "class": "PriorityQueue",
