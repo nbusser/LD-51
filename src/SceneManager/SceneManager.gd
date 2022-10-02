@@ -65,9 +65,6 @@ func _load_level():
 	var scene = levels[current_level_number].instance()
 	scene.init(current_level_number)
 
-	scene.connect("end_of_level", self, "_on_end_of_level")
-	scene.connect("game_over", self, "_on_game_over")
-
 	scene.get_node("UI/HUD").connect("level_done", self, "_on_end_of_level")
 
 	self.current_scene = scene
