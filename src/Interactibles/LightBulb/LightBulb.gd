@@ -57,3 +57,6 @@ func interact():
 		change_state(Globals.LightingState.ON)
 	elif state == Globals.LightingState.ALERT:
 		change_state(Globals.LightingState.OFF)
+
+func is_calamitable():
+	return state == Globals.LightingState.ON

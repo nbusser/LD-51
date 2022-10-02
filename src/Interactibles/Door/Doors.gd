@@ -19,6 +19,7 @@ func _instantiate_doors(cells, opened):
 		new_door.init(opened, door_pos)
 		new_door.position = tilemap.map_to_world(door_pos)
 		new_door.connect("open_door", self, "open_door")
+		new_door.connect("close_door", self, "close_door")
 
 		add_child(new_door)
 		door_cells[door_pos] = new_door

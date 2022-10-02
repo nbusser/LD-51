@@ -14,3 +14,6 @@ func interact():
 
 func get_interactible_type():
 	return interactible_type
+
+func is_calamitable():
+	print('ERROR: "is_calamitable" function not implemented by inherited class')
