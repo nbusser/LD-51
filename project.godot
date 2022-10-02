@@ -104,6 +104,10 @@ window/stretch/aspect="keep"
 
 enabled=PoolStringArray( "res://addons/finder/plugin.cfg" )
 
+[gui]
+
+theme/custom="res://theme.tres"
+
 [importer_defaults]
 
 texture={
