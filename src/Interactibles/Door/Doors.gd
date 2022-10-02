@@ -3,6 +3,7 @@ extends Node
 onready var door = preload("res://src/Interactibles/Door/Door.tscn")
 onready var map = $"../../"
 onready var tilemap = $"../WallDecorationMap"
+onready var walkable_map = $"../WalkableMap"
 
 var door_cells = {}
 
@@ -31,13 +32,17 @@ func _change_door_state(pos, opened):
 	var door = tilemap.get_cellv(pos)
 	var cellv
 	if (door == Globals.TILE_TYPES.DOOR_CLOSED_H):
-		cellv =  Globals.TILE_TYPES.DOOR_OPEN_H
+		cellv = Globals.TILE_TYPES.DOOR_OPEN_H
+		walkable_map.set_cellv(pos, Globals.WALKABLE.YES)
 	elif (door == Globals.TILE_TYPES.DOOR_CLOSED_V):
-		cellv =  Globals.TILE_TYPES.DOOR_OPEN_V
+		cellv = Globals.TILE_TYPES.DOOR_OPEN_V
+		walkable_map.set_cellv(pos, Globals.WALKABLE.YES)
 	elif (door == Globals.TILE_TYPES.DOOR_OPEN_H):
-		cellv =  Globals.TILE_TYPES.DOOR_CLOSED_H
+		cellv = Globals.TILE_TYPES.DOOR_CLOSED_H
+		walkable_map.set_cellv(pos, Globals.WALKABLE.NO)
 	elif (door == Globals.TILE_TYPES.DOOR_OPEN_V):
-		cellv =  Globals.TILE_TYPES.DOOR_CLOSED_V
+		cellv = Globals.TILE_TYPES.DOOR_CLOSED_V
+		walkable_map.set_cellv(pos, Globals.WALKABLE.NO)
 	door_cells[pos].change_state(opened)
 	tilemap.set_cellv(pos, cellv)
 

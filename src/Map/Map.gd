@@ -1,6 +1,9 @@
 extends Node2D
 
 onready var tilemap = $Navigation2D/WalkableMap
+onready var wall_map = $Navigation2D/TallMap
+onready var floor_map = $Navigation2D/FloorMap
+onready var wall_deco_map = $Navigation2D/WallDecorationMap
 onready var astar = Astar.new(tilemap)
 onready var characters = $Navigation2D/Characters
 onready var player = $Navigation2D/Characters/Player
@@ -11,8 +14,16 @@ onready var rooms = $Navigation2D/Rooms
 
 var door_cells = null
 
+func initialize_walkable():
+	for tile in floor_map.get_used_cells():
+		var tall_cell = wall_map.get_cellv(tile)
+		var wall_dec_tile = wall_deco_map.get_cellv(tile)
+		if ((tall_cell == -1 || tall_cell == Globals.ITEMS.CAT) && (wall_dec_tile != Globals.TILE_TYPES.DOOR_CLOSED_H) && (wall_dec_tile != Globals.TILE_TYPES.DOOR_CLOSED_V)):
+			tilemap.set_cellv(tile, Globals.WALKABLE.YES)
+
 func _ready():
 	hud.set_coins(items.get_used_cells_by_id(Globals.ITEMS.CAT).size())
+	initialize_walkable()
 
 func switch_random_door():
 	doors.switch_random_door()

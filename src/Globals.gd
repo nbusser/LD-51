@@ -20,7 +20,12 @@ enum TILE_TYPES {
 	DOOR_OPEN_H = 60,
 	DOOR_CLOSED_H = 63
 	DOOR_OPEN_V = 62,
-	DOOR_CLOSED_V = 31,
+	DOOR_CLOSED_V = 61,
+}
+
+enum WALKABLE {
+	YES = 0,
+	NO = -1
 }
 
 enum ITEMS {
