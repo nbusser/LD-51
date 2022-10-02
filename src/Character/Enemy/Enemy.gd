@@ -19,7 +19,6 @@ var is_blind = false
 func _init().("../../../"):
 	pass
 
-
 func get_current_patrol_point(world_coordinates=false):
 	return patrol_room.get_patrol_points(world_coordinates)[patrol_index]
 
@@ -63,3 +62,4 @@ func _on_EnemyBlindZone_area_exited(_area):
 
 func _on_StartMoving_timeout():
 	patrol_room = rooms_manager.locate_character(self)
+	print(patrol_room)
