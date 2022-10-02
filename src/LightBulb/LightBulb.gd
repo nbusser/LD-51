@@ -1,6 +1,9 @@
-extends Area2D
+extends Interactible
 
 export var state = Globals.LightingState.ON
+
+func _init().(Globals.Interactibles.LIGHT):
+	pass
 
 func _ready():
 	change_state(state)
@@ -33,6 +36,8 @@ func _on_Tween_tween_completed(object, key):
 		var current_alpha = $Light2D.color.a
 		_change_color(Color(1, 0, 0, 1-current_alpha), 0.7)
 
+func _is_blinking():
+	return $BlinkingOffTimer.time_left > 0 or $LastBlink.time_left > 0
 
 func _on_BlinkingOffTimer_timeout():
 	$Light2D.color.a = 1
@@ -41,5 +46,14 @@ func _on_BlinkingOffTimer_timeout():
 
 
 func _on_LastBlink_timeout():
-	$Light2D.color.a = 0
-	self.monitorable = false
+	$Light2D.color = Color(0, 0, 0, 0)
+	$EnemyBlindZone.disabled = true
+
+func is_interactible():
+	return not _is_blinking() and state != Globals.LightingState.ON
+
+func interact():
+	if state == Globals.LightingState.OFF:
+		change_state(Globals.LightingState.ON)
+	elif state == Globals.LightingState.ALERT:
+		change_state(Globals.LightingState.OFF)

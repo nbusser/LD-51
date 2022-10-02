@@ -15,6 +15,7 @@ onready var credits = preload("res://src/Credits/Credits.tscn")
 onready var game_over = preload("res://src/GameOver/GameOver.tscn")
 
 onready var viewport = $"%MainViewport"
+onready var scene_transition = $SceneTransition
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -42,14 +43,22 @@ func _on_show_credits():
 func _on_show_main_menu():
 	_run_main_menu()
 
-
-func set_scene(new_scene):
+func _set_scene_callback(new_scene):
 	if current_scene:
 		viewport.remove_child(current_scene)
 		current_scene.queue_free()
-
 	current_scene = new_scene
 	viewport.add_child(current_scene)
+	
+	var tween := create_tween()
+	tween.tween_property(scene_transition, "modulate:a", 0.0, Globals.SCENE_TRANSITION_DURATION)
+
+func set_scene(new_scene):
+	var tween := create_tween()
+	if current_scene:
+		tween.tween_property(scene_transition, "modulate:a", 1.0, Globals.SCENE_TRANSITION_DURATION)
+	tween.tween_callback(self, "_set_scene_callback", [new_scene])
+
 
 
 func _load_level():

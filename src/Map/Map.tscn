@@ -43,6 +43,7 @@ tile_data = PoolIntArray( -589813, 9, 0, -524268, 9, 0, -262125, 9, 0, -131063, 
 
 [node name="LightBulb" parent="Navigation2D/LightBulbs" instance=ExtResource( 6 )]
 position = Vector2( 312, -282 )
+state = 1
 
 [node name="LightBulb2" parent="Navigation2D/LightBulbs" instance=ExtResource( 6 )]
 position = Vector2( 300, -78 )
