@@ -11,7 +11,7 @@ script = ExtResource( 2 )
 strategy = 0
 
 [node name="MoveTick" parent="." index="2"]
-wait_time = 0.7
+wait_time = 1.0
 
 [node name="Halo" type="Light2D" parent="." index="3"]
 position = Vector2( 83, 78 )

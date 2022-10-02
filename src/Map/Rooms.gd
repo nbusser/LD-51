@@ -1,5 +1,6 @@
 extends Node
 
+onready var characters = $"../Characters"
 onready var tilemap = $"../WalkableMap"
 
 var _room_graph = {}
@@ -7,6 +8,7 @@ var _room_graph = {}
 func _ready():
 	for room in get_children():
 		room.connect("declare_neighbour", self, "_new_neighbour", [room])
+		room.connect("alert_stopped", self, "stop_alert", [room])
 
 func _new_neighbour(room2, room1):
 	var neighbours = _room_graph.get(room1, []) + [room2]
@@ -33,3 +35,8 @@ func locate_character(character):
 func get_random_room():
 	var rooms = get_children()
 	return rooms[randi()%len(rooms)]
+
+func stop_alert(room):
+	for character in characters.get_children():
+		if not character.is_in_group("player"):
+			character.stop_alert(room)

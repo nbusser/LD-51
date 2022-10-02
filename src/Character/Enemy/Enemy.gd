@@ -7,17 +7,21 @@ enum Strategy {
 }
 
 export var strategy = Strategy.PATROL
-var patrol_room
+var patrol_room setget set_patrol_room
 var patrol_index = 0
 
 onready var rooms_manager = $"../../Rooms"
 onready var normal_wait_time = $MoveTick.wait_time
 const SPEED_MALUS_BLIND = 2
+const SPEED_BONUS_ALERT = 0.1
 
 var is_blind = false
 
 func _init().("../../../"):
 	pass
+
+func _ready():
+	$MoveTick.wait_time = get_speed()
 
 func get_current_patrol_point(world_coordinates=false):
 	if len(patrol_room.get_patrol_points()) == 0:
@@ -59,34 +63,64 @@ func change_speed(new_speed):
 	)
 	$Tween.start()
 
-func switch_strategy(strategy):
-	if strategy == Strategy.PATROL:
+func get_speed():
+	var speed = normal_wait_time
+	if strategy == Strategy.ALERT:
+		speed *= SPEED_BONUS_ALERT
+	if is_blind:
+		speed *= SPEED_MALUS_BLIND
+	return speed
+
+func switch_strategy(_strategy):
+	strategy = _strategy
+
+	if _strategy == Strategy.PATROL:
 		start_patroling()
 	else:
 		$PatrolMode.stop()
+	
+	if _strategy == Strategy.ALERT:
+		change_speed(get_speed())
+
+func _update_blind(blind):
+	is_blind = blind
+	change_speed(get_speed())
 
 func _on_EnemyBlindZone_area_entered(_area):
-	is_blind = true
-	change_speed(normal_wait_time*SPEED_MALUS_BLIND)
-
+	_update_blind(true)
 
 func _on_EnemyBlindZone_area_exited(_area):
-	is_blind = false
-	change_speed(normal_wait_time)
+	_update_blind(false)
 
 func start_patroling():
-	patrol_room = rooms_manager.locate_character(self)	
+	set_patrol_room(rooms_manager.locate_character(self))
 	if patrol_room == null:
-		patrol_room = rooms_manager.get_random_room()
+		set_patrol_room(rooms_manager.get_random_room())
 	$PatrolMode.start()
 
 func _on_StartMoving_timeout():
 	if strategy == Strategy.PATROL:
 		start_patroling()
 
+func set_patrol_room(_patrol_room):
+	patrol_room = _patrol_room
+	patrol_index = 0
+	
 
 func _on_PatrolMode_timeout():
 	if randf() < 0.7:
 		var neighbours = rooms_manager.get_neighbours(rooms_manager.locate_player())
-		patrol_room = neighbours[randi()%len(neighbours)]
-		patrol_index = 0
+		set_patrol_room(neighbours[randi()%len(neighbours)])
+
+func receive_alert(alert_room):
+	if strategy == Strategy.PATROL:
+		switch_strategy(Strategy.ALERT)
+		set_patrol_room(alert_room)
+	# If already on an alert, can stay in the first alert room or move
+	elif strategy == Strategy.ALERT:
+		if randf() < 0.5:
+			set_patrol_room(alert_room)
+
+func stop_alert(alert_room):
+	if strategy == Strategy.ALERT and patrol_room == alert_room:
+		switch_strategy(Strategy.PATROL)

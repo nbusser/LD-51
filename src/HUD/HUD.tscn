@@ -135,7 +135,6 @@ position = Vector2( 882, 16 )
 [node name="AnimatedSprite" type="AnimatedSprite" parent="Screen"]
 scale = Vector2( 2, 2 )
 frames = SubResource( 23 )
-frame = 4
 playing = true
 centered = false
 

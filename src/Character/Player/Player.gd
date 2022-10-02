@@ -4,6 +4,8 @@ extends Character
 
 var interactible = null
 
+onready var progress_bar = $"%ProgressBar"
+
 func _init().("../../../"):
 	pass
 
@@ -34,6 +36,14 @@ func _process(_delta):
 	
 	var gaze_angle := (get_viewport().get_mouse_position() - OS.get_window_size()/2).normalized()
 	$Flashlight.rotation = gaze_angle.angle() - PI/2
+	
+	progress_bar.visible = is_interacting() or not can_interact()
+	if is_interacting():
+		progress_bar.value = 1.0 - $InteractTimer.time_left / $InteractTimer.wait_time
+		progress_bar.theme_type_variation = ""
+	elif not can_interact():
+		progress_bar.value = $InteractCooldown.time_left / $InteractCooldown.wait_time
+		progress_bar.theme_type_variation = "ProgressBar2"
 
 func _on_Tween_tween_completed(hey, useless):
 	if (map.get_node("Navigation2D/TallMap").get_cellv(get_map_position()) == Globals.ITEMS.CAT):
