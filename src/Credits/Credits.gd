@@ -4,7 +4,7 @@ signal back
 
 var back_button_visible
 
-onready var back_button = $CenterContainer/VBoxContainer/CenterContainer4/Back
+onready var back_button = $"%BackButton"
 
 
 func _ready():

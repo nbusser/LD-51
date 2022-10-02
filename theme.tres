@@ -1,6 +1,9 @@
-[gd_resource type="Theme" load_steps=9 format=2]
+[gd_resource type="Theme" load_steps=12 format=2]
 
 [ext_resource path="res://assets/fonts/upheaval.tres" type="DynamicFont" id=1]
+[ext_resource path="res://assets/fonts/squarewave_regular.tres" type="DynamicFont" id=2]
+[ext_resource path="res://assets/fonts/squarewave_bold.tres" type="DynamicFont" id=3]
+[ext_resource path="res://assets/fonts/squarewave_italic.tres" type="DynamicFont" id=4]
 
 [sub_resource type="StreamTexture" id=4]
 load_path = "res://.import/button.png-01faf565b773239305f3664038f20e61.stex"
@@ -42,6 +45,7 @@ axis_stretch_horizontal = 1
 axis_stretch_vertical = 1
 
 [resource]
+default_font = ExtResource( 2 )
 Button/colors/font_color = Color( 0.870588, 0.796078, 0.623529, 1 )
 Button/colors/font_color_disabled = Color( 0.45098, 0.317647, 0.301961, 1 )
 Button/colors/font_color_focus = Color( 0.870588, 0.796078, 0.623529, 1 )
@@ -52,3 +56,5 @@ Button/styles/focus = SubResource( 5 )
 Button/styles/hover = SubResource( 5 )
 Button/styles/normal = SubResource( 3 )
 Button/styles/pressed = SubResource( 6 )
+RichTextLabel/fonts/bold_font = ExtResource( 3 )
+RichTextLabel/fonts/italics_font = ExtResource( 4 )
