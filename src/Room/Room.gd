@@ -5,13 +5,25 @@ extends Node2D
 onready var tilemap = $"../../TileMap"
 onready var doors_manager = $"../../Doors"
 onready var lights = $LightBulbs
+onready var patrol_path = $RoomArea/RoomShape/PatrolPath
 
 var doors_positions
 var contained_characters = []
 
+var patrol_points
+
 func _ready():
 	if $RoomArea/RoomShape.shape == null:
 		print('ERROR: missing room shape for', self)
+	
+	patrol_path.visible = false
+	
+	patrol_points = patrol_path.get_points()
+	for i in range(len(patrol_points)):
+		patrol_points[i] = tilemap.world_to_map(patrol_points[i])
+
+	if len(patrol_points) == 0:
+		print('ERROR: missing patrol for', self)
 
 func _on_RoomArea_area_entered(area):
 	if (area.is_in_group('room')):

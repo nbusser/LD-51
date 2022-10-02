@@ -5,9 +5,15 @@ const SPEED_MALUS_BLIND = 2
 
 var is_blind = false
 
+enum Mode {
+	CHASE
+	PATROL
+	ALERT
+}
+
 func _init().("../../../"):
 	pass
-	
+
 func _process(_delta):
 	if can_move():
 		var origin = global_position
