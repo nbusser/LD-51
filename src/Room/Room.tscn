@@ -11,8 +11,8 @@ collision_mask = 20480
 
 [node name="RoomShape" type="CollisionShape2D" parent="RoomArea"]
 
-[node name="PatrolPath" type="Line2D" parent="RoomArea/RoomShape"]
-width = 5.0
+[node name="PatrolPath" type="Line2D" parent="."]
+width = 1.0
 default_color = Color( 0, 0, 0, 1 )
 
 [node name="LightBulbs" type="Node" parent="."]

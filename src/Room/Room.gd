@@ -6,7 +6,7 @@ onready var map = $"../../../"
 onready var tilemap = $"../../WalkableMap"
 onready var doors_manager = $"../../Doors"
 onready var lights = $LightBulbs
-onready var patrol_path = $RoomArea/RoomShape/PatrolPath
+onready var patrol_path = $PatrolPath
 
 var doors_positions
 var contained_characters = []
@@ -15,13 +15,15 @@ var _patrol_points
 var _patrol_cells = []
 
 func _check_patrol_accessible():
+	var first_point = _patrol_points[0]
 	var i = 1
-	var first_point = _patrol_points[i]
 	while i < len(_patrol_points):
 		var second_point = _patrol_points[i]
+		var path = map.get_path_to_target(first_point, second_point)
 		if map.get_path_to_target(first_point, second_point) == null:
 			return false
 		first_point = second_point
+		i += 1
 	return true
 
 func _ready():
@@ -32,13 +34,13 @@ func _ready():
 	
 	_patrol_points = patrol_path.get_points()
 	for i in range(len(_patrol_points)):
-		_patrol_points[i] += global_position
+		_patrol_points[i] += global_position #+ Vector2(0, -16)
 		_patrol_cells.append(tilemap.world_to_map(_patrol_points[i]))
 
 	if len(_patrol_points) == 0:
 		print('ERROR: missing patrol for ', self)
 	else:
-		yield(get_tree().root, "ready")
+		yield(map, "ready")
 		if not _check_patrol_accessible():
 			print('ERROR: patrol is not accessible ', self)
 

@@ -20,6 +20,8 @@ func _init().("../../../"):
 	pass
 
 func get_current_patrol_point(world_coordinates=false):
+	if len(patrol_room.get_patrol_points()) == 0:
+		return null
 	return patrol_room.get_patrol_points(world_coordinates)[patrol_index]
 
 func _process(_delta):
@@ -31,6 +33,10 @@ func _process(_delta):
 		if strategy == Strategy.CHASE:
 			target = self.manager.get_player_position(true)
 		else:
+			if get_current_patrol_point(false) == null:
+				# TODO: wandering AI
+				return
+			
 			if get_map_position() == get_current_patrol_point(false):
 				patrol_index = patrol_room.get_next_patrol_index(patrol_index)
 			target = get_current_patrol_point(true)
@@ -53,6 +59,11 @@ func change_speed(new_speed):
 	)
 	$Tween.start()
 
+func switch_strategy(strategy):
+	if strategy == Strategy.PATROL:
+		start_patroling()
+	else:
+		$PatrolMode.stop()
 
 func _on_EnemyBlindZone_area_entered(_area):
 	is_blind = true
@@ -63,7 +74,20 @@ func _on_EnemyBlindZone_area_exited(_area):
 	is_blind = false
 	change_speed(normal_wait_time)
 
+func start_patroling():
+	patrol_room = rooms_manager.locate_character(self)	
+	if patrol_room == null:
+		patrol_room = rooms_manager.get_random_room()
+	$PatrolMode.start()
 
 func _on_StartMoving_timeout():
-	patrol_room = rooms_manager.locate_character(self)
-	print(patrol_room)
+	if strategy == Strategy.PATROL:
+		start_patroling()
+
+
+func _on_PatrolMode_timeout():
+	if true or randi()%2:
+		var neighbours = rooms_manager.get_neighbours(rooms_manager.locate_player())
+		patrol_room = neighbours[randi()%len(neighbours)]
+		patrol_index = 0
+		print(patrol_room)

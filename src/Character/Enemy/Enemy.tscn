@@ -11,7 +11,7 @@ script = ExtResource( 2 )
 strategy = 0
 
 [node name="MoveTick" parent="." index="2"]
-wait_time = 1.0
+wait_time = 0.7
 
 [node name="Halo" type="Light2D" parent="." index="3"]
 position = Vector2( 83, 78 )
@@ -30,7 +30,6 @@ shape = SubResource( 1 )
 
 [node name="PatrolMode" type="Timer" parent="." index="7"]
 wait_time = 20.0
-one_shot = true
 
 [node name="StartMoving" type="Timer" parent="." index="8"]
 one_shot = true
@@ -38,4 +37,5 @@ autostart = true
 
 [connection signal="area_entered" from="EnemyBlindZone" to="." method="_on_EnemyBlindZone_area_entered"]
 [connection signal="area_exited" from="EnemyBlindZone" to="." method="_on_EnemyBlindZone_area_exited"]
+[connection signal="timeout" from="PatrolMode" to="." method="_on_PatrolMode_timeout"]
 [connection signal="timeout" from="StartMoving" to="." method="_on_StartMoving_timeout"]
