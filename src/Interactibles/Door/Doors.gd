@@ -39,6 +39,9 @@ func close_door(pos):
 	_change_door_state(pos, false)
 
 func switch_random_door():
+	if door_cells.size() == 0:
+		return
+
 	var door_cell = _random_door_pos()
 	if tilemap.get_cellv(door_cell) == Globals.TILE_TYPES.DOOR_OPEN:
 		close_door(door_cell)
