@@ -1,9 +1,11 @@
-[gd_resource type="Theme" load_steps=12 format=2]
+[gd_resource type="Theme" load_steps=15 format=2]
 
 [ext_resource path="res://assets/fonts/upheaval.tres" type="DynamicFont" id=1]
 [ext_resource path="res://assets/fonts/squarewave_regular.tres" type="DynamicFont" id=2]
 [ext_resource path="res://assets/fonts/squarewave_bold.tres" type="DynamicFont" id=3]
 [ext_resource path="res://assets/fonts/squarewave_italic.tres" type="DynamicFont" id=4]
+[ext_resource path="res://assets/fonts/upheaval_big.tres" type="DynamicFont" id=5]
+[ext_resource path="res://assets/sprites/plaque.png" type="Texture" id=6]
 
 [sub_resource type="StreamTexture" id=4]
 load_path = "res://.import/button.png-01faf565b773239305f3664038f20e61.stex"
@@ -44,6 +46,14 @@ margin_right = 23.0
 axis_stretch_horizontal = 1
 axis_stretch_vertical = 1
 
+[sub_resource type="StyleBoxTexture" id=9]
+texture = ExtResource( 6 )
+region_rect = Rect2( 0, 0, 171, 64 )
+margin_left = 86.0
+margin_right = 86.0
+axis_stretch_horizontal = 1
+axis_stretch_vertical = 1
+
 [resource]
 default_font = ExtResource( 2 )
 Button/colors/font_color = Color( 0.870588, 0.796078, 0.623529, 1 )
@@ -58,3 +68,19 @@ Button/styles/normal = SubResource( 3 )
 Button/styles/pressed = SubResource( 6 )
 RichTextLabel/fonts/bold_font = ExtResource( 3 )
 RichTextLabel/fonts/italics_font = ExtResource( 4 )
+ScreenCounterLabel/base_type = "Label"
+ScreenCounterLabel/colors/font_color = Color( 0.658824, 0.811765, 0.854902, 1 )
+ScreenCounterLabel/fonts/font = ExtResource( 1 )
+ScreenLabel/base_type = "Label"
+ScreenLabel/colors/font_color = Color( 0.658824, 0.811765, 0.854902, 1 )
+ScreenLabel/fonts/font = ExtResource( 1 )
+ScreenLabelBig/base_type = "Label"
+ScreenLabelBig/colors/font_color = Color( 0.658824, 0.811765, 0.854902, 1 )
+ScreenLabelBig/fonts/font = ExtResource( 5 )
+TitleLabel/base_type = "Label"
+TitleLabel/colors/font_color = Color( 0.870588, 0.796078, 0.623529, 1 )
+TitleLabel/colors/font_color_shadow = Color( 0.933333, 0.92549, 0.870588, 1 )
+TitleLabel/constants/shadow_offset_x = 0
+TitleLabel/constants/shadow_offset_y = -2
+TitleLabel/fonts/font = ExtResource( 5 )
+TitleLabel/styles/normal = SubResource( 9 )

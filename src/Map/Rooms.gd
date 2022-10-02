@@ -29,3 +29,7 @@ func locate_character(character):
 		if room.contains_character(character):
 			return room
 	return null
+
+func get_random_room():
+	var rooms = get_children()
+	return rooms[randi()%len(rooms)]
