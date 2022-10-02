@@ -15,7 +15,7 @@ var _patrol_cells = []
 
 func _ready():
 	if $RoomArea/RoomShape.shape == null:
-		print('ERROR: missing room shape for', self)
+		print('ERROR: missing room shape for ', self)
 	
 	patrol_path.visible = false
 	
@@ -24,7 +24,7 @@ func _ready():
 		_patrol_cells.append(tilemap.world_to_map(point))
 
 	if len(_patrol_points) == 0:
-		print('ERROR: missing patrol for', self)
+		print('ERROR: missing patrol for ', self)
 
 func _on_RoomArea_area_entered(area):
 	if (area.is_in_group('room')):
