@@ -2,7 +2,7 @@ signal declare_neighbour(neighbour)
 
 extends Node2D
 
-onready var tilemap = $"../../TileMap"
+onready var tilemap = $"../../WalkableMap"
 onready var doors_manager = $"../../Doors"
 onready var lights = $LightBulbs
 onready var patrol_path = $RoomArea/RoomShape/PatrolPath
