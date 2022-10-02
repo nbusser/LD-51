@@ -32,13 +32,17 @@ func _process(_delta):
 			target = self.manager.get_player_position(true)
 		else:
 			if get_map_position() == get_current_patrol_point(false):
-				patrol_index = patrol_room.get_next_patrol_index()
+				patrol_index = patrol_room.get_next_patrol_index(patrol_index)
 			target = get_current_patrol_point(true)
 
 		var path = map.get_path_to_target(origin, target)
-
-		if path != null and len(path) != 0:
-			var destination = map.tilemap.world_to_map(path[0])
+		
+		if path != null:
+			var destination
+			if len(path) == 0:
+				destination = map.tilemap.world_to_map(target)
+			else:
+				destination = map.tilemap.world_to_map(path[0])
 			move_to(destination)
 
 func change_speed(new_speed):
