@@ -64,6 +64,9 @@ func room_alert():
 	
 func neighbour_room_alert():
 	var rooms = rooms.get_neighbours(rooms.locate_player())
+	if len(rooms) == 0:
+		return
+
 	var room = rooms[randi() % len(rooms)]
 	room.trigger_alert()
 
