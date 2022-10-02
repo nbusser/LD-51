@@ -11,7 +11,7 @@ func _ready():
 	map = get_node("../../../")
 	self.connect("cat_saved", map, "save_cat")
 
-func _process(delta):
+func _process(_delta):
 	var direction := Vector2(Input.get_action_strength("ui_right") - Input.get_action_strength("ui_left"), Input.get_action_strength("ui_down") - Input.get_action_strength("ui_up"))
 	# No diagonal move
 	if(direction.x != 0 and direction.y != 0):
@@ -33,7 +33,7 @@ func _process(delta):
 			$InteractTimer.stop()
 
 func _on_Tween_tween_completed(hey, useless):
-	if (map.get_node("Navigation2D/Items").get_cellv(get_map_position()) == Globals.CATS.CAT):
+	if (map.get_node("Navigation2D/Items").get_cellv(get_map_position()) == Globals.ITEMS.CAT):
 		emit_signal("cat_saved", get_map_position())
 
 func _on_InteractZone_area_entered(area):

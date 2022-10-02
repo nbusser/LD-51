@@ -9,7 +9,10 @@ var current_scene setget set_scene
 onready var music_players = $Musics.get_children()
 
 onready var main_menu = preload("res://src/MainMenu/MainMenu.tscn")
-onready var level = preload("res://src/Level/Level.tscn")
+onready var levels = [
+	preload("res://src/Level/Level1.tscn"),
+	preload("res://src/Level/Level2.tscn")
+]
 onready var change_level = preload("res://src/EndLevel/EndLevel.tscn")
 onready var credits = preload("res://src/Credits/Credits.tscn")
 onready var game_over = preload("res://src/GameOver/GameOver.tscn")
@@ -62,14 +65,9 @@ func set_scene(new_scene):
 
 
 func _load_level():
-	var scene = level.instance()
+	var scene = levels[current_level_number].instance()
 	scene.init(current_level_number)
-
-	scene.connect("end_of_level", self, "_on_end_of_level")
-	scene.connect("game_over", self, "_on_game_over")
-
 	scene.get_node("UI/HUD").connect("level_done", self, "_on_end_of_level")
-
 	self.current_scene = scene
 
 

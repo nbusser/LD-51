@@ -7,9 +7,6 @@ onready var coins_label = $VBoxContainer/VBoxContainer/CoinNumber/CoinNumberValu
 var total_coins_count = 0
 var current_coins_count = 0
 
-func _ready():
-	print("ready")
-
 func set_level_decoration(level_number, level_name):
 	level_label.text = str(level_number + 1) + ": " + level_name
 
