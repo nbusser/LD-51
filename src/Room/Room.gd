@@ -73,6 +73,7 @@ func is_in_alert():
 func trigger_alert():
 	for light in lights.get_children():
 		light.change_state(Globals.LightingState.ALERT)
+	$AlertTimer.start()
 
 func get_patrol_points(world_coordinated=false):
 	if world_coordinated:
@@ -82,3 +83,8 @@ func get_patrol_points(world_coordinated=false):
 
 func get_next_patrol_index(i):
 	return (i + 1) % len(_patrol_points)
+
+func _on_AlertTimer_timeout():
+	if is_in_alert():
+		for light in lights.get_children():
+			light.change_state(Globals.LightingState.ON)
