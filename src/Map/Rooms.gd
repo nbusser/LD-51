@@ -23,3 +23,9 @@ func locate_player():
 		if room.contains_player():
 			return room
 	return null
+
+func locate_character(character):
+	for room in get_children():
+		if room.contains_character(character):
+			return room
+	return null

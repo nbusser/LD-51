@@ -10,7 +10,8 @@ onready var patrol_path = $RoomArea/RoomShape/PatrolPath
 var doors_positions
 var contained_characters = []
 
-var patrol_points
+var _patrol_points
+var _patrol_cells = []
 
 func _ready():
 	if $RoomArea/RoomShape.shape == null:
@@ -18,18 +19,17 @@ func _ready():
 	
 	patrol_path.visible = false
 	
-	patrol_points = patrol_path.get_points()
-	for i in range(len(patrol_points)):
-		patrol_points[i] = tilemap.world_to_map(patrol_points[i])
+	_patrol_points = patrol_path.get_points()
+	for point in _patrol_points:
+		_patrol_cells.append(tilemap.world_to_map(point))
 
-	if len(patrol_points) == 0:
+	if len(_patrol_points) == 0:
 		print('ERROR: missing patrol for', self)
 
 func _on_RoomArea_area_entered(area):
 	if (area.is_in_group('room')):
 		emit_signal("declare_neighbour", area.get_parent())
 	contained_characters.append(area.get_parent())
-
 
 func _on_RoomArea_area_exited(area):
 	contained_characters.erase(area.get_parent())
@@ -40,6 +40,12 @@ func contains_player():
 			return true
 	return false
 
+func contains_character(target_character):
+	for character in contained_characters:
+		if character == target_character:
+			return true
+		return false
+
 func is_in_alert():
 	for light in lights.get_children():
 		if light.state == Globals.LightingState.ALERT:
@@ -49,3 +55,12 @@ func is_in_alert():
 func trigger_alert():
 	for light in lights.get_children():
 		light.change_state(Globals.LightingState.ALERT)
+
+func get_patrol_points(world_coordinated=false):
+	if world_coordinated:
+		return _patrol_points
+	else:
+		return _patrol_cells
+
+func get_next_patrol_index(i):
+	return (i + 1) % len(_patrol_points)
