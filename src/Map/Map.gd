@@ -57,7 +57,8 @@ func close_doors():
 
 	doors[0].close()
 
-func alert_room():
+func room_alert():
+	
 	pass
 
 func spawn_monster():

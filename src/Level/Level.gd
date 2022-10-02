@@ -28,8 +28,10 @@ func trigger_calamity():
 		map.lights_off()
 	elif calamity == Calamities.ROOM_ALERT:
 		print('room alert')
+		map.room_alert()
 	elif calamity == Calamities.CLOSE_DOOR:
 		print('door')
 		map.close_doors()
 	elif calamity == Calamities.SPAWN_MONSTER:
+		map.spawn_monster()
 		print('spawn monster')
