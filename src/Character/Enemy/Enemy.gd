@@ -14,7 +14,7 @@ func _process(_delta):
 		var target = self.manager.get_player_position(true)
 		var path = map.get_path_to_target(origin, target)
 
-		if len(path) != 0:
+		if path != null and len(path) != 0:
 			var destination = map.tilemap.world_to_map(path[0])
 			move_to(destination)
 
