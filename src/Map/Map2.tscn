@@ -38,48 +38,50 @@ tile_data = PoolIntArray( -589813, 9, 0, -524268, 9, 0, -262125, 9, 0, -131063, 
 [node name="Room" parent="Navigation2D/Rooms" index="0" instance=ExtResource( 4 )]
 position = Vector2( 289, -256 )
 
-[node name="LightBulb" parent="Navigation2D/Rooms/Room/RoomArea/LightBulbs" index="0" instance=ExtResource( 2 )]
-position = Vector2( 303, -269 )
-
-[node name="RoomShape" parent="Navigation2D/Rooms/Room/RoomArea" index="1"]
+[node name="RoomShape" parent="Navigation2D/Rooms/Room/RoomArea" index="0"]
 position = Vector2( -0.5, 22 )
 shape = SubResource( 1 )
+
+[node name="LightBulb" parent="Navigation2D/Rooms/Room/LightBulbs" index="0" instance=ExtResource( 2 )]
+position = Vector2( 294, -277 )
 
 [node name="Room2" parent="Navigation2D/Rooms" index="1" instance=ExtResource( 4 )]
 position = Vector2( 351, -78 )
 
-[node name="LightBulb" parent="Navigation2D/Rooms/Room2/RoomArea/LightBulbs" index="0" instance=ExtResource( 2 )]
-position = Vector2( 292, -79 )
-state = 1
-
-[node name="RoomShape" parent="Navigation2D/Rooms/Room2/RoomArea" index="1"]
+[node name="RoomShape" parent="Navigation2D/Rooms/Room2/RoomArea" index="0"]
 position = Vector2( 9, -11.5 )
 shape = SubResource( 2 )
+
+[node name="LightBulb" parent="Navigation2D/Rooms/Room2/LightBulbs" index="0" instance=ExtResource( 2 )]
+position = Vector2( 297, -75 )
 
 [node name="Room3" parent="Navigation2D/Rooms" index="2" instance=ExtResource( 4 )]
 position = Vector2( 608, -79 )
 
-[node name="LightBulb" parent="Navigation2D/Rooms/Room3/RoomArea/LightBulbs" index="0" instance=ExtResource( 2 )]
-position = Vector2( 655, -79 )
-
-[node name="RoomShape" parent="Navigation2D/Rooms/Room3/RoomArea" index="1"]
+[node name="RoomShape" parent="Navigation2D/Rooms/Room3/RoomArea" index="0"]
 position = Vector2( 10, 15.5 )
 shape = SubResource( 3 )
+
+[node name="LightBulb" parent="Navigation2D/Rooms/Room3/LightBulbs" index="0" instance=ExtResource( 2 )]
+position = Vector2( 775, -83 )
+
+[node name="LightBulb2" parent="Navigation2D/Rooms/Room3/LightBulbs" index="1" instance=ExtResource( 2 )]
+position = Vector2( 515, -85 )
 
 [node name="Room4" parent="Navigation2D/Rooms" index="3" instance=ExtResource( 4 )]
 position = Vector2( 575, -256 )
 
-[node name="LightBulb" parent="Navigation2D/Rooms/Room4/RoomArea/LightBulbs" index="0" instance=ExtResource( 2 )]
-position = Vector2( 593, -273 )
-
-[node name="RoomShape" parent="Navigation2D/Rooms/Room4/RoomArea" index="1"]
+[node name="RoomShape" parent="Navigation2D/Rooms/Room4/RoomArea" index="0"]
 position = Vector2( 1, 24.5 )
 shape = SubResource( 4 )
+
+[node name="LightBulb" parent="Navigation2D/Rooms/Room4/LightBulbs" index="0" instance=ExtResource( 2 )]
+position = Vector2( 573, -267 )
 
 [node name="Room5" parent="Navigation2D/Rooms" index="4" instance=ExtResource( 4 )]
 position = Vector2( 654, 127 )
 
-[node name="RoomShape" parent="Navigation2D/Rooms/Room5/RoomArea" index="1"]
+[node name="RoomShape" parent="Navigation2D/Rooms/Room5/RoomArea" index="0"]
 position = Vector2( 2, -22 )
 shape = SubResource( 5 )
 

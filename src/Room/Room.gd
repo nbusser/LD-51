@@ -4,6 +4,7 @@ extends Node2D
 
 onready var tilemap = $"../../TileMap"
 onready var doors_manager = $"../../Doors"
+onready var lights = $LightBulbs
 
 var doors_positions
 var contained_characters = []
@@ -26,3 +27,13 @@ func contains_player():
 		if character.is_in_group('player'):
 			return true
 	return false
+
+func is_in_alert():
+	for light in lights.get_children():
+		if light.state == Globals.LightingState.ALERT:
+			return true
+	return false
+
+func trigger_alert():
+	for light in lights.get_children():
+		light.change_state(Globals.LightingState.ALERT)

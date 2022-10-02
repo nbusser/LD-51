@@ -7,6 +7,7 @@ onready var player = $Navigation2D/Characters/Player
 onready var items = $Navigation2D/Items
 onready var hud = get_node("../UI/HUD")
 onready var doors = $Navigation2D/Doors
+onready var rooms = $Navigation2D/Rooms
 
 var door_cells = null
 
@@ -58,8 +59,13 @@ func close_doors():
 	doors[0].close()
 
 func room_alert():
+	var room = rooms.locate_player()
+	room.trigger_alert()
 	
-	pass
+func neighbour_room_alert():
+	var rooms = rooms.get_neighbours(rooms.locate_player())
+	var room = rooms[randi() % len(rooms)]
+	room.trigger_alert()
 
 func spawn_monster():
 	pass
