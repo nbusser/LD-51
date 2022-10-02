@@ -35,7 +35,7 @@ align = 1
 [node name="RichTextLabel" type="RichTextLabel" parent="VBoxContainer"]
 margin_top = 102.0
 margin_right = 1024.0
-margin_bottom = 479.0
+margin_bottom = 508.0
 bbcode_enabled = true
 bbcode_text = "[center]
 [b]A game by Ludum Darons team (and friends)[/b]
@@ -44,6 +44,7 @@ Matthieu Baty
 Antoine Brûlé
 Nicolas Busser
 Novius
+Élisa Thai
 
 [i]Music credits:[/i]
 [b]\"Stay the Course\" Kevin MacLeod (incompetech.com)[/b]
@@ -57,6 +58,7 @@ Matthieu Baty
 Antoine Brûlé
 Nicolas Busser
 Novius
+Élisa Thai
 
 Music credits:
 \"Stay the Course\" Kevin MacLeod (incompetech.com)
@@ -67,15 +69,15 @@ fit_content_height = true
 scroll_active = false
 
 [node name="MarginContainer2" type="MarginContainer" parent="VBoxContainer"]
-margin_top = 483.0
+margin_top = 512.0
 margin_right = 1024.0
-margin_bottom = 493.0
+margin_bottom = 522.0
 rect_min_size = Vector2( 0, 10 )
 
 [node name="CenterContainer4" type="CenterContainer" parent="VBoxContainer"]
-margin_top = 497.0
+margin_top = 526.0
 margin_right = 1024.0
-margin_bottom = 529.0
+margin_bottom = 558.0
 
 [node name="BackButton" type="Button" parent="VBoxContainer/CenterContainer4"]
 unique_name_in_owner = true
