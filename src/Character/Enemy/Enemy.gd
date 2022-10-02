@@ -90,4 +90,3 @@ func _on_PatrolMode_timeout():
 		var neighbours = rooms_manager.get_neighbours(rooms_manager.locate_player())
 		patrol_room = neighbours[randi()%len(neighbours)]
 		patrol_index = 0
-		print(patrol_room)
