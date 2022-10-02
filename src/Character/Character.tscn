@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://assets/sprites/player.png" type="Texture" id=1]
 [ext_resource path="res://assets/sounds/Player/spawn/spawn1.wav" type="AudioStream" id=2]
@@ -26,7 +26,9 @@ animations = [ {
 "speed": 5.0
 } ]
 
-[node name="Character" type="Node2D"]
+[sub_resource type="CircleShape2D" id=6]
+
+[node name="Character" type="Node2D" groups=["character"]]
 script = ExtResource( 7 )
 
 [node name="Sprite" type="AnimatedSprite" parent="."]
@@ -45,3 +47,11 @@ wait_time = 0.2
 one_shot = true
 
 [node name="Tween" type="Tween" parent="."]
+
+[node name="Locator" type="Area2D" parent="." groups=["character"]]
+position = Vector2( 83, 84 )
+collision_layer = 4096
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Locator"]
+shape = SubResource( 6 )

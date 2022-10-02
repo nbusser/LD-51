@@ -3,6 +3,7 @@ extends Node2D
 onready var tilemap = $Navigation2D/TileMap
 onready var astar = Astar.new(tilemap)
 onready var characters = $Navigation2D/Characters
+onready var player = $Navigation2D/Characters/Player
 onready var items = $Navigation2D/Items
 onready var hud = get_node("../UI/HUD")
 onready var doors = $Navigation2D/Doors
@@ -31,3 +32,34 @@ func get_path_to_target(origin, target):
 func save_cat(pos):
 	$Navigation2D/Items.set_cellv(pos, -1)
 	hud.increment_coins()
+
+func lights_off():
+	var calamitables = player.get_node("CalamitySensor").get_overlapping_areas()
+	var lights = []
+	for calamitable in calamitables:
+		if(calamitable.is_calamitable() and calamitable.interactible_type == Globals.Interactibles.LIGHT):
+			lights.append(calamitable)
+	
+	if len(lights) == 0:
+		return
+
+	lights[0].change_state(Globals.LightingState.OFF)
+
+func close_doors():
+	var calamitables = player.get_node("CalamitySensor").get_overlapping_areas()
+	var doors = []
+	for calamitable in calamitables:
+		if(calamitable.is_calamitable() and calamitable.interactible_type == Globals.Interactibles.DOOR):
+			doors.append(calamitable)
+	
+	if len(doors) == 0:
+		return
+
+	doors[0].close()
+
+func room_alert():
+	
+	pass
+
+func spawn_monster():
+	pass
