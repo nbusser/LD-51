@@ -63,10 +63,9 @@ func room_alert():
 	room.trigger_alert()
 	
 func neighbour_room_alert():
-	print(rooms)
 	var room_list = rooms.get_neighbours(rooms.locate_player())
-	var room = room_list[randi() % len(room_list)]
-	room.trigger_alert()
+	if len(room_list) != 0:
+		room_list[randi() % len(room_list)].trigger_alert()
 
 func spawn_monster():
 	pass
