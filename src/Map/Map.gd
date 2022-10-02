@@ -13,11 +13,12 @@ func _ready():
 	hud.set_coins(items.get_used_cells_by_id(Globals.CATS.CAT).size())
 
 func add_door():
-	var door = door_cells[randi()%door_cells.size()]
-	if (tilemap.get_cellv(door) == Globals.TILE_TYPES.DOOR_CLOSED):
-		tilemap.set_cellv(door, Globals.TILE_TYPES.DOOR_OPEN)
-	else:
-		tilemap.set_cellv(door, Globals.TILE_TYPES.DOOR_CLOSED)
+	if (door_cells.size() != 0):
+		var door = door_cells[randi()%door_cells.size()]
+		if (tilemap.get_cellv(door) == Globals.TILE_TYPES.DOOR_CLOSED):
+			tilemap.set_cellv(door, Globals.TILE_TYPES.DOOR_OPEN)
+		else:
+			tilemap.set_cellv(door, Globals.TILE_TYPES.DOOR_CLOSED)
 
 func rebake(changed_tile):
 	# Re-bake autotiling
