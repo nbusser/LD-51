@@ -19,13 +19,13 @@ margin_right = 1024.0
 margin_bottom = 14.0
 
 [node name="Label" type="Label" parent="VBoxContainer/VBoxContainer/LevelNumber"]
-margin_right = 42.0
+margin_right = 34.0
 margin_bottom = 14.0
-text = "Level: "
+text = "Level"
 
 [node name="LevelNumberValue" type="Label" parent="VBoxContainer/VBoxContainer/LevelNumber"]
-margin_left = 46.0
-margin_right = 51.0
+margin_left = 38.0
+margin_right = 43.0
 margin_bottom = 14.0
 text = "/"
 
