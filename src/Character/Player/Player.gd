@@ -31,6 +31,9 @@ func _process(_delta):
 	elif is_interacting():
 		if not interact_button_pressed or interactible == null or not interactible.is_interactible():
 			$InteractTimer.stop()
+	
+	var gaze_angle := (get_viewport().get_mouse_position() - OS.get_window_size()/2).normalized()
+	$Flashlight.rotation = gaze_angle.angle() - PI/2
 
 func _on_Tween_tween_completed(hey, useless):
 	if (map.get_node("Navigation2D/Items").get_cellv(get_map_position()) == Globals.ITEMS.CAT):
