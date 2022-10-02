@@ -17,8 +17,10 @@ enum LightingState {
 enum TILE_TYPES {
 	WALL = 0,
 	GROUND = 20,
-	DOOR_OPEN = 13,
-	DOOR_CLOSED = 15,
+	DOOR_OPEN_H = 60,
+	DOOR_CLOSED_H = 63
+	DOOR_OPEN_V = 62,
+	DOOR_CLOSED_V = 31,
 }
 
 enum ITEMS {

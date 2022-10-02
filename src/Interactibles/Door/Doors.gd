@@ -2,13 +2,13 @@ extends Node
 
 onready var door = preload("res://src/Interactibles/Door/Door.tscn")
 onready var map = $"../../"
-onready var tilemap = $"../TallMap"
+onready var tilemap = $"../WallDecorationMap"
 
 var door_cells = {}
 
 func _ready():
-	var opened_doors = tilemap.get_used_cells_by_id(Globals.TILE_TYPES.DOOR_OPEN)
-	var closed_doors = tilemap.get_used_cells_by_id(Globals.TILE_TYPES.DOOR_CLOSED)
+	var opened_doors = tilemap.get_used_cells_by_id(Globals.TILE_TYPES.DOOR_OPEN_H) + tilemap.get_used_cells_by_id(Globals.TILE_TYPES.DOOR_OPEN_V)
+	var closed_doors = tilemap.get_used_cells_by_id(Globals.TILE_TYPES.DOOR_CLOSED_H) + tilemap.get_used_cells_by_id(Globals.TILE_TYPES.DOOR_CLOSED_V)
 
 	_instantiate_doors(opened_doors, true)
 	_instantiate_doors(closed_doors, false)
@@ -28,9 +28,17 @@ func _random_door_pos():
 	return door_cells.keys()[randi()%door_cells.keys().size()]
 
 func _change_door_state(pos, opened):
-	var door = door_cells[pos]
-	var cellv = Globals.TILE_TYPES.DOOR_OPEN if opened else Globals.TILE_TYPES.DOOR_CLOSED
-	door.change_state(opened)
+	var door = tilemap.get_cellv(pos)
+	var cellv
+	if (door == Globals.TILE_TYPES.DOOR_CLOSED_H):
+		cellv =  Globals.TILE_TYPES.DOOR_OPEN_H
+	elif (door == Globals.TILE_TYPES.DOOR_CLOSED_V):
+		cellv =  Globals.TILE_TYPES.DOOR_OPEN_V
+	elif (door == Globals.TILE_TYPES.DOOR_OPEN_H):
+		cellv =  Globals.TILE_TYPES.DOOR_CLOSED_H
+	elif (door == Globals.TILE_TYPES.DOOR_OPEN_V):
+		cellv =  Globals.TILE_TYPES.DOOR_CLOSED_V
+	door_cells[pos].change_state(opened)
 	tilemap.set_cellv(pos, cellv)
 
 func open_door(pos):
