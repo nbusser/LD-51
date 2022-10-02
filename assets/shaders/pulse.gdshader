@@ -2,12 +2,18 @@ shader_type canvas_item;
 render_mode blend_add;
 
 uniform vec4 color: hint_color;
-
-float intensity() {
-	return pow(max(0, mod(TIME, 1.0) * -2.0 + 1.0), 3.0);
-}
+uniform vec4 color2: hint_color;
+uniform vec4 color3: hint_color;
+uniform float time;
+uniform float intensity = 0.0;
+uniform bool enabled = false;
 
 void fragment() {
-	COLOR = color;
-	COLOR.a *= texture(TEXTURE, UV).a * intensity();
+	if (!enabled)
+		COLOR = color;
+	else if (time > 1.0)
+		COLOR = mix(color, color2, pow(intensity, 3.0));
+	else
+		COLOR = color3;
+	COLOR.a *= texture(TEXTURE, UV).a * pow(max(0, mod(time, 1.0) * -2.0 + 1.0), 3.0);
 }
