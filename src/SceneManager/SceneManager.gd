@@ -59,6 +59,8 @@ func _load_level():
 	scene.connect("end_of_level", self, "_on_end_of_level")
 	scene.connect("game_over", self, "_on_game_over")
 
+	scene.get_node("UI/HUD").connect("level_done", self, "_on_end_of_level")
+
 	self.current_scene = scene
 
 
@@ -93,7 +95,7 @@ func _on_restart_select_level():
 
 func _load_end_level():
 	var scene = change_level.instance()
-	scene.init(current_level_number, nb_coins)
+	scene.init(current_level_number)
 
 	scene.connect("next_level", self, "_on_next_level")
 
