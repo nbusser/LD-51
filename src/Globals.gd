@@ -2,6 +2,11 @@ extends Node
 
 const SAMPLE_GLOBAL_VARIABLE = 1
 
+enum Interactibles {
+	LIGHT
+	DOOR
+}
+
 enum LightingState {
 	ON
 	ALERT
