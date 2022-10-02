@@ -45,7 +45,6 @@ enum Calamities {
 
 func trigger_calamity():
 	var calamity = randi()%len(Calamities)
-	calamity = Calamities.ROOM_ALERT
 	if calamity == Calamities.LIGHTS_OFF:
 		print('light')
 		map.lights_off()
