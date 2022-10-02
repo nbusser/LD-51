@@ -14,4 +14,5 @@ func init(new_level_number):
 	self.level_number = new_level_number
 
 func _on_NextLevelButton_pressed():
+	$CenterContainer/VBoxContainer/CenterContainer3/NextLevelButton.disabled = true
 	emit_signal("next_level")
