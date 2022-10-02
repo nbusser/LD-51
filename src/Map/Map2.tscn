@@ -1,8 +1,20 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://src/Map/Map.tscn" type="PackedScene" id=1]
 [ext_resource path="res://src/Interactibles/LightBulb/LightBulb.tscn" type="PackedScene" id=2]
 [ext_resource path="res://src/Character/Enemy/Enemy.tscn" type="PackedScene" id=3]
+
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 112, 48.5 )
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 64, 64 )
+
+[sub_resource type="RectangleShape2D" id=3]
+extents = Vector2( 119, 86 )
+
+[sub_resource type="RectangleShape2D" id=4]
+extents = Vector2( 112, 48 )
 
 [node name="Map2" instance=ExtResource( 1 )]
 
@@ -23,11 +35,32 @@ tile_data = PoolIntArray( -589813, 9, 0, -524268, 9, 0, -262125, 9, 0, -131063, 
 position = Vector2( 302, -273 )
 state = 1
 
+[node name="EnemyBlindZone" parent="Navigation2D/LightBulbs/LightBulb" index="3"]
+position = Vector2( -14, 16.5 )
+shape = SubResource( 2 )
+
 [node name="LightBulb2" parent="Navigation2D/LightBulbs" index="1" instance=ExtResource( 2 )]
 position = Vector2( 303, -84 )
+
+[node name="EnemyBlindZone" parent="Navigation2D/LightBulbs/LightBulb2" index="3"]
+position = Vector2( 33, 4 )
+shape = SubResource( 1 )
 
 [node name="LightBulb3" parent="Navigation2D/LightBulbs" index="2" instance=ExtResource( 2 )]
 position = Vector2( 653, -78 )
 
+[node name="EnemyBlindZone" parent="Navigation2D/LightBulbs/LightBulb3" index="3"]
+position = Vector2( -51, 20 )
+shape = SubResource( 3 )
+
 [node name="LightBulb4" parent="Navigation2D/LightBulbs" index="3" instance=ExtResource( 2 )]
 position = Vector2( 592, -270 )
+
+[node name="EnemyBlindZone" parent="Navigation2D/LightBulbs/LightBulb4" index="3"]
+position = Vector2( -16, 14 )
+shape = SubResource( 4 )
+
+[editable path="Navigation2D/LightBulbs/LightBulb"]
+[editable path="Navigation2D/LightBulbs/LightBulb2"]
+[editable path="Navigation2D/LightBulbs/LightBulb3"]
+[editable path="Navigation2D/LightBulbs/LightBulb4"]

@@ -7,6 +7,8 @@ func _init().(Globals.Interactibles.LIGHT):
 
 func _ready():
 	change_state(state)
+	if $EnemyBlindZone.shape == null:
+		print('ERROR: missing blind zone shape in lightbulb')
 	
 func _change_color(new_color, length=0.5):
 	$Tween.interpolate_property(
