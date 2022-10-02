@@ -1,4 +1,5 @@
 signal declare_neighbour(neighbour)
+signal alert_stopped
 
 extends Node2D
 
@@ -27,6 +28,9 @@ func _check_patrol_accessible():
 	return true
 
 func _ready():
+	for light_bulb in $LightBulbs.get_children():
+		light_bulb.connect("light_alert_stopped", self, "_alert_update")
+	
 	if $RoomArea/RoomShape.shape == null:
 		print('ERROR: missing room shape for ', self)
 	
@@ -64,6 +68,11 @@ func contains_character(target_character):
 			return true
 		return false
 
+func _alert_update():
+	if $AlertTimer.time_left > 0:
+		if not is_in_alert():
+			emit_signal("alert_stopped")
+
 func is_in_alert():
 	for light in lights.get_children():
 		if light.state == Globals.LightingState.ALERT:
@@ -88,3 +97,4 @@ func _on_AlertTimer_timeout():
 	if is_in_alert():
 		for light in lights.get_children():
 			light.change_state(Globals.LightingState.ON)
+			emit_signal("alert_stopped")

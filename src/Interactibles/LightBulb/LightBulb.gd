@@ -1,3 +1,5 @@
+signal light_alert_stopped
+
 extends Interactible
 
 export var state = Globals.LightingState.ON
@@ -56,7 +58,8 @@ func interact():
 	if state == Globals.LightingState.OFF:
 		change_state(Globals.LightingState.ON)
 	elif state == Globals.LightingState.ALERT:
-		change_state(Globals.LightingState.OFF)
+		change_state(Globals.LightingState.ON)
+		emit_signal("light_alert_stopped")
 
 func is_calamitable():
 	return state == Globals.LightingState.ON

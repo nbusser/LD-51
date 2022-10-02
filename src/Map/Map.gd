@@ -58,14 +58,20 @@ func close_doors():
 
 	doors[0].close()
 
+func _trigger_alert(room):
+	room.trigger_alert()
+	for character in $Navigation2D/Characters.get_children():
+		if not character.is_in_group("player"):
+			character.receive_alert(room)
+
 func room_alert():
 	var room = rooms.locate_player()
-	room.trigger_alert()
+	_trigger_alert(room)
 	
 func neighbour_room_alert():
 	var room_list = rooms.get_neighbours(rooms.locate_player())
 	if len(room_list) != 0:
-		room_list[randi() % len(room_list)].trigger_alert()
+		_trigger_alert(room_list[randi() % len(room_list)])
 
 func spawn_monster():
 	pass
