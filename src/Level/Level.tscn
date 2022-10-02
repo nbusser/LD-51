@@ -40,7 +40,7 @@ unique_name_in_owner = true
 one_shot = true
 
 [node name="CanvasModulate" type="CanvasModulate" parent="."]
-color = Color( 0.054902, 0.054902, 0.0862745, 1 )
+color = Color( 0.152941, 0.152941, 0.235294, 1 )
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
