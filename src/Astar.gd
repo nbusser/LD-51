@@ -3,8 +3,8 @@ class_name Astar
 
 var tilemap: TileMap
 
-func _init(tilemap: TileMap):
-	self.tilemap = tilemap
+func _init(new_tilemap: TileMap):
+	self.tilemap = new_tilemap
 
 func is_navigable_type(tile_type):
 	return tile_type == Globals.TILE_TYPES.GROUND || tile_type == Globals.TILE_TYPES.DOOR_OPEN

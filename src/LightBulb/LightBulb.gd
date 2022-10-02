@@ -31,7 +31,7 @@ func change_state(new_state):
 	state = new_state
 
 
-func _on_Tween_tween_completed(object, key):
+func _on_Tween_tween_completed(_object, _key):
 	if state == Globals.LightingState.ALERT:
 		var current_alpha = $Light2D.color.a
 		_change_color(Color(1, 0, 0, 1-current_alpha), 0.7)

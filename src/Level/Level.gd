@@ -1,8 +1,5 @@
 extends Node
 
-signal end_of_level
-signal game_over
-
 onready var hud = $UI/HUD
 onready var map = get_node("Map")
 var level_names = ["Alpha Condor", "Busser Force One"]

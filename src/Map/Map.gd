@@ -11,7 +11,6 @@ var door_cells = null
 func _ready():
 	door_cells = tilemap.get_used_cells_by_id(Globals.TILE_TYPES.DOOR_OPEN) + tilemap.get_used_cells_by_id(Globals.TILE_TYPES.DOOR_CLOSED)
 	hud.set_coins(items.get_used_cells_by_id(Globals.CATS.CAT).size())
-	print("hey")
 
 func add_door():
 	var door = door_cells[randi()%door_cells.size()]

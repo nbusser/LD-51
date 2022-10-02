@@ -37,7 +37,7 @@ tile_set = ExtResource( 4 )
 cell_size = Vector2( 32, 32 )
 bake_navigation = true
 format = 1
-tile_data = PoolIntArray( -589813, 9, 0, -524268, 9, 0, -262125, 9, 0, -131063, 9, 0, 262163, 9, 0, 393225, 9, 0, 983041, 9, 0, 983053, 9, 0 )
+tile_data = PoolIntArray( -589813, 9, 0, -524268, 9, 0, -262125, 9, 0, -131063, 9, 0, 262163, 9, 0 )
 
 [node name="LightBulbs" type="Node" parent="Navigation2D"]
 

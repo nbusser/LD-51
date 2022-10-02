@@ -3,6 +3,7 @@
 [ext_resource path="res://assets/fonts/upheaval.tres" type="DynamicFont" id=1]
 
 [sub_resource type="StreamTexture" id=4]
+load_path = "res://.import/button.png-01faf565b773239305f3664038f20e61.stex"
 
 [sub_resource type="AtlasTexture" id=2]
 atlas = SubResource( 4 )

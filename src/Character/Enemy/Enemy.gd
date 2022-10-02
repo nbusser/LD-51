@@ -8,7 +8,7 @@ var is_blind = false
 func _init().("../../../"):
 	pass
 	
-func _process(delta):
+func _process(_delta):
 	if can_move():
 		var origin = global_position
 		var target = self.manager.get_player_position(true)
@@ -27,11 +27,11 @@ func change_speed(new_speed):
 	$Tween.start()
 
 
-func _on_EnemyBlindZone_area_entered(area):
+func _on_EnemyBlindZone_area_entered(_area):
 	is_blind = true
 	change_speed(normal_wait_time*SPEED_MALUS_BLIND)
 
 
-func _on_EnemyBlindZone_area_exited(area):
+func _on_EnemyBlindZone_area_exited(_area):
 	is_blind = false
 	change_speed(normal_wait_time)
