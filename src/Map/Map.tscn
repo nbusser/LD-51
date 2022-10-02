@@ -39,7 +39,7 @@ cell_size = Vector2( 32, 32 )
 bake_navigation = true
 format = 1
 
-[node name="LightBulbs" type="Node" parent="Navigation2D"]
-
 [node name="Doors" type="Node" parent="Navigation2D"]
 script = ExtResource( 9 )
+
+[node name="Rooms" type="Node" parent="Navigation2D"]

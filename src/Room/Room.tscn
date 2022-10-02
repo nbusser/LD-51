@@ -1,0 +1,7 @@
+[gd_scene format=2]
+
+[node name="Room" type="Area2D"]
+
+[node name="RoomShape" type="CollisionShape2D" parent="."]
+
+[node name="LightBulbs" type="Node" parent="."]
