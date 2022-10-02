@@ -33,7 +33,7 @@ texture = ExtResource( 4 )
 
 [node name="Timer" type="Timer" parent="."]
 unique_name_in_owner = true
-wait_time = 4.0
+wait_time = 10.0
 
 [node name="MusicTimer" type="Timer" parent="."]
 unique_name_in_owner = true

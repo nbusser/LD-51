@@ -42,6 +42,9 @@ position = Vector2( 289, -256 )
 position = Vector2( 0, 31 )
 shape = SubResource( 1 )
 
+[node name="PatrolPath" parent="Navigation2D/Rooms/Room" index="1"]
+points = PoolVector2Array( 77, -18, -82, -15, -83, 16, 87, 11, 82, -15 )
+
 [node name="LightBulb" parent="Navigation2D/Rooms/Room/LightBulbs" index="0" instance=ExtResource( 2 )]
 position = Vector2( 294, -277 )
 
@@ -52,6 +55,9 @@ position = Vector2( 351, -78 )
 position = Vector2( 5.5, -4.25 )
 shape = SubResource( 2 )
 
+[node name="PatrolPath" parent="Navigation2D/Rooms/Room2" index="1"]
+points = PoolVector2Array( -49, -40, 13, -38, 18, 26, -43, 32, -44, -32 )
+
 [node name="LightBulb" parent="Navigation2D/Rooms/Room2/LightBulbs" index="0" instance=ExtResource( 2 )]
 position = Vector2( 297, -75 )
 
@@ -61,6 +67,9 @@ position = Vector2( 608, -79 )
 [node name="RoomShape" parent="Navigation2D/Rooms/Room3/RoomArea" index="0"]
 position = Vector2( 10, 15.5 )
 shape = SubResource( 3 )
+
+[node name="PatrolPath" parent="Navigation2D/Rooms/Room3" index="1"]
+points = PoolVector2Array( -113, -33, 80, -32, 79, 29, -104, 30, -104, -24 )
 
 [node name="LightBulb" parent="Navigation2D/Rooms/Room3/LightBulbs" index="0" instance=ExtResource( 2 )]
 position = Vector2( 775, -92 )
@@ -75,6 +84,9 @@ position = Vector2( 575, -256 )
 position = Vector2( 1, 24.5 )
 shape = SubResource( 4 )
 
+[node name="PatrolPath" parent="Navigation2D/Rooms/Room4" index="1"]
+points = PoolVector2Array( -76, -26, 82, -14, 82, 16, -70, 15, -72, -17 )
+
 [node name="LightBulb" parent="Navigation2D/Rooms/Room4/LightBulbs" index="0" instance=ExtResource( 2 )]
 position = Vector2( 582, -287 )
 
@@ -84,6 +96,9 @@ position = Vector2( 654, 127 )
 [node name="RoomShape" parent="Navigation2D/Rooms/Room5/RoomArea" index="0"]
 position = Vector2( 2, -22 )
 shape = SubResource( 5 )
+
+[node name="PatrolPath" parent="Navigation2D/Rooms/Room5" index="1"]
+points = PoolVector2Array( -32, -41, 39, -46, 37, 15, -33, 13, -22, -35 )
 
 [editable path="Navigation2D/Rooms/Room"]
 [editable path="Navigation2D/Rooms/Room2"]
