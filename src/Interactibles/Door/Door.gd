@@ -1,5 +1,5 @@
-signal open_door(pos)
-signal close_door(pos)
+signal open_door(area, pos)
+signal close_door(area, pos)
 
 extends Interactible
 
@@ -22,10 +22,10 @@ func change_state(new_state):
 	_opened = new_state
 
 func interact():
-	emit_signal("open_door", _pos)
+	emit_signal("open_door", _area, _pos)
 
 func close():
-	emit_signal("close_door", _pos)
+	emit_signal("close_door", _area, _pos)
 
 func get_interactible_type():
 	return interactible_type
