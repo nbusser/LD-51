@@ -1,4 +1,5 @@
 extends Node2D
+class_name Region
 
 onready var tilemap = $WalkableMap
 onready var wall_map = $TallMap

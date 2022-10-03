@@ -16,7 +16,7 @@ animations = [ {
 "name": "idle_down",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 7 ) ],
+"frames": [  ],
 "loop": true,
 "name": "idle_left",
 "speed": 5.0
