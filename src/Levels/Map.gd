@@ -45,14 +45,15 @@ func get_all_possible_calamitables(region):
 
 	var calamitables = []
 	
-	calamitables += get_all_calamitable_lights_in_room(player_room, 2)
-	if not player_room.is_in_alert():
-		calamitables.append([player_room, 5])
+	if player_room:
+		calamitables += get_all_calamitable_lights_in_room(player_room, 2)
+		if not player_room.is_in_alert():
+			calamitables.append([player_room, 5])
 
-	for room in region.rooms.get_neighbours(player_room):
-		calamitables += get_all_calamitable_lights_in_room(room)
-		if not room.is_in_alert():
-			calamitables.append([room, 4])
+		for room in region.rooms.get_neighbours(player_room):
+			calamitables += get_all_calamitable_lights_in_room(room)
+			if not room.is_in_alert():
+				calamitables.append([room, 4])
 
 
 	var close_calamitables = player.get_node("CalamitySensor").get_overlapping_areas()

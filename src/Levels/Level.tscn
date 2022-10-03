@@ -112,6 +112,10 @@ unique_name_in_owner = true
 wait_time = 0.3
 one_shot = true
 
+[node name="CutsceneFallback" type="Timer" parent="."]
+wait_time = 9.0
+
 [connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]
 [connection signal="timeout" from="MusicTimer" to="." method="_on_MusicTimer_timeout"]
 [connection signal="timeout" from="AmbianceSoundsTimer" to="." method="_on_AmbianceSoundsTimer_timeout"]
+[connection signal="timeout" from="CutsceneFallback" to="." method="_on_CutsceneFallback_timeout"]

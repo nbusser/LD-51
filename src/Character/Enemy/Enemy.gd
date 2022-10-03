@@ -163,7 +163,8 @@ func _on_PatrolMode_timeout():
 			print("WARNING: enemy should never be out a room")
 			return
 		var neighbours = rooms_manager.get_neighbours(room)
-		set_patrol_room(neighbours[randi()%len(neighbours)])
+		if len(neighbours) > 0:
+			set_patrol_room(neighbours[randi()%len(neighbours)])
 
 func receive_alert(alert_room):
 	if strategy == Strategy.PATROL:

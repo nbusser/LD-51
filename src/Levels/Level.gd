@@ -28,6 +28,7 @@ var current_level_number = 0
 var skip_level_intro = false
 var health = 1.0
 var dead = false
+var level_started = false
 
 func init(level_number, skip_level_intro):
 	self.skip_level_intro = Globals.SKIP_LEVEL_INTRO or skip_level_intro
@@ -37,6 +38,10 @@ func init(level_number, skip_level_intro):
 	current_level_number = level_number
 
 func _start_level():
+	if level_started:
+		return
+	
+	level_started = true
 	Globals.can_interact = true
 	
 	if not skip_level_intro:
@@ -116,8 +121,8 @@ func _ready():
 	tween.set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_IN_OUT)
 	tween.tween_property(camera, "offset", Vector2(0.0, 0.0), 3.0)
 	tween.parallel().tween_property(camera, "zoom", Vector2(0.5, 0.5), 3.0)
-	print("YOYO")
 	
+	$CutsceneFallback.start()
 	tween.tween_callback(self, "_start_level")
 	tween2.tween_interval(5.5)
 	tween2.tween_callback(get_tree(), "call_group", ["ceiling_tilemaps", "animate_hide"])
@@ -223,3 +228,9 @@ func level_failed():
 func _on_AmbianceSoundsTimer_timeout():
 	$SoundFx/AmbianceSound.play_sound()
 	_reset_ambiance_timer()
+
+
+func _on_CutsceneFallback_timeout():
+	if not level_started:
+		print('sauvé')
+		_start_level()

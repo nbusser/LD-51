@@ -74,5 +74,6 @@ func can_interact():
 	return not is_interacting() and $InteractCooldown.time_left == 0
 	
 func _on_InteractTimer_timeout():
-	interactible.interact()
-	$InteractCooldown.start()
+	if interactible:
+		interactible.interact()
+		$InteractCooldown.start()
