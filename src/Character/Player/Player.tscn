@@ -29,7 +29,7 @@
 [ext_resource path="res://assets/sprites/animated/astronaute/Astronaute19.png" type="Texture" id=27]
 [ext_resource path="res://assets/sprites/animated/astronaute/Astronaute23.png" type="Texture" id=28]
 [ext_resource path="res://assets/sprites/animated/astronaute/Astronaute24.png" type="Texture" id=29]
-[ext_resource path="res://assets/sounds/sounds/bruit_pas_short_2.ogg" type="AudioStream" id=30]
+[ext_resource path="res://assets/sounds/sounds/bruit_pas_short_1.ogg" type="AudioStream" id=30]
 [ext_resource path="res://src/AudioBankPlayer.gd" type="Script" id=31]
 [ext_resource path="res://assets/sounds/sounds/chat_2.ogg" type="AudioStream" id=32]
 [ext_resource path="res://assets/sounds/sounds/chat_1.ogg" type="AudioStream" id=33]
@@ -99,7 +99,7 @@ frames = SubResource( 3 )
 animation = "idle_down"
 
 [node name="WalkSound" parent="SoundFx" index="1"]
-volume_db = 10.0
+volume_db = 1.0
 sounds = [ ExtResource( 30 ) ]
 
 [node name="CatSound" type="AudioStreamPlayer" parent="SoundFx" index="2"]
