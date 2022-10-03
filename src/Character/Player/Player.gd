@@ -6,6 +6,7 @@ var interactible = null
 
 onready var progress_bar = $"%ProgressBar"
 onready var interaction_hint = $"%InteractionHint"
+onready var camera = $"%Camera2D"
 
 func handle_region_switch(old_region):
 	if (old_region != null):
