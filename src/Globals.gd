@@ -37,7 +37,7 @@ enum WALKABLE {
 }
 
 enum ITEMS {
-	CAT = 11
+	CAT = 31
 }
 
 enum REGION_TYPE {
