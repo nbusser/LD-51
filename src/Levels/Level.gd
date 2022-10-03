@@ -101,20 +101,70 @@ enum Calamities {
 	LIGHTS_OFF = 1
 	CLOSE_DOOR = 2
 	ROOM_ALERT = 3
-	SPAWN_MONSTER = 5
+	SPAWN_MONSTER = 4
 }
+
+enum CalamityPolicy {
+	LOW_COST = 0
+	HIGH_PRICED = 1
+	RANDOM = 2
+}
+
+class CalamitySorter:
+	static func sort_ascending(a, b):
+		if a[1] < b[1]:
+			return true
+		return false
+	static func sort_descending(a, b):
+		if a[1] < b[1]:
+			return false
+		return true
+
+const MAX_SEVERITY = 20
+var severity_bank = 0
+
+func _trigger_calamity(region, object):
+	if object.is_in_group('lightbulb'):
+		map.light_off(object)
+	elif object.is_in_group('door'):
+		map.switch_door(object)
+	elif object.is_in_group('room'):
+		map.room_alert(region, object)
+	elif object.is_in_group('spawner'):
+		map.spawn_monster(object)
 
 func trigger_calamity():
 	player.camera.add_trauma(0.5)
+	
+	var random_severity_income = randi() % 3 + 5
+	severity_bank = min(severity_bank + random_severity_income, MAX_SEVERITY)
 
 	var player_region = characters.character_areas.get(player)
-	print(map.get_all_possible_calamitables(player_region))
-	return
+	var calamities = map.get_all_possible_calamitables(player_region)
 	
-	var lights = map.get_possible_light_calamities()
-	var doors = map.get_possible_door_calamities()
-	var alertables = map.get_possible_alert_calamities()
-	var spawners = map.get_possible_spawner_calamities()
+	var policy = randi() % len(CalamityPolicy)
+	if policy == CalamityPolicy.LOW_COST:
+		calamities.sort_custom(CalamitySorter, "sort_ascending")
+	elif policy == CalamityPolicy.HIGH_PRICED:
+		calamities.sort_custom(CalamitySorter, "sort_descending")
+	else:
+		calamities.shuffle()
+	
+	print('Calamities: ', calamities)
+	var i = 0
+	while severity_bank > 0 and i < len(calamities):
+		var calamity = calamities[i]
+		var object = calamity[0]
+		var cost = calamity[1]
+
+		if severity_bank >= cost:
+			severity_bank -= cost
+			_trigger_calamity(player_region, object)
+
+		i += 1
+	
+	print('Remaining: ', severity_bank)
+	return
 	
 	var calamity = randi()%len(Calamities)
 	if calamity == Calamities.LIGHTS_OFF:

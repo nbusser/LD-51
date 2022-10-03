@@ -42,7 +42,7 @@ func get_all_calamitable_lights_in_room(room, cost=1):
 func get_all_possible_calamitables(region):
 	# Gather all calamitables
 	var player_room = region.rooms.locate_player()
-	
+
 	var calamitables = []
 	
 	calamitables += get_all_calamitable_lights_in_room(player_room, 2)
@@ -63,63 +63,15 @@ func get_all_possible_calamitables(region):
 				if calamitable.interactible_type == Globals.Interactibles.DOOR:
 					calamitables.append([calamitable, 2])
 		elif calamitable.is_in_group("spawner"):
-			calamitables.append([calamitable, 10])
+			calamitables.append([calamitable, 8])
 
-	calamitables.shuffle()
 	return calamitables
-	
-
-func get_possible_light_calamities():
-	var calamitables = player.get_node("CalamitySensor").get_overlapping_areas()
-	var lights = []
-	for calamitable in calamitables:
-		if calamitable.is_in_group("interactible"):
-			calamitable = calamitable.get_parent()
-			if(calamitable.is_calamitable() and calamitable.interactible_type == Globals.Interactibles.LIGHT):
-				lights.append(calamitable)
-
-	return lights
-	
-func get_possible_door_calamities():
-	var calamitables = player.get_node("CalamitySensor").get_overlapping_areas()
-	var doors = []
-	for calamitable in calamitables:
-		if calamitable.is_in_group("interactible"):
-			calamitable = calamitable.get_parent()
-			if(calamitable.is_calamitable() and calamitable.interactible_type == Globals.Interactibles.DOOR):
-				doors.append(calamitable)
-	doors.shuffle()
-	return doors
-
-func get_possible_alert_calamities(region):
-	var player_room = region.rooms.locate_player()
-	
-	var alertable := []
-
-	if (player_room && !player_room.is_in_alert() && randi()%2):
-		alertable.append(alertable)
-	
-	for room in region.rooms.get_children():
-		if (!room.is_in_alert()):
-			alertable.append(room)
-	
-	return alertable
-
-func get_possible_spawner_calamities():
-	var spawners = []
-	var calamitables = player.get_node("CalamitySensor").get_overlapping_areas()
-	for calamitable in calamitables:
-		if calamitable.is_in_group("spawner"):
-			spawners.append(calamitable)
-	
-	spawners.shuffle()
-	return spawners
 
 func light_off(light):
 	light.change_state(Globals.LightingState.OFF)
 
-func close_door(door):
-	door.close()
+func switch_door(door):
+	door.interact()
 
 func room_alert(region, room):
 	room.trigger_alert()
