@@ -220,6 +220,5 @@ func level_failed():
 	emit_signal("level_failed")
 
 func _on_AmbianceSoundsTimer_timeout():
-	print('ping')
 	$SoundFx/AmbianceSound.play_sound()
 	_reset_ambiance_timer()
