@@ -98,15 +98,24 @@ func _on_Timer_timeout():
 	trigger_calamity()
 
 enum Calamities {
-	LIGHTS_OFF
-	ROOM_ALERT
-	CLOSE_DOOR
-	SPAWN_MONSTER
+	LIGHTS_OFF = 1
+	CLOSE_DOOR = 2
+	ROOM_ALERT = 3
+	SPAWN_MONSTER = 5
 }
 
 func trigger_calamity():
 	player.camera.add_trauma(0.5)
+
 	var player_region = characters.character_areas.get(player)
+	print(map.get_all_possible_calamitables(player_region))
+	return
+	
+	var lights = map.get_possible_light_calamities()
+	var doors = map.get_possible_door_calamities()
+	var alertables = map.get_possible_alert_calamities()
+	var spawners = map.get_possible_spawner_calamities()
+	
 	var calamity = randi()%len(Calamities)
 	if calamity == Calamities.LIGHTS_OFF:
 		print('light')
