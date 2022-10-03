@@ -18,6 +18,7 @@ enum LightingState {
 
 enum DECORATION_TILES {
 	VENT = 37
+	LIGHT = 65
 }
 
 enum TILE_TYPES {

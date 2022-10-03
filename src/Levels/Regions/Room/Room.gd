@@ -7,8 +7,10 @@ onready var map = $"../../../../../"
 onready var region = $"../.."
 onready var tilemap = $"../../WalkableMap"
 onready var doors_manager = $"../../../../../Doors"
+onready var wall_deco_map = $"../../WallDecorationMap"
 onready var lights = $LightBulbs
 onready var patrol_path = $PatrolPath
+onready var light = preload("res://src/Interactibles/LightBulb/LightBulb.tscn")
 
 var doors_positions
 var contained_characters = []
@@ -48,6 +50,29 @@ func _ready():
 		yield(map, "ready")
 		if not _check_patrol_accessible():
 			print('ERROR: patrol is not accessible ', self)
+
+	_initialize_lights()
+
+func _is_in_room(cell):
+	var offset = $RoomArea/RoomShape.global_position
+	var shape_extent = $RoomArea/RoomShape.shape.extents
+	var upper_left_cell = tilemap.world_to_map(offset - shape_extent)
+	var bottom_right_cell = tilemap.world_to_map(offset + shape_extent)
+	
+	return (
+		cell.x >= upper_left_cell.x 
+		and cell.x <= bottom_right_cell.x
+		and cell.y >= upper_left_cell.y 
+		and cell.y <= bottom_right_cell.y
+	)
+
+func _initialize_lights():
+	print(self)
+	for tile in wall_deco_map.get_used_cells_by_id(Globals.DECORATION_TILES.LIGHT):
+		if(_is_in_room(tile)):
+			var light_instance =  light.instance()
+			light_instance.global_position = wall_deco_map.map_to_world(tile)
+			$LightBulbs.add_child(light_instance)
 
 func _on_RoomArea_area_entered(area):
 	if (area.is_in_group('room')):

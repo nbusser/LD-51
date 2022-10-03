@@ -101,7 +101,6 @@ enum Calamities {
 func trigger_calamity():
 	var player_region = characters.character_areas.get(player)
 	var calamity = randi()%len(Calamities)
-	calamity = Calamities.SPAWN_MONSTER
 	if calamity == Calamities.LIGHTS_OFF:
 		print('light')
 		map.lights_off()
