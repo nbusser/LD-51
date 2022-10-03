@@ -18,7 +18,7 @@ onready var patrol_speed = $MoveTick.wait_time
 onready var chase_speed = patrol_speed * 0.3
 
 const SPEED_MALUS_BLIND = 1.3
-const SPEED_BONUS_ALERT = 0.7
+const SPEED_BONUS_ALERT = 0.5
 
 onready var characters_manager = $"../"
 
