@@ -11,5 +11,5 @@ dest_files=[ "res://.import/bruit_pas_short_1.ogg-db5e239f651f4e976acc356f7814a3
 
 [params]
 
-loop=true
+loop=false
 loop_offset=0

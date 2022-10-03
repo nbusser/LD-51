@@ -11,5 +11,5 @@ dest_files=[ "res://.import/alarme_1.ogg-d6bb936e3a52d05335c4d3b2efed81f3.oggstr
 
 [params]
 
-loop=true
+loop=false
 loop_offset=0
