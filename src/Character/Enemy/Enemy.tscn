@@ -1,4 +1,4 @@
-[gd_scene load_steps=103 format=2]
+[gd_scene load_steps=107 format=2]
 
 [ext_resource path="res://src/Character/Character.tscn" type="PackedScene" id=1]
 [ext_resource path="res://src/Character/Enemy/Enemy.gd" type="Script" id=2]
@@ -99,6 +99,10 @@
 [ext_resource path="res://assets/sprites/animated/alien_animated/back/back-11.png" type="Texture" id=97]
 [ext_resource path="res://assets/sprites/animated/alien_animated/back/back-3.png" type="Texture" id=98]
 [ext_resource path="res://assets/sprites/animated/alien_animated/dazzle_left/dazzle_left-1.png" type="Texture" id=99]
+[ext_resource path="res://src/AudioBankPlayer.gd" type="Script" id=100]
+[ext_resource path="res://assets/sounds/sounds/monstre_1.ogg" type="AudioStream" id=101]
+[ext_resource path="res://assets/sounds/sounds/monstre_4.ogg" type="AudioStream" id=102]
+[ext_resource path="res://assets/sounds/sounds/monstre_2.ogg" type="AudioStream" id=104]
 
 [sub_resource type="SpriteFrames" id=2]
 animations = [ {
@@ -196,6 +200,16 @@ strategy = 0
 position = Vector2( 16, -1 )
 frames = SubResource( 2 )
 animation = "idle_down"
+
+[node name="WalkSound" parent="SoundFx" index="1"]
+volume_db = -5.0
+sounds = [ ExtResource( 102 ) ]
+
+[node name="GrowlSound" type="AudioStreamPlayer" parent="SoundFx" index="2"]
+volume_db = 2.622
+script = ExtResource( 100 )
+sounds = [ ExtResource( 101 ), ExtResource( 104 ) ]
+no_erase = true
 
 [node name="MoveTick" parent="." index="2"]
 wait_time = 1.0

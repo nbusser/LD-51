@@ -25,6 +25,7 @@ sounds = [ ExtResource( 3 ), ExtResource( 2 ), ExtResource( 4 ), ExtResource( 5 
 
 [node name="WalkSound" type="AudioStreamPlayer" parent="SoundFx"]
 script = ExtResource( 6 )
+no_erase = true
 
 [node name="MoveTick" type="Timer" parent="."]
 wait_time = 0.2

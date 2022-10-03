@@ -112,6 +112,10 @@ func update_speed():
 func switch_strategy(_strategy):
 	strategy = _strategy
 
+	if _strategy == Strategy.CHASE:
+		$SoundFx/GrowlSound.play_sound()
+
+
 	if _strategy == Strategy.PATROL:
 		start_patroling()
 	else:
@@ -128,6 +132,7 @@ func is_blind():
 func _on_EnemyBlindZone_area_entered(_area):
 #	if _area.is_in_group("flashlight"):
 #		switch_strategy(Strategy.CHASE)
+	$SoundFx/GrowlSound.play_sound()
 	blind_sources.append(_area)
 	update_speed()
 
