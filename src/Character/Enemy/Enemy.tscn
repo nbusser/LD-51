@@ -202,7 +202,7 @@ strategy = 0
 [node name="Sprite" parent="." index="0"]
 position = Vector2( 16, -1 )
 frames = SubResource( 2 )
-animation = "idle_down"
+speed_scale = 2.0
 
 [node name="SpawnSound" parent="SoundFx" index="0"]
 volume_db = 0.0
