@@ -16,12 +16,18 @@ func init(area, opened, pos):
 	_area = area
 
 func is_interactible():
-	return not _opened
+	return true
 
 func change_state(new_state):
 	_opened = new_state
 
 func interact():
+	if _opened:
+		close()
+	else:
+		open()
+
+func open():
 	emit_signal("open_door", _area, _pos)
 
 func close():
