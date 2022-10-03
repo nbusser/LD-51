@@ -7,8 +7,6 @@ enum Strategy {
 }
 
 export var strategy = Strategy.PATROL
-export var initial_room_type = Globals.REGION_TYPE.STATIC
-export var initial_room_number = 0
 var patrol_room setget set_patrol_room
 var patrol_index = 0
 
@@ -18,9 +16,6 @@ const SPEED_MALUS_BLIND = 2
 const SPEED_BONUS_ALERT = 0.1
 
 var is_blind = false
-
-func _init().(initial_room_type, initial_room_number):
-	pass
 
 func handle_region_switch(old_region):
 	rooms_manager = region.get_node("Rooms")
@@ -99,6 +94,8 @@ func _on_EnemyBlindZone_area_exited(_area):
 
 func start_patroling():
 	set_patrol_room(rooms_manager.locate_character(self))
+	print(rooms_manager)
+	print(patrol_room)
 	if patrol_room == null:
 		set_patrol_room(rooms_manager.get_random_room())
 	$PatrolMode.start()

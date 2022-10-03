@@ -7,9 +7,6 @@ var interactible = null
 onready var progress_bar = $"%ProgressBar"
 onready var interaction_hint = $"%InteractionHint"
 
-func _init().(Globals.REGION_TYPE.STATIC, 0):
-	pass
-
 func handle_region_switch(old_region):
 	if (old_region != null):
 		self.disconnect("cat_saved", old_region, "save_cat")

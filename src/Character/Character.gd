@@ -20,9 +20,8 @@ var _region_type
 var _region_number
 var region = null
 
-func _init(region_type, region_number):
-	_region_type = region_type
-	_region_number = region_number
+export var initial_region_type = Globals.REGION_TYPE.STATIC
+export var initial_region_number = 0
 
 func handle_region_switch(old_region):
 	pass
@@ -42,11 +41,9 @@ func _ready():
 	# Waits for Game.gd to run randomize()
 	yield(get_tree(), "idle_frame")
 	$SoundFx/SpawnSound.play_sound()
-
-	update_map(_region_type, _region_number)
-	self.position = tilemap.map_to_world(get_map_position())
-	
 	self.connect("position_changed", manager, "update_position")
+	update_map(initial_region_type, initial_region_number)
+	self.position = tilemap.map_to_world(get_map_position())
 
 func _process(delta):
 	_update_animation()
