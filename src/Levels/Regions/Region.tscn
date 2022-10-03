@@ -13,6 +13,7 @@
 script = ExtResource( 7 )
 
 [node name="WalkableMap" type="TileMap" parent="."]
+visible = false
 z_index = -100
 tile_set = ExtResource( 2 )
 cell_size = Vector2( 32, 32 )
@@ -43,6 +44,7 @@ bake_navigation = true
 format = 1
 
 [node name="WallDecorationMap" type="TileMap" parent="."]
+z_index = 1
 tile_set = ExtResource( 5 )
 cell_size = Vector2( 32, 32 )
 bake_navigation = true
