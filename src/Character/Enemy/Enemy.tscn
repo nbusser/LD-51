@@ -67,7 +67,7 @@ animation = "walk_down"
 wait_time = 1.0
 
 [node name="Halo" type="Light2D" parent="." index="3"]
-position = Vector2( 83, 78 )
+position = Vector2( 16, 1 )
 scale = Vector2( 0.324219, 0.314453 )
 texture = ExtResource( 3 )
 texture_scale = 2.0
