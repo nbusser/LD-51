@@ -63,7 +63,7 @@ func get_all_possible_calamitables(region):
 				if calamitable.interactible_type == Globals.Interactibles.DOOR:
 					calamitables.append([calamitable, 2])
 		elif calamitable.is_in_group("spawner"):
-			calamitables.append([calamitable, 8])
+			calamitables.append([calamitable, 6])
 
 	return calamitables
 
