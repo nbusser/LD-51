@@ -40,6 +40,7 @@ func _start_level():
 			dialog.open_dialog(["Welcome to space.", "The space cat overlord says: \"Find my kitten.\""])
 		if current_level_number == 1:
 			dialog.open_dialog(["The space cat overlord says: \"Now do it again.\""])
+		yield(dialog, "close_dialog")
 	
 	var tween := create_tween()
 	tween.tween_property(hud, "modulate:a", 1.0, 0.5)
@@ -58,6 +59,7 @@ func _start_level():
 		$Map/StaticAreas/StaticRegion/Rooms/Room.blackout_room()
 		yield(get_tree().create_timer(3.5), "timeout")
 		dialog.open_dialog(["The evil bad guy says: \"MWAHAHAHAHAHA\"", "\"Enjoy running into walls\""])
+		yield(dialog, "close_dialog")
 
 func _reset_ambiance_timer():
 	$AmbianceSoundsTimer.wait_time = randi() % 15 + 5
