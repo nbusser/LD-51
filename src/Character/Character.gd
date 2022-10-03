@@ -55,6 +55,8 @@ func move(direction):
 	move_to(destination_tile)
 
 func move_to(destination_tile):
+	if not Globals.can_interact:
+		return
 	if get_map_position() != destination_tile and can_move() and region.isNavigable(destination_tile):
 		move_tick_timer.start()
 		

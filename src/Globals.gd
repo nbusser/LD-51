@@ -3,6 +3,8 @@ extends Node
 const SAMPLE_GLOBAL_VARIABLE = 1
 const SCENE_TRANSITION_DURATION: float = 0.5
 
+var can_interact = true
+
 enum Interactibles {
 	LIGHT
 	DOOR

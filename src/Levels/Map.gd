@@ -59,3 +59,14 @@ func _trigger_alert(region, room):
 
 func spawn_monster():
 	pass
+
+func calculate_bounds(tilemap):
+	var cell_bounds = tilemap.get_used_rect()
+	# create transform
+	var cell_to_pixel = Transform2D(Vector2(tilemap.cell_size.x * tilemap.scale.x, 0), Vector2(0, tilemap.cell_size.y * tilemap.scale.y), Vector2())
+	# apply transform
+	return Rect2(cell_to_pixel * cell_bounds.position, cell_to_pixel * cell_bounds.size)
+
+func get_map_center_relative_to_player() -> Vector2:
+	var bounds = calculate_bounds(floor_map)
+	return bounds.get_center() - player.position
