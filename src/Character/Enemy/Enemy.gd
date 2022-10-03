@@ -88,7 +88,7 @@ func change_speed(new_speed):
 
 func get_speed():
 	var speed = normal_wait_time
-	if strategy == Strategy.ALERT:
+	if not $AlertSpeedBoost.is_stopped():
 		speed *= SPEED_BONUS_ALERT
 	if is_blind:
 		speed *= SPEED_MALUS_BLIND
@@ -103,6 +103,7 @@ func switch_strategy(_strategy):
 		$PatrolMode.stop()
 	
 	if _strategy == Strategy.ALERT:
+		$AlertSpeedBoost.start()
 		change_speed(get_speed())
 
 func _update_blind(blind):
@@ -142,6 +143,7 @@ func receive_alert(alert_room):
 		set_patrol_room(alert_room)
 	# If already on an alert, can stay in the first alert room or move
 	elif strategy == Strategy.ALERT:
+		switch_strategy(Strategy.ALERT)
 		if randf() < 0.5:
 			set_patrol_room(alert_room)
 
@@ -157,3 +159,6 @@ func _on_DetectionArea_area_entered(area):
 func _on_LostPlayerArea_area_exited(area):
 	if strategy == Strategy.CHASE:
 		switch_strategy(Strategy.PATROL)
+
+func _on_AlertSpeedBoost_timeout():
+	change_speed(get_speed())

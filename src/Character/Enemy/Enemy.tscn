@@ -242,9 +242,14 @@ collision_mask = 128
 position = Vector2( 16, 0 )
 shape = SubResource( 3 )
 
+[node name="AlertSpeedBoost" type="Timer" parent="." index="11"]
+wait_time = 3.0
+one_shot = true
+
 [connection signal="area_entered" from="EnemyBlindZone" to="." method="_on_EnemyBlindZone_area_entered"]
 [connection signal="area_exited" from="EnemyBlindZone" to="." method="_on_EnemyBlindZone_area_exited"]
 [connection signal="timeout" from="PatrolMode" to="." method="_on_PatrolMode_timeout"]
 [connection signal="timeout" from="StartMoving" to="." method="_on_StartMoving_timeout"]
 [connection signal="area_entered" from="DetectionArea" to="." method="_on_DetectionArea_area_entered"]
 [connection signal="area_exited" from="LostPlayerArea" to="." method="_on_LostPlayerArea_area_exited"]
+[connection signal="timeout" from="AlertSpeedBoost" to="." method="_on_AlertSpeedBoost_timeout"]
