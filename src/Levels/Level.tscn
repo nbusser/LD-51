@@ -114,6 +114,7 @@ one_shot = true
 
 [node name="CutsceneFallback" type="Timer" parent="."]
 wait_time = 9.0
+one_shot = true
 
 [connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]
 [connection signal="timeout" from="MusicTimer" to="." method="_on_MusicTimer_timeout"]

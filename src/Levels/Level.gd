@@ -28,7 +28,6 @@ var current_level_number = 0
 var skip_level_intro = false
 var health = 1.0
 var dead = false
-var level_started = false
 
 func init(level_number, skip_level_intro):
 	self.skip_level_intro = Globals.SKIP_LEVEL_INTRO or skip_level_intro
@@ -38,10 +37,6 @@ func init(level_number, skip_level_intro):
 	current_level_number = level_number
 
 func _start_level():
-	if level_started:
-		return
-	
-	level_started = true
 	Globals.can_interact = true
 	
 	if not skip_level_intro:
@@ -231,6 +226,6 @@ func _on_AmbianceSoundsTimer_timeout():
 
 
 func _on_CutsceneFallback_timeout():
-	if not level_started:
-		print('sauvé')
-		_start_level()
+	hud.modulate.a = 1.0
+	if timer.is_stopped():
+		timer.start()
