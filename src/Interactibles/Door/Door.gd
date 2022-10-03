@@ -39,4 +39,4 @@ func get_interactible_type():
 	return interactible_type
 
 func is_calamitable():
-	return _opened
+	return true
