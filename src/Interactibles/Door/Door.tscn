@@ -21,9 +21,11 @@ shape = SubResource( 1 )
 [node name="SoundFx" type="Node" parent="."]
 
 [node name="OpenSound" type="AudioStreamPlayer" parent="SoundFx"]
+volume_db = 5.0
 script = ExtResource( 2 )
 sounds = [ ExtResource( 4 ) ]
 
 [node name="CloseSound" type="AudioStreamPlayer" parent="SoundFx"]
+volume_db = 5.0
 script = ExtResource( 2 )
 sounds = [ ExtResource( 3 ) ]
