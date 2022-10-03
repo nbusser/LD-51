@@ -31,6 +31,12 @@ func get_current_patrol_point(world_coordinates=false):
 	if len(patrol_room.get_patrol_points()) == 0:
 		return null
 	return patrol_room.get_patrol_points(world_coordinates)[patrol_index]
+	
+func _get_animation_ref():
+	var animation = ._get_animation_ref()
+	if is_blind:
+		animation = "dazzle_" + animation
+	return animation
 
 func _process(_delta):
 	if $StartMoving.time_left == 0 and can_move():
