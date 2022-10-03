@@ -2,8 +2,8 @@ extends Node
 
 onready var hud = $UI/HUD
 onready var map = get_node("Map")
-onready var player = $Map/Navigation2D/Characters/Player
-onready var doors_manager = $Map/Navigation2D/Doors
+onready var player = $Map/Characters/Player
+onready var doors_manager = $Map/Doors
 
 onready var pulse = $"%VisualPulse"
 onready var timer = $"%Timer"

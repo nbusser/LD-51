@@ -6,12 +6,13 @@ var interactible = null
 
 onready var progress_bar = $"%ProgressBar"
 
-func _init().("../../../"):
+func _init().(Globals.REGION_TYPE.STATIC, 0):
 	pass
 
-func _ready():
-	map = get_node("../../../")
-	self.connect("cat_saved", map, "save_cat")
+func handle_region_switch(old_region):
+	if (old_region != null):
+		self.disconnect("cat_saved", old_region, "save_cat")
+	self.connect("cat_saved", region, "save_cat")
 
 func _process(_delta):
 	var direction := Vector2(Input.get_action_strength("ui_right") - Input.get_action_strength("ui_left"), Input.get_action_strength("ui_down") - Input.get_action_strength("ui_up"))
@@ -46,7 +47,7 @@ func _process(_delta):
 		progress_bar.theme_type_variation = "ProgressBar2"
 
 func _on_Tween_tween_completed(hey, useless):
-	if (map.get_node("Navigation2D/TallMap").get_cellv(get_map_position()) == Globals.ITEMS.CAT):
+	if (region.get_node("TallMap").get_cellv(get_map_position()) == Globals.ITEMS.CAT):
 		emit_signal("cat_saved", get_map_position())
 
 func _on_InteractZone_area_entered(area):

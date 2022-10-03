@@ -17,7 +17,7 @@ const SPEED_BONUS_ALERT = 0.1
 
 var is_blind = false
 
-func _init().("../../../"):
+func _init().(Globals.REGION_TYPE.STATIC, 0):
 	pass
 
 func _ready():

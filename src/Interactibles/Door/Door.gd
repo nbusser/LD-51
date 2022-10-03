@@ -5,13 +5,15 @@ extends Interactible
 
 var _opened
 var _pos
+var _area
 
 func _init().(Globals.Interactibles.DOOR):
 	pass
 
-func init(opened, pos):
+func init(area, opened, pos):
 	_opened = opened
 	_pos = pos
+	_area = area
 
 func is_interactible():
 	return not _opened

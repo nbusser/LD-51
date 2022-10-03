@@ -3,7 +3,7 @@ signal alert_stopped
 
 extends Node2D
 
-onready var map = $"../../../"
+onready var map = $"../../../../"
 onready var tilemap = $"../../WalkableMap"
 onready var doors_manager = $"../../Doors"
 onready var lights = $LightBulbs

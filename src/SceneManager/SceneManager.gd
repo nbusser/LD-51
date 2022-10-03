@@ -10,8 +10,8 @@ onready var music_players = $Musics.get_children()
 
 onready var main_menu = preload("res://src/MainMenu/MainMenu.tscn")
 onready var levels = [
-	preload("res://src/Level/Level2.tscn"),
-	preload("res://src/Level/Level1.tscn"),
+	preload("res://src/Levels/Level2/Level2.tscn"),
+	preload("res://src/Levels/Level1/Level1.tscn"),
 ]
 onready var change_level = preload("res://src/EndLevel/EndLevel.tscn")
 onready var credits = preload("res://src/Credits/Credits.tscn")

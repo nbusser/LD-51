@@ -1,0 +1,48 @@
+[gd_scene load_steps=8 format=2]
+
+[ext_resource path="res://src/Levels/Regions/Rooms.gd" type="Script" id=1]
+[ext_resource path="res://assets/sprites/walkableset.tres" type="TileSet" id=2]
+[ext_resource path="res://assets/sprites/floorset.tres" type="TileSet" id=3]
+[ext_resource path="res://assets/sprites/floordecorationset.tres" type="TileSet" id=4]
+[ext_resource path="res://assets/sprites/walldecorationset.tres" type="TileSet" id=5]
+[ext_resource path="res://assets/sprites/tallset.tres" type="TileSet" id=6]
+[ext_resource path="res://src/Levels/Regions/Region.gd" type="Script" id=7]
+
+[node name="Region" type="Node2D"]
+script = ExtResource( 7 )
+
+[node name="WalkableMap" type="TileMap" parent="."]
+tile_set = ExtResource( 2 )
+cell_size = Vector2( 32, 32 )
+bake_navigation = true
+format = 1
+tile_data = PoolIntArray( 327707, 36, 524288, 655377, 36, 524288, 1769520, 36, 524288, 1966129, 36, 524288 )
+
+[node name="FloorMap" type="TileMap" parent="."]
+tile_set = ExtResource( 3 )
+cell_size = Vector2( 32, 32 )
+bake_navigation = true
+format = 1
+
+[node name="FloorDecorationMap" type="TileMap" parent="."]
+tile_set = ExtResource( 4 )
+cell_size = Vector2( 32, 32 )
+bake_navigation = true
+format = 1
+tile_data = PoolIntArray( 327707, 36, 524288, 655377, 36, 524288, 1769520, 36, 524288, 1966129, 36, 524288 )
+
+[node name="TallMap" type="TileMap" parent="."]
+tile_set = ExtResource( 6 )
+cell_size = Vector2( 32, 32 )
+bake_navigation = true
+format = 1
+
+[node name="WallDecorationMap" type="TileMap" parent="."]
+tile_set = ExtResource( 5 )
+cell_size = Vector2( 32, 32 )
+bake_navigation = true
+format = 1
+tile_data = PoolIntArray( 327707, 36, 524288, 655377, 36, 524288, 1769520, 36, 524288, 1966129, 36, 524288 )
+
+[node name="Rooms" type="Node" parent="."]
+script = ExtResource( 1 )

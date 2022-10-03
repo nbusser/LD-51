@@ -31,3 +31,8 @@ enum WALKABLE {
 enum ITEMS {
 	CAT = 11
 }
+
+enum REGION_TYPE {
+	STATIC,
+	MOBILE
+}
