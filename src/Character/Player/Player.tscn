@@ -82,6 +82,8 @@ radius = 1024.0
 script = ExtResource( 2 )
 
 [node name="Sprite" parent="." index="0"]
+position = Vector2( 81, 22 )
+scale = Vector2( 1.4, 1.4 )
 frames = SubResource( 3 )
 animation = "idle_down"
 
