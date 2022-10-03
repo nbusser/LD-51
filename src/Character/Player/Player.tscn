@@ -84,8 +84,6 @@ radius = 1024.0
 z_index = 1
 z_as_relative = false
 script = ExtResource( 2 )
-initial_region_type = 0
-initial_region_number = 0
 
 [node name="Sprite" parent="." index="0"]
 position = Vector2( 81, 22 )
