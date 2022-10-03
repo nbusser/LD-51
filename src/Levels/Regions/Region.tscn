@@ -13,6 +13,7 @@
 script = ExtResource( 7 )
 
 [node name="WalkableMap" type="TileMap" parent="."]
+z_index = -100
 tile_set = ExtResource( 2 )
 cell_size = Vector2( 32, 32 )
 bake_navigation = true
@@ -20,12 +21,14 @@ format = 1
 tile_data = PoolIntArray( 327707, 36, 524288, 655377, 36, 524288, 1769520, 36, 524288, 1966129, 36, 524288 )
 
 [node name="FloorMap" type="TileMap" parent="."]
+z_index = -10
 tile_set = ExtResource( 3 )
 cell_size = Vector2( 32, 32 )
 bake_navigation = true
 format = 1
 
 [node name="FloorDecorationMap" type="TileMap" parent="."]
+z_index = -5
 tile_set = ExtResource( 4 )
 cell_size = Vector2( 32, 32 )
 bake_navigation = true
@@ -33,6 +36,7 @@ format = 1
 tile_data = PoolIntArray( 327707, 36, 524288, 655377, 36, 524288, 1769520, 36, 524288, 1966129, 36, 524288 )
 
 [node name="TallMap" type="TileMap" parent="."]
+z_index = 1
 tile_set = ExtResource( 6 )
 cell_size = Vector2( 32, 32 )
 bake_navigation = true

@@ -98,3 +98,7 @@ func move_to(destination_tile):
 			self, "position", self.position, destination, get_character_speed(), Tween.TRANS_LINEAR, Tween.EASE_IN_OUT
 		)
 		$Tween.start()
+		
+		var current_map = get_parent().character_areas[self]
+		var current_wall_tile = current_map.wall_map.get_cell(destination_tile.x, destination_tile.y + 1)
+		self.z_index = 1 if current_wall_tile == -1 else 0
