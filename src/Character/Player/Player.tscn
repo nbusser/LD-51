@@ -84,7 +84,6 @@ script = ExtResource( 2 )
 [node name="Sprite" parent="." index="0"]
 frames = SubResource( 3 )
 animation = "idle_down"
-playing = true
 
 [node name="Camera2D" type="Camera2D" parent="." index="4"]
 position = Vector2( 79, 78 )

@@ -14,6 +14,7 @@ script = ExtResource( 7 )
 
 [node name="Sprite" type="AnimatedSprite" parent="."]
 position = Vector2( 79, 78 )
+playing = true
 
 [node name="SoundFx" type="Node" parent="."]
 

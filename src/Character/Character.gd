@@ -9,6 +9,13 @@ onready var move_tick_timer = $MoveTick
 var tilemap
 onready var manager = get_parent()
 
+const UP = Vector2(0, -1)
+const DOWN = Vector2(0, 1)
+const LEFT = Vector2(-1, 0)
+const RIGHT = Vector2(1, 0)
+
+var direction = DOWN
+
 var _region_type
 var _region_number
 var region = null
@@ -41,6 +48,9 @@ func _ready():
 	
 	self.connect("position_changed", manager, "update_position")
 
+func _process(delta):
+	_update_animation()
+
 func get_map_position():
 	return tilemap.world_to_map(position)
 
@@ -50,11 +60,31 @@ func can_move():
 func get_character_speed():
 	return move_tick_timer.wait_time
 
-func move(direction):
-	var destination_tile = get_map_position() + direction
+func _update_animation():
+	var movement_state = "idle" if move_tick_timer.is_stopped() else "walk"
+
+	var direction_string
+	if direction == UP:
+		direction_string = "up"
+	elif direction == RIGHT:
+		direction_string = "right"
+	elif direction == DOWN:
+		direction_string = "down"
+	else:
+		direction_string = "left"
+	
+	var animation = movement_state + "_" + direction_string
+	
+	if $Sprite.animation != animation:
+		$Sprite.animation = animation
+
+func move(to_direction):
+	var destination_tile = get_map_position() + to_direction
 	move_to(destination_tile)
 
 func move_to(destination_tile):
+	direction = destination_tile - get_map_position()
+
 	if not Globals.can_interact:
 		return
 	if get_map_position() != destination_tile and can_move() and region.isNavigable(destination_tile):
