@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/alarme_3.ogg-e4e1cf25d11d4db78153f5d5d15f1a5b.oggstr"
+
+[deps]
+
+source_file="res://assets/sounds/sounds/alarme_3.ogg"
+dest_files=[ "res://.import/alarme_3.ogg-e4e1cf25d11d4db78153f5d5d15f1a5b.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0

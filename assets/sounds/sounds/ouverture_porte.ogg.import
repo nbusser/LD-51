@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/ouverture_porte.ogg-951c9fe3244a91f4f0816b6aa8eac792.oggstr"
+
+[deps]
+
+source_file="res://assets/sounds/sounds/ouverture_porte.ogg"
+dest_files=[ "res://.import/ouverture_porte.ogg-951c9fe3244a91f4f0816b6aa8eac792.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0

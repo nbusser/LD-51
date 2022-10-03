@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/chat_5.ogg-84f4ce39a53c0dde3eb462c92ec84476.oggstr"
+
+[deps]
+
+source_file="res://assets/sounds/sounds/chat_5.ogg"
+dest_files=[ "res://.import/chat_5.ogg-84f4ce39a53c0dde3eb462c92ec84476.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0

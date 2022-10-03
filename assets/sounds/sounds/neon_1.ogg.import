@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/neon_1.ogg-2c0d894f988a2f79ff24424ecefa1d07.oggstr"
+
+[deps]
+
+source_file="res://assets/sounds/sounds/neon_1.ogg"
+dest_files=[ "res://.import/neon_1.ogg-2c0d894f988a2f79ff24424ecefa1d07.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0

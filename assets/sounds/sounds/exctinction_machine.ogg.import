@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/exctinction_machine.ogg-1cddd30e3c99c33bd5258a142fb203de.oggstr"
+
+[deps]
+
+source_file="res://assets/sounds/sounds/exctinction_machine.ogg"
+dest_files=[ "res://.import/exctinction_machine.ogg-1cddd30e3c99c33bd5258a142fb203de.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0
