@@ -202,15 +202,15 @@ frames = SubResource( 2 )
 animation = "idle_down"
 
 [node name="SpawnSound" parent="SoundFx" index="0"]
-volume_db = 6.0
+volume_db = 0.0
 sounds = [ ExtResource( 101 ) ]
 
 [node name="WalkSound" parent="SoundFx" index="1"]
-volume_db = -5.0
+volume_db = -7.0
 sounds = [ ExtResource( 102 ) ]
 
 [node name="GrowlSound" type="AudioStreamPlayer" parent="SoundFx" index="2"]
-volume_db = 2.622
+volume_db = 2.0
 script = ExtResource( 100 )
 sounds = [ ExtResource( 101 ), ExtResource( 104 ) ]
 no_erase = true
