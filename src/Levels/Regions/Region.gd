@@ -27,7 +27,11 @@ func _initialize_spawners():
 
 func _create_ceiling():
 	for c in floor_map.get_used_cells():
-		ceiling_map.set_cell(c.x, c.y - 1, 0, false, false, false, floor_map.get_cell_autotile_coord(c.x, c.y))
+		var cell_value = floor_map.get_cellv(c)
+		if cell_value == 0:
+			ceiling_map.set_cell(c.x, c.y - 1, cell_value, false, false, false, floor_map.get_cell_autotile_coord(c.x, c.y))
+		else:
+			ceiling_map.set_cell(c.x, c.y - 1, 0, false, false, false, Vector2(2, 1))
 
 func initialize_walkable():
 	for tile in floor_map.get_used_cells():
