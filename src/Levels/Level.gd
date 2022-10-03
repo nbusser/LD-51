@@ -44,6 +44,8 @@ func _start_level():
 			dialog.open_dialog(["Welcome to space.", "The space cat overlord says: \"Find my kitten.\""])
 		if current_level_number == 1:
 			dialog.open_dialog(["The space cat overlord says: \"Now do it again.\""])
+		if current_level_number == 2:
+			dialog.open_dialog(["The space cat overlord says: \"I keep dropping my kittens all over the place.\""])
 		yield(dialog, "close_dialog")
 	
 	var tween := create_tween()
@@ -55,15 +57,24 @@ func _start_level():
 	music_timer.start(music_diff)
 	
 	if not skip_level_intro && current_level_number == 0:
-		yield(get_tree().create_timer(4.5), "timeout")
+		yield(get_tree().create_timer(3), "timeout")
 		timer.stop()
+		player.camera.add_trauma(0.2)
+		yield(get_tree().create_timer(0.5), "timeout")
 		dialog.open_dialog(["The evil bad guy says: \"HAHAHAHAHAHHAHAHAHAHAHA\"", "\"Did you really think it was going to be this easy?\"", "\"My calamity beam will make your life a living hell\""])
 		yield(dialog, "close_dialog")
-		print(self.get_children())
 		$Map/StaticAreas/StaticRegion/Rooms/Room.blackout_room()
 		player.camera.add_trauma(0.5)
-		yield(get_tree().create_timer(2), "timeout")
+		yield(get_tree().create_timer(1.5), "timeout")
+		player.camera.add_trauma(0.2)
+		yield(get_tree().create_timer(0.5), "timeout")
 		dialog.open_dialog(["The evil bad guy says: \"Enjoy running into walls\""])
+		yield(dialog, "close_dialog")
+	elif not skip_level_intro && current_level_number == 1:
+		yield(get_tree().create_timer(3), "timeout")
+		player.camera.add_trauma(0.2)
+		yield(get_tree().create_timer(0.5), "timeout")
+		dialog.open_dialog(["The evil bad guy says: \"You will never escape the watchful eye of my half-blind tentacular minions!\""])
 		yield(dialog, "close_dialog")
 
 func _reset_ambiance_timer():
