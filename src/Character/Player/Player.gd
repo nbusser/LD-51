@@ -5,6 +5,7 @@ extends Character
 var interactible = null
 
 onready var progress_bar = $"%ProgressBar"
+onready var interaction_hint = $"%InteractionHint"
 
 func _init().(Globals.REGION_TYPE.STATIC, 0):
 	pass
@@ -13,6 +14,9 @@ func handle_region_switch(old_region):
 	if (old_region != null):
 		self.disconnect("cat_saved", old_region, "save_cat")
 	self.connect("cat_saved", region, "save_cat")
+
+func _ready():
+	interaction_hint.hide()
 
 func _process(_delta):
 	var direction := Vector2(Input.get_action_strength("ui_right") - Input.get_action_strength("ui_left"), Input.get_action_strength("ui_down") - Input.get_action_strength("ui_up"))
@@ -45,6 +49,8 @@ func _process(_delta):
 	elif not can_interact():
 		progress_bar.value = $InteractCooldown.time_left / $InteractCooldown.wait_time
 		progress_bar.theme_type_variation = "ProgressBar2"
+	
+	interaction_hint.visible = can_interact() and interactible and interactible.is_interactible()
 
 func _on_Tween_tween_completed(hey, useless):
 	if (region.get_node("TallMap").get_cellv(get_map_position()) == Globals.ITEMS.CAT):
