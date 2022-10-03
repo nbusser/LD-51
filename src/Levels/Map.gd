@@ -60,7 +60,8 @@ func close_doors():
 
 func room_alert(region):
 	var player_room = region.rooms.locate_player()
-	if (!player_room.is_in_alert() && randi()%2):
+	print(player_room, "WARNING: player should never be out of a room")
+	if (player_room && !player_room.is_in_alert() && randi()%2):
 		_trigger_alert(region, player_room)
 		return
 	
