@@ -31,9 +31,12 @@ func _process(_delta):
 		and interactible != null
 		and interactible.is_interactible()
 	):
+		if interactible.get_interactible_type() == Globals.Interactibles.LIGHT:
+			$SoundFx/InteractLightSound.play_sound()
 		$InteractTimer.start()
 	elif is_interacting():
 		if not interact_button_pressed or interactible == null or not interactible.is_interactible():
+			$SoundFx/InteractLightSound.stop()
 			$InteractTimer.stop()
 	
 	var gaze_angle := (get_viewport().get_mouse_position() - OS.get_window_size()/2).normalized()

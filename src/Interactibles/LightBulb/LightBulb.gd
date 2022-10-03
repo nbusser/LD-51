@@ -10,7 +10,7 @@ func _init().(Globals.Interactibles.LIGHT):
 	pass
 
 func _ready():
-	change_state(state)
+	change_state(state, false)
 	
 func _change_color(new_color, length=0.5):
 	$Tween.interpolate_property(
@@ -20,16 +20,21 @@ func _change_color(new_color, length=0.5):
 	)
 	$Tween.start()
 
-func change_state(new_state):
+func change_state(new_state, play_sound=true):
 	enemy_blind_area.monitorable = new_state == Globals.LightingState.ON
 	
 	if new_state == Globals.LightingState.OFF:
 		$Light2D.color.a = 0
 		$BlinkingOffTimer.wait_time = 0.1
 		$BlinkingOffTimer.start()
+		
+		if play_sound:
+			$SoundFx/BlackoutSound.play_sound()
 	else:
 		if new_state == Globals.LightingState.ON:
 			_change_color(Color(1, 1, 1, 1))
+			if play_sound:
+				$SoundFx/LightOnSound.play_sound()
 		else:
 			_change_color(Color(1, 0, 0, 1))
 	

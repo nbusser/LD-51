@@ -11,5 +11,5 @@ dest_files=[ "res://.import/neon_4.ogg-90821d50691bfcc7cb2ba82d0387e5ce.oggstr" 
 
 [params]
 
-loop=true
+loop=false
 loop_offset=0

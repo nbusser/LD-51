@@ -1,7 +1,10 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=8 format=2]
 
+[ext_resource path="res://src/AudioBankPlayer.gd" type="Script" id=1]
 [ext_resource path="res://assets/sprites/light_shape.png" type="Texture" id=2]
 [ext_resource path="res://src/Interactibles/LightBulb/LightBulb.gd" type="Script" id=3]
+[ext_resource path="res://assets/sounds/sounds/neon_3.ogg" type="AudioStream" id=4]
+[ext_resource path="res://assets/sounds/sounds/neon_tick.ogg" type="AudioStream" id=5]
 
 [sub_resource type="CircleShape2D" id=2]
 radius = 64.0
@@ -32,6 +35,16 @@ energy = 0.8
 shadow_enabled = true
 
 [node name="SoundFx" type="Node" parent="."]
+
+[node name="BlackoutSound" type="AudioStreamPlayer" parent="SoundFx"]
+script = ExtResource( 1 )
+sounds = [ ExtResource( 4 ) ]
+no_erase = true
+
+[node name="LightOnSound" type="AudioStreamPlayer" parent="SoundFx"]
+script = ExtResource( 1 )
+sounds = [ ExtResource( 5 ) ]
+no_erase = true
 
 [node name="Tween" type="Tween" parent="."]
 
