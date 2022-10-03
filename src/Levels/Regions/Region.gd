@@ -23,7 +23,7 @@ func initialize_walkable():
 	for tile in floor_map.get_used_cells():
 		var tall_cell = wall_map.get_cellv(tile)
 		var wall_dec_tile = wall_deco_map.get_cellv(tile)
-		if ((tall_cell == -1 || tall_cell == Globals.ITEMS.CAT) && (wall_dec_tile != Globals.TILE_TYPES.DOOR_CLOSED_H) && (wall_dec_tile != Globals.TILE_TYPES.DOOR_CLOSED_V)):
+		if ((tall_cell == -1 || tall_cell == Globals.ITEMS.CAT) && (wall_dec_tile != Globals.TILE_TYPES.DOOR_CLOSED_H) && (wall_dec_tile != Globals.TILE_TYPES.DOOR_CLOSED_V) && (tilemap.get_cellv(tile) == -1)):
 			tilemap.set_cellv(tile, Globals.WALKABLE.YES)
 
 func rebake(changed_tile):

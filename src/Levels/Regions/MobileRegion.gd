@@ -7,7 +7,7 @@ var backwards = false
 var is_moving = false
 var next_anchor_point = 1
 var segment
-var speed = 1
+var speed = 50
 
 func _init().():
 	pass
@@ -43,8 +43,10 @@ func get_next_anchor_point():
 
 func prepare_next_segment():
 	var diff = path.get_point_position(anchor_point) - path.get_point_position(next_anchor_point)
+	var duration = diff.length()/speed
 	tween.interpolate_property(
-		self, "position", self.position, self.position - diff, speed, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT
+		self, "position", self.position, self.position - diff, duration, Tween.TRANS_LINEAR,
+		Tween.EASE_IN_OUT
 	)
 	tween.start()
 
