@@ -39,22 +39,28 @@ func _start_level():
 func _ready():
 	Globals.can_interact = false
 	
-	camera.offset = map.get_map_center_relative_to_player()
-	camera.zoom = Vector2(3.0, 3.0)
-	hud.modulate.a = 0.0
-	
 	pulse.material.set_shader_param("time", 0.0)
 	pulse.material.set_shader_param("intensity", 0.0)
 	pulse.material.set_shader_param("enabled", false)
 	
+	level_number.text = "LEVEL %s //////////" % str(current_level_number + 1).pad_zeros(3)
+	level_name.text = level_names[current_level_number]
+	level_card.modulate.a = 0.0
+	
 	var tween := create_tween()
 	var tween2 := create_tween()
 	
-	level_card.modulate.a = 0.0
+	if Globals.SKIP_LEVEL_INTRO:
+		get_tree().call_group("ceiling_tilemaps", "animate_hide")
+		self._start_level()
+		return
+	
+	camera.offset = map.get_map_center_relative_to_player()
+	camera.zoom = Vector2(3.0, 3.0)
+	hud.modulate.a = 0.0
+	
 	get_tree().call_group("ceiling_tilemaps", "animate_show")
 	
-	level_number.text = "LEVEL %s //////////" % str(current_level_number + 1).pad_zeros(3)
-	level_name.text = level_names[current_level_number]
 	tween.tween_interval(0.5)
 	tween.tween_property(level_card, "modulate:a", 1.0, 0.5)
 	tween.tween_interval(2.0)
