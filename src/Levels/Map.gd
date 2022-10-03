@@ -100,7 +100,3 @@ func get_map_center_relative_to_player() -> Vector2:
 	for m_area in self.get_node("MobileAreas").get_children():
 		bounds = bounds.merge(m_area.calculate_bounds())
 	return bounds.get_center() - player.position
-
-func kill_player():
-	# TODO: kill player
-	$"../".level_failed()

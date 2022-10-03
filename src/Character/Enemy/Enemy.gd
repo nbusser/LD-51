@@ -1,4 +1,5 @@
 signal kill
+signal lose_hp
 
 extends Character
 
@@ -78,7 +79,7 @@ func _process(_delta):
 			if len(path) == 0:
 				destination = region.tilemap.world_to_map(target)
 				if strategy == Strategy.CHASE:
-					emit_signal("kill")
+					emit_signal("lose_hp")
 			else:
 				destination = region.tilemap.world_to_map(path[0])
 			move_to(destination)

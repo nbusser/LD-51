@@ -16,6 +16,8 @@ onready var level_number = $"%LevelNumber"
 onready var level_name = $"%LevelName"
 onready var level_card = $"%LevelCard"
 onready var dialog = $"%Dialog"
+onready var lose_hp_cooldown = $"%LoseHpCooldown"
+onready var health_filter = $"%HealthFilter"
 
 var calamities_count = 0 
 
@@ -24,6 +26,8 @@ var level_names = ["Space Thing", "Busser Force One", "StarCats", "Meow Space St
 var difficulty
 var current_level_number = 0
 var skip_level_intro = false
+var health = 1.0
+var dead = false
 
 func init(level_number, skip_level_intro):
 	self.skip_level_intro = Globals.SKIP_LEVEL_INTRO or skip_level_intro
@@ -109,6 +113,9 @@ func _ready():
 func _process(delta):
 	pulse.material.set_shader_param("time", timer.wait_time - timer.time_left)
 	pulse.material.set_shader_param("intensity", 1.0 - timer.time_left / timer.wait_time)
+	health = min(1.0, health + delta * 0.1)
+	var tween := create_tween()
+	tween.tween_property(health_filter, "modulate:a", max(0.0, 1.0 - health), 0.3)
 
 func _on_Timer_timeout():
 	pulse.material.set_shader_param("enabled", true)
@@ -181,6 +188,21 @@ func trigger_calamity():
 
 func _on_MusicTimer_timeout():
 	timer.start()
+
+func _is_player_invincible():
+	return lose_hp_cooldown.time_left > 0.0 or dead
+
+func lose_hp_player():
+	if not _is_player_invincible():
+		health -= 0.1
+		if health <= 0.0:
+			health = 0.0
+			kill_player()
+		lose_hp_cooldown.start()
+
+func kill_player():
+	dead = true
+	level_failed()
 
 func level_failed():
 	emit_signal("level_failed")
