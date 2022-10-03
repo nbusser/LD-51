@@ -39,6 +39,17 @@ func _get_animation_ref():
 	return animation
 
 func _process(_delta):
+	var detection_cone_rotation
+	if direction == UP:
+		detection_cone_rotation = 180
+	elif direction == RIGHT:
+		detection_cone_rotation = -90
+	elif direction == DOWN:
+		detection_cone_rotation = 0
+	else:
+		detection_cone_rotation = 90
+	$DetectionArea.rotation_degrees = detection_cone_rotation
+	
 	if $StartMoving.time_left == 0 and can_move():
 		var origin_tile = get_map_position()
 		var origin = global_position
@@ -138,6 +149,11 @@ func stop_alert(alert_room):
 	if strategy == Strategy.ALERT and patrol_room == alert_room:
 		switch_strategy(Strategy.PATROL)
 
-
 func _on_DetectionArea_area_entered(area):
-	print('see player')
+	# TODO: raycast for walls ?
+	switch_strategy(Strategy.CHASE)
+
+
+func _on_LostPlayerArea_area_exited(area):
+	if strategy == Strategy.CHASE:
+		switch_strategy(Strategy.PATROL)
