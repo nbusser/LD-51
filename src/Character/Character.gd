@@ -57,7 +57,7 @@ func can_move():
 func get_character_speed():
 	return move_tick_timer.wait_time
 
-func _update_animation():
+func _get_animation_ref():
 	var movement_state = "idle" if move_tick_timer.is_stopped() else "walk"
 
 	var direction_string
@@ -70,7 +70,10 @@ func _update_animation():
 	else:
 		direction_string = "left"
 	
-	var animation = movement_state + "_" + direction_string
+	return movement_state + "_" + direction_string
+
+func _update_animation():
+	var animation = _get_animation_ref()
 	
 	if $Sprite.animation != animation:
 		$Sprite.animation = animation

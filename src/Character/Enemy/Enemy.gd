@@ -31,8 +31,25 @@ func get_current_patrol_point(world_coordinates=false):
 	if len(patrol_room.get_patrol_points()) == 0:
 		return null
 	return patrol_room.get_patrol_points(world_coordinates)[patrol_index]
+	
+func _get_animation_ref():
+	var animation = ._get_animation_ref()
+	if is_blind:
+		animation = "dazzle_" + animation
+	return animation
 
 func _process(_delta):
+	var detection_cone_rotation
+	if direction == UP:
+		detection_cone_rotation = 180
+	elif direction == RIGHT:
+		detection_cone_rotation = -90
+	elif direction == DOWN:
+		detection_cone_rotation = 0
+	else:
+		detection_cone_rotation = 90
+	$DetectionArea.rotation_degrees = detection_cone_rotation
+	
 	if $StartMoving.time_left == 0 and can_move():
 		var origin_tile = get_map_position()
 		var origin = global_position
@@ -71,7 +88,7 @@ func change_speed(new_speed):
 
 func get_speed():
 	var speed = normal_wait_time
-	if strategy == Strategy.ALERT:
+	if not $AlertSpeedBoost.is_stopped():
 		speed *= SPEED_BONUS_ALERT
 	if is_blind:
 		speed *= SPEED_MALUS_BLIND
@@ -86,6 +103,7 @@ func switch_strategy(_strategy):
 		$PatrolMode.stop()
 	
 	if _strategy == Strategy.ALERT:
+		$AlertSpeedBoost.start()
 		change_speed(get_speed())
 
 func _update_blind(blind):
@@ -116,7 +134,7 @@ func set_patrol_room(_patrol_room):
 
 func _on_PatrolMode_timeout():
 	if randf() < 0.7:
-		var neighbours = rooms_manager.get_neighbours(rooms_manager.locate_player())
+		var neighbours = rooms_manager.get_neighbours(rooms_manager.locate_character(self))
 		set_patrol_room(neighbours[randi()%len(neighbours)])
 
 func receive_alert(alert_room):
@@ -125,9 +143,22 @@ func receive_alert(alert_room):
 		set_patrol_room(alert_room)
 	# If already on an alert, can stay in the first alert room or move
 	elif strategy == Strategy.ALERT:
+		switch_strategy(Strategy.ALERT)
 		if randf() < 0.5:
 			set_patrol_room(alert_room)
 
 func stop_alert(alert_room):
 	if strategy == Strategy.ALERT and patrol_room == alert_room:
 		switch_strategy(Strategy.PATROL)
+
+func _on_DetectionArea_area_entered(area):
+	# TODO: raycast for walls ?
+	switch_strategy(Strategy.CHASE)
+
+
+func _on_LostPlayerArea_area_exited(area):
+	if strategy == Strategy.CHASE:
+		switch_strategy(Strategy.PATROL)
+
+func _on_AlertSpeedBoost_timeout():
+	change_speed(get_speed())
