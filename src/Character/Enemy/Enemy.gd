@@ -22,7 +22,7 @@ const SPEED_BONUS_ALERT = 0.7
 
 onready var characters_manager = $"../"
 
-var is_blind = false
+var blind_sources = []
 
 func handle_region_switch(old_region):
 	rooms_manager = region.get_node("Rooms")
@@ -37,7 +37,7 @@ func get_current_patrol_point(world_coordinates=false):
 	
 func _get_animation_ref():
 	var animation = ._get_animation_ref()
-	if is_blind:
+	if is_blind():
 		animation = "dazzle_" + animation
 	return animation
 
@@ -85,7 +85,7 @@ func _change_speed(new_speed):
 	$Tween.interpolate_property(
 		$MoveTick, "wait_time",
 		$MoveTick.wait_time, new_speed,
-		0.5, Tween.TRANS_LINEAR, Tween.EASE_IN
+		0.1, Tween.TRANS_LINEAR, Tween.EASE_IN
 	)
 	$Tween.start()
 
@@ -93,7 +93,7 @@ func _get_speed():
 	var speed = chase_speed if strategy == Strategy.CHASE else patrol_speed
 	if not $AlertSpeedBoost.is_stopped():
 		speed *= SPEED_BONUS_ALERT
-	if is_blind:
+	if is_blind():
 		speed *= SPEED_MALUS_BLIND
 	return speed
 
@@ -115,15 +115,16 @@ func switch_strategy(_strategy):
 
 	update_speed()
 
-func _update_blind(blind):
-	is_blind = blind
-	update_speed()
+func is_blind():
+	return len(blind_sources) > 0
 
 func _on_EnemyBlindZone_area_entered(_area):
-	_update_blind(true)
+	blind_sources.append(_area)
+	update_speed()
 
 func _on_EnemyBlindZone_area_exited(_area):
-	_update_blind(false)
+	blind_sources.erase(_area)
+	update_speed()
 
 func start_patroling():
 	set_patrol_room(rooms_manager.locate_character(self))
