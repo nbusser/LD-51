@@ -105,6 +105,7 @@ enum Calamities {
 }
 
 func trigger_calamity():
+	player.camera.add_trauma(0.5)
 	var player_region = characters.character_areas.get(player)
 	var calamity = randi()%len(Calamities)
 	if calamity == Calamities.LIGHTS_OFF:

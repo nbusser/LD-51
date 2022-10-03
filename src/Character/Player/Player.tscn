@@ -1,4 +1,4 @@
-[gd_scene load_steps=42 format=2]
+[gd_scene load_steps=43 format=2]
 
 [ext_resource path="res://src/Character/Character.tscn" type="PackedScene" id=1]
 [ext_resource path="res://src/Character/Player/Player.gd" type="Script" id=2]
@@ -37,6 +37,7 @@
 [ext_resource path="res://assets/sounds/sounds/chat_4.ogg" type="AudioStream" id=35]
 [ext_resource path="res://assets/sounds/sounds/chat_5.ogg" type="AudioStream" id=36]
 [ext_resource path="res://assets/sounds/sounds/neon_2.ogg" type="AudioStream" id=37]
+[ext_resource path="res://src/Character/Player/Camera2D.gd" type="Script" id=38]
 
 [sub_resource type="SpriteFrames" id=3]
 animations = [ {
@@ -113,9 +114,11 @@ script = ExtResource( 31 )
 sounds = [ ExtResource( 37 ) ]
 
 [node name="Camera2D" type="Camera2D" parent="." index="4"]
+unique_name_in_owner = true
 position = Vector2( 79, 78 )
 current = true
 zoom = Vector2( 0.5, 0.5 )
+script = ExtResource( 38 )
 
 [node name="Flashlight" type="Light2D" parent="." index="5" groups=["flashlight"]]
 position = Vector2( 83, -41 )
