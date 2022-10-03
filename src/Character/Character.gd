@@ -94,8 +94,7 @@ func move_to(destination_tile):
 
 		move_tick_timer.start()
 		
-		if not $SoundFx/WalkSound.playing:
-			$SoundFx/WalkSound.play_sound()
+		$SoundFx/WalkSound.play_sound()
 		
 		var destination = tilemap.map_to_world(destination_tile)
 		
