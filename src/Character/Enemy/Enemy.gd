@@ -137,3 +137,7 @@ func receive_alert(alert_room):
 func stop_alert(alert_room):
 	if strategy == Strategy.ALERT and patrol_room == alert_room:
 		switch_strategy(Strategy.PATROL)
+
+
+func _on_DetectionArea_area_entered(area):
+	print('see player')
