@@ -15,7 +15,7 @@
 extents = Vector2( 225.5, 112 )
 
 [sub_resource type="RectangleShape2D" id=2]
-extents = Vector2( 283.5, 156.5 )
+extents = Vector2( 283.5, 286 )
 
 [sub_resource type="RectangleShape2D" id=3]
 extents = Vector2( 124, 124 )
@@ -69,7 +69,7 @@ position = Vector2( 258, 97 )
 position = Vector2( 401, 329 )
 
 [node name="RoomShape" parent="StaticAreas/StaticRegion/Rooms/Room2/RoomArea" index="0"]
-position = Vector2( 15.5, -10.5 )
+position = Vector2( 15.5, 119 )
 shape = SubResource( 2 )
 
 [node name="PatrolPath" parent="StaticAreas/StaticRegion/Rooms/Room2" index="1"]
