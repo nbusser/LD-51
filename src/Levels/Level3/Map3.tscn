@@ -1,0 +1,56 @@
+[gd_scene load_steps=10 format=2]
+
+[ext_resource path="res://src/Levels/Map.tscn" type="PackedScene" id=1]
+[ext_resource path="res://src/Character/Enemy/Enemy.tscn" type="PackedScene" id=3]
+[ext_resource path="res://src/Levels/Regions/StaticRegion.tscn" type="PackedScene" id=4]
+[ext_resource path="res://assets/sprites/floorset.tres" type="TileSet" id=6]
+[ext_resource path="res://assets/sprites/walldecorationset.tres" type="TileSet" id=7]
+[ext_resource path="res://assets/sprites/tallset.tres" type="TileSet" id=8]
+[ext_resource path="res://src/Levels/Regions/Room/Room.tscn" type="PackedScene" id=9]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 191, 94 )
+
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 132, 158.5 )
+
+[node name="Map3" instance=ExtResource( 1 )]
+
+[node name="Enemy" parent="Characters" index="1" instance=ExtResource( 3 )]
+position = Vector2( 576, 328 )
+
+[node name="StaticRegion" parent="StaticAreas" index="0" instance=ExtResource( 4 )]
+
+[node name="FloorMap" parent="StaticAreas/StaticRegion" index="1"]
+tile_set = ExtResource( 6 )
+tile_data = PoolIntArray( 327687, 0, 196609, 327688, 0, 3, 327689, 0, 3, 327690, 0, 3, 327691, 0, 3, 327692, 0, 3, 327693, 0, 3, 327694, 0, 0, 393222, 0, 196609, 393223, 0, 65537, 393224, 0, 65538, 393225, 0, 65538, 393226, 0, 65538, 393227, 0, 65538, 393228, 0, 65538, 393229, 0, 65538, 393230, 0, 2, 393231, 0, 0, 458757, 0, 196609, 458758, 0, 65537, 458759, 0, 65538, 458760, 0, 65538, 458761, 0, 65538, 458762, 0, 65538, 458763, 0, 65538, 458764, 0, 65538, 458765, 0, 65538, 458766, 0, 65538, 458767, 0, 2, 458768, 0, 3, 458769, 0, 3, 458770, 0, 3, 458771, 0, 0, 524293, 0, 1, 524294, 0, 65538, 524295, 0, 65538, 524296, 0, 65538, 524297, 0, 65538, 524298, 0, 65538, 524299, 0, 65538, 524300, 0, 65538, 524301, 0, 65539, 524302, 0, 131073, 524303, 0, 131073, 524304, 0, 131073, 524305, 0, 131074, 524306, 0, 65538, 524307, 0, 2, 524308, 0, 3, 524309, 0, 3, 524310, 0, 0, 589829, 0, 131072, 589830, 0, 131074, 589831, 0, 65538, 589832, 0, 65538, 589833, 0, 65538, 589834, 0, 65538, 589835, 0, 65539, 589836, 0, 131073, 589837, 0, 196611, 589841, 0, 1, 589842, 0, 65538, 589843, 0, 65538, 589844, 0, 65538, 589845, 0, 65538, 589846, 0, 131075, 655366, 0, 131072, 655367, 0, 131073, 655368, 0, 131073, 655369, 0, 131073, 655370, 0, 131073, 655371, 0, 196611, 655377, 0, 1, 655378, 0, 65538, 655379, 0, 65538, 655380, 0, 65538, 655381, 0, 65538, 655382, 0, 2, 655383, 0, 0, 720913, 0, 1, 720914, 0, 65538, 720915, 0, 65538, 720916, 0, 65538, 720917, 0, 65538, 720918, 0, 65538, 720919, 0, 131075, 786449, 0, 1, 786450, 0, 65538, 786451, 0, 65538, 786452, 0, 65538, 786453, 0, 65538, 786454, 0, 65538, 786455, 0, 131075, 851985, 0, 1, 851986, 0, 65538, 851987, 0, 65538, 851988, 0, 65538, 851989, 0, 65538, 851990, 0, 65539, 851991, 0, 196611, 917521, 0, 131072, 917522, 0, 131074, 917523, 0, 65538, 917524, 0, 65539, 917525, 0, 131073, 917526, 0, 196611, 983058, 0, 131072, 983059, 0, 131073, 983060, 0, 196611 )
+
+[node name="TallMap" parent="StaticAreas/StaticRegion" index="3"]
+tile_set = ExtResource( 8 )
+tile_data = PoolIntArray( 524304, 20, 0, 786454, 11, 0 )
+
+[node name="WallDecorationMap" parent="StaticAreas/StaticRegion" index="4"]
+tile_set = ExtResource( 7 )
+tile_data = PoolIntArray( 393224, 65, 0, 589831, 37, 0, 589844, 65, 0, 851986, 37, 0 )
+
+[node name="Room" parent="StaticAreas/StaticRegion/Rooms" index="0" instance=ExtResource( 9 )]
+
+[node name="RoomShape" parent="StaticAreas/StaticRegion/Rooms/Room/RoomArea" index="0"]
+position = Vector2( 357, 256 )
+shape = SubResource( 1 )
+
+[node name="PatrolPath" parent="StaticAreas/StaticRegion/Rooms/Room" index="1"]
+points = PoolVector2Array( 202, 270, 269, 206, 432, 209, 467, 238, 397, 275, 338, 307, 238, 305 )
+
+[node name="Room2" parent="StaticAreas/StaticRegion/Rooms" index="1" instance=ExtResource( 9 )]
+
+[node name="RoomShape" parent="StaticAreas/StaticRegion/Rooms/Room2/RoomArea" index="0"]
+position = Vector2( 644, 370.5 )
+shape = SubResource( 2 )
+
+[node name="PatrolPath" parent="StaticAreas/StaticRegion/Rooms/Room2" index="1"]
+points = PoolVector2Array( 594, 276, 686, 304, 719, 367, 686, 433, 622, 468, 581, 366 )
+
+[editable path="StaticAreas/StaticRegion"]
+[editable path="StaticAreas/StaticRegion/Rooms/Room"]
+[editable path="StaticAreas/StaticRegion/Rooms/Room2"]
