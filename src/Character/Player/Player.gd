@@ -51,6 +51,7 @@ func _process(_delta):
 
 func _on_Tween_tween_completed(hey, useless):
 	if (region.get_node("TallMap").get_cellv(get_map_position()) == Globals.ITEMS.CAT):
+		$SoundFx/CatSound.play_sound()
 		emit_signal("cat_saved", get_map_position())
 
 func _on_InteractZone_area_entered(area):

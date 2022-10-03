@@ -11,5 +11,5 @@ dest_files=[ "res://.import/chat_2.ogg-35e03c8c0956fec578545350fe308bc7.oggstr" 
 
 [params]
 
-loop=true
+loop=false
 loop_offset=0
