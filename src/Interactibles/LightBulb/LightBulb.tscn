@@ -9,10 +9,22 @@ radius = 64.0
 [sub_resource type="CircleShape2D" id=1]
 radius = 32.0
 
-[node name="LightBulb" type="Area2D"]
-collision_layer = 64
-collision_mask = 768
+[node name="LightBulb" type="Node2D" groups=["interactible"]]
 script = ExtResource( 3 )
+
+[node name="EnemyBlindZone" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 256
+
+[node name="EnemyBlindZone" type="CollisionShape2D" parent="EnemyBlindZone"]
+shape = SubResource( 2 )
+
+[node name="PlayerInteractZone" type="Area2D" parent="." groups=["interactible"]]
+collision_layer = 64
+collision_mask = 512
+
+[node name="PlayerInteractZone" type="CollisionShape2D" parent="PlayerInteractZone"]
+shape = SubResource( 1 )
 
 [node name="Light2D" type="Light2D" parent="."]
 texture = ExtResource( 2 )
@@ -20,12 +32,6 @@ energy = 0.8
 shadow_enabled = true
 
 [node name="SoundFx" type="Node" parent="."]
-
-[node name="EnemyBlindZone" type="CollisionShape2D" parent="."]
-shape = SubResource( 2 )
-
-[node name="PlayerInteractZone" type="CollisionShape2D" parent="."]
-shape = SubResource( 1 )
 
 [node name="Tween" type="Tween" parent="."]
 
@@ -36,6 +42,6 @@ one_shot = true
 [node name="LastBlink" type="Timer" parent="."]
 one_shot = true
 
-[connection signal="tween_completed" from="Tween" to="." method="_on_Tween_tween_completed"]
-[connection signal="timeout" from="BlinkingOffTimer" to="." method="_on_BlinkingOffTimer_timeout"]
-[connection signal="timeout" from="LastBlink" to="." method="_on_LastBlink_timeout"]
+[connection signal="tween_completed" from="Tween" to="EnemyBlindZone" method="_on_Tween_tween_completed"]
+[connection signal="timeout" from="BlinkingOffTimer" to="EnemyBlindZone" method="_on_BlinkingOffTimer_timeout"]
+[connection signal="timeout" from="LastBlink" to="EnemyBlindZone" method="_on_LastBlink_timeout"]

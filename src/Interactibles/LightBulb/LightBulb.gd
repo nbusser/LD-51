@@ -4,6 +4,8 @@ extends Interactible
 
 export var state = Globals.LightingState.ON
 
+onready var enemy_blind_area = $EnemyBlindZone
+
 func _init().(Globals.Interactibles.LIGHT):
 	pass
 
@@ -19,7 +21,7 @@ func _change_color(new_color, length=0.5):
 	$Tween.start()
 
 func change_state(new_state):
-	self.monitorable = new_state == Globals.LightingState.ON
+	enemy_blind_area.monitorable = new_state == Globals.LightingState.ON
 	
 	if new_state == Globals.LightingState.OFF:
 		$Light2D.color.a = 0

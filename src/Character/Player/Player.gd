@@ -54,12 +54,12 @@ func _on_Tween_tween_completed(hey, useless):
 		emit_signal("cat_saved", get_map_position())
 
 func _on_InteractZone_area_entered(area):
-	interactible = area
+	interactible = area.get_parent()
 	if interactible.get_interactible_type() == null:
 		print('ERROR: interactible object does not extend Interactible class')
 
 func _on_InteractZone_area_exited(area):
-	if interactible == area:
+	if interactible == area.get_parent():
 		interactible = null
 
 func is_interacting():

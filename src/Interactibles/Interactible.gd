@@ -1,4 +1,4 @@
-extends Area2D
+extends Node2D
 class_name Interactible
 
 var interactible_type setget , get_interactible_type

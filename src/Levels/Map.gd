@@ -35,6 +35,7 @@ func lights_off():
 	var calamitables = player.get_node("CalamitySensor").get_overlapping_areas()
 	var lights = []
 	for calamitable in calamitables:
+		calamitable = calamitable.get_parent()
 		if(calamitable.is_calamitable() and calamitable.interactible_type == Globals.Interactibles.LIGHT):
 			lights.append(calamitable)
 	if len(lights) == 0:
