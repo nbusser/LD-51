@@ -34,3 +34,10 @@ func get_path_to_target(origin, target):
 func save_cat(pos):
 	wall_map.set_cellv(pos, -1)
 	hud.increment_coins()
+
+func calculate_bounds():
+	var cell_bounds = floor_map.get_used_rect()
+	# create transform
+	var cell_to_pixel = Transform2D(Vector2(floor_map.cell_size.x * floor_map.scale.x, 0), Vector2(0, floor_map.cell_size.y * floor_map.scale.y), Vector2())
+	# apply transform
+	return Rect2(cell_to_pixel * cell_bounds.position, cell_to_pixel * cell_bounds.size)
