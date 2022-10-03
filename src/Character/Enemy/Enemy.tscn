@@ -1,4 +1,4 @@
-[gd_scene load_steps=107 format=2]
+[gd_scene load_steps=110 format=2]
 
 [ext_resource path="res://src/Character/Character.tscn" type="PackedScene" id=1]
 [ext_resource path="res://src/Character/Enemy/Enemy.gd" type="Script" id=2]
@@ -102,7 +102,10 @@
 [ext_resource path="res://src/AudioBankPlayer.gd" type="Script" id=100]
 [ext_resource path="res://assets/sounds/sounds/monstre_1.ogg" type="AudioStream" id=101]
 [ext_resource path="res://assets/sounds/sounds/monstre_4.ogg" type="AudioStream" id=102]
+[ext_resource path="res://assets/sounds/sounds/monstre_7.ogg" type="AudioStream" id=103]
 [ext_resource path="res://assets/sounds/sounds/monstre_2.ogg" type="AudioStream" id=104]
+[ext_resource path="res://assets/sounds/sounds/monstre_5.ogg" type="AudioStream" id=105]
+[ext_resource path="res://assets/sounds/sounds/monstre_6.ogg" type="AudioStream" id=106]
 
 [sub_resource type="SpriteFrames" id=2]
 animations = [ {
@@ -213,6 +216,11 @@ sounds = [ ExtResource( 102 ) ]
 volume_db = 2.0
 script = ExtResource( 100 )
 sounds = [ ExtResource( 101 ), ExtResource( 104 ) ]
+no_erase = true
+
+[node name="ChaseSound" type="AudioStreamPlayer" parent="SoundFx" index="3"]
+script = ExtResource( 100 )
+sounds = [ ExtResource( 105 ), ExtResource( 106 ), ExtResource( 103 ) ]
 no_erase = true
 
 [node name="MoveTick" parent="." index="2"]

@@ -110,10 +110,12 @@ func update_speed():
 		_change_speed(new_speed)
 
 func switch_strategy(_strategy):
+	var old_strategy = strategy
+
 	strategy = _strategy
 
-	if _strategy == Strategy.CHASE:
-		$SoundFx/GrowlSound.play_sound()
+	if _strategy == Strategy.CHASE and old_strategy != strategy:
+		$SoundFx/ChaseSound.play_sound()
 
 
 	if _strategy == Strategy.PATROL:
