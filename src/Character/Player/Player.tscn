@@ -107,6 +107,7 @@ shadow_filter_smooth = 64.0
 [node name="Halo" type="Light2D" parent="." index="6"]
 position = Vector2( 73, 98 )
 scale = Vector2( 0.324219, 0.314453 )
+enabled = false
 texture = ExtResource( 4 )
 texture_scale = 2.0
 color = Color( 0.85098, 0.819608, 0.623529, 1 )
