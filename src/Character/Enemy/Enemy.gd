@@ -10,7 +10,7 @@ export var strategy = Strategy.PATROL
 var patrol_room setget set_patrol_room
 var patrol_index = 0
 
-onready var rooms_manager = $"../../Rooms"
+var rooms_manager = null
 onready var normal_wait_time = $MoveTick.wait_time
 const SPEED_MALUS_BLIND = 2
 const SPEED_BONUS_ALERT = 0.1
@@ -19,6 +19,9 @@ var is_blind = false
 
 func _init().(Globals.REGION_TYPE.STATIC, 0):
 	pass
+
+func handle_region_switch(old_region):
+	rooms_manager = region.get_node("Rooms")
 
 func _ready():
 	$MoveTick.wait_time = get_speed()
@@ -45,14 +48,14 @@ func _process(_delta):
 				patrol_index = patrol_room.get_next_patrol_index(patrol_index)
 			target = get_current_patrol_point(true)
 
-		var path = map.get_path_to_target(origin, target)
+		var path = region.get_path_to_target(origin, target)
 		
 		if path != null:
 			var destination
 			if len(path) == 0:
-				destination = map.tilemap.world_to_map(target)
+				destination = region.tilemap.world_to_map(target)
 			else:
-				destination = map.tilemap.world_to_map(path[0])
+				destination = region.tilemap.world_to_map(path[0])
 			move_to(destination)
 
 func change_speed(new_speed):
@@ -105,7 +108,6 @@ func _on_StartMoving_timeout():
 func set_patrol_room(_patrol_room):
 	patrol_room = _patrol_room
 	patrol_index = 0
-	
 
 func _on_PatrolMode_timeout():
 	if randf() < 0.7:

@@ -4,6 +4,7 @@ onready var tilemap = $WalkableMap
 onready var wall_map = $TallMap
 onready var floor_map = $FloorMap
 onready var wall_deco_map = $WallDecorationMap
+onready var rooms = $Rooms
 onready var astar = Astar.new(tilemap)
 onready var characters = $"../../Characters"
 onready var hud = $"../../../UI/HUD"

@@ -5,6 +5,7 @@ onready var map = get_node("Map")
 onready var player = $Map/Characters/Player
 onready var doors_manager = $Map/Doors
 onready var camera: Camera2D = $Map/Characters/Player/Camera2D
+onready var characters = $Map/Characters
 
 onready var pulse = $"%VisualPulse"
 onready var timer = $"%Timer"
@@ -68,10 +69,7 @@ func trigger_calamity():
 		map.lights_off()
 	elif calamity == Calamities.ROOM_ALERT:
 		print('room alert')
-		if randi()%2:
-			map.room_alert()
-		else:
-			map.neighbour_room_alert()
+		map.room_alert(characters.character_areas.get(player))
 	elif calamity == Calamities.CLOSE_DOOR:
 		print('door')
 		map.close_doors()

@@ -3,9 +3,10 @@ signal alert_stopped
 
 extends Node2D
 
-onready var map = $"../../../../"
+onready var map = $"../../../../../"
+onready var region = $"../.."
 onready var tilemap = $"../../WalkableMap"
-onready var doors_manager = $"../../Doors"
+onready var doors_manager = $"../../../../../Doors"
 onready var lights = $LightBulbs
 onready var patrol_path = $PatrolPath
 
@@ -20,8 +21,8 @@ func _check_patrol_accessible():
 	var i = 1
 	while i < len(_patrol_points):
 		var second_point = _patrol_points[i]
-		var path = map.get_path_to_target(first_point, second_point)
-		if map.get_path_to_target(first_point, second_point) == null:
+		var path = region.get_path_to_target(first_point, second_point)
+		if region.get_path_to_target(first_point, second_point) == null:
 			return false
 		first_point = second_point
 		i += 1

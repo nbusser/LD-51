@@ -51,6 +51,19 @@ func close_doors():
 		return
 	doors[0].close()
 
+func room_alert(region):
+	var player_room = region.rooms.locate_player()
+	if (!player_room.is_in_alert() && randi()%2):
+		_trigger_alert(region, player_room)
+		return
+	
+	var alertable := []
+	for room in region.rooms.get_children():
+		if (!room.is_in_alert()):
+			alertable.append(room)
+	if (len(alertable) > 0):
+		_trigger_alert(region, alertable[randi()%(len(alertable))])
+
 func _trigger_alert(region, room):
 	room.trigger_alert()
 	for character in characters.get_children():
