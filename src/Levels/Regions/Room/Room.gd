@@ -94,10 +94,14 @@ func contains_character(target_character):
 			return true
 		return false
 
+func _stop_alert():
+	$SoundFx/Alarm.stop()
+	emit_signal("alert_stopped")
+	
 func _alert_update():
 	if $AlertTimer.time_left > 0:
 		if not is_in_alert():
-			emit_signal("alert_stopped")
+			_stop_alert()
 
 func is_in_alert():
 	for light in lights.get_children():
@@ -108,6 +112,7 @@ func is_in_alert():
 func trigger_alert():
 	for light in lights.get_children():
 		light.change_state(Globals.LightingState.ALERT)
+	$SoundFx/Alarm.play_sound()
 	$AlertTimer.start()
 
 func get_patrol_points(world_coordinated=false):
@@ -123,4 +128,10 @@ func _on_AlertTimer_timeout():
 	if is_in_alert():
 		for light in lights.get_children():
 			light.change_state(Globals.LightingState.ON)
-			emit_signal("alert_stopped")
+			_stop_alert()
+
+
+func _on_Alarm_finished():
+	if is_in_alert():
+		$AlertTimer.start()
+
