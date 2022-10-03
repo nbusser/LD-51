@@ -122,7 +122,7 @@ func set_patrol_room(_patrol_room):
 
 func _on_PatrolMode_timeout():
 	if randf() < 0.7:
-		var neighbours = rooms_manager.get_neighbours(rooms_manager.locate_player())
+		var neighbours = rooms_manager.get_neighbours(rooms_manager.locate_character(self))
 		set_patrol_room(neighbours[randi()%len(neighbours)])
 
 func receive_alert(alert_room):
