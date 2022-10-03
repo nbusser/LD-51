@@ -34,7 +34,8 @@ func _start_level():
 	Globals.can_interact = true
 	
 	if not skip_level_intro:
-		dialog.open_dialog(["Welcome to space.", "The space cat overlord says: \"Find all my kittens.\""])
+		if current_level_number == 0:
+			dialog.open_dialog(["Welcome to space.", "The space cat overlord says: \"Find all my kittens.\""])
 	
 	var tween := create_tween()
 	tween.tween_property(hud, "modulate:a", 1.0, 0.5)
