@@ -1,3 +1,5 @@
+signal close_dialog
+
 extends Control
 
 onready var text_label = $"%Text"
@@ -41,9 +43,10 @@ func open_dialog(text: Array):
 func close_dialog():
 	get_tree().paused = false
 	hide()
+	emit_signal("close_dialog")
 
 func _unhandled_input(event):
-	if visible and event is InputEventKey and event.is_pressed():
+	if visible and event is InputEventKey and event.scancode == KEY_SPACE and event.is_pressed():
 		if writing_text:
 			_finished_writing()
 		elif current_step < text_values.size() - 1:

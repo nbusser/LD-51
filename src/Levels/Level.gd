@@ -17,7 +17,9 @@ onready var level_name = $"%LevelName"
 onready var level_card = $"%LevelCard"
 onready var dialog = $"%Dialog"
 
-var level_names = ["Alpha Condor", "Busser Force One", "StarCats", "Meow Space Station"]
+var calamities_count = 0 
+
+var level_names = ["Space Thing", "Busser Force One", "StarCats", "Meow Space Station", "N.E.U. 9", "Néo-Namur"]
 
 var difficulty
 var current_level_number = 0
@@ -35,7 +37,9 @@ func _start_level():
 	
 	if not skip_level_intro:
 		if current_level_number == 0:
-			dialog.open_dialog(["Welcome to space.", "The space cat overlord says: \"Find all my kittens.\""])
+			dialog.open_dialog(["Welcome to space.", "The space cat overlord says: \"Find my kitten.\""])
+		if current_level_number == 1:
+			dialog.open_dialog(["The space cat overlord says: \"Now do it again.\""])
 	
 	var tween := create_tween()
 	tween.tween_property(hud, "modulate:a", 1.0, 0.5)
@@ -44,6 +48,19 @@ func _start_level():
 	var current_player: AudioStreamPlayer = get_viewport().get_parent().get_parent().current_player
 	var music_diff = 1.0 - fmod(current_player.get_playback_position(), 1.0)
 	music_timer.start(music_diff)
+	
+	if not skip_level_intro && current_level_number == 0:
+		yield(get_tree().create_timer(5), "timeout")
+		timer.stop()
+		dialog.open_dialog(["The evil bad guy says: \"HAHAHAHAHAHHAHAHAHAHAHA\"", "\"Did you really think it was going to be this easy?\"", "\"My calamity beam will make your life a living hell\""])
+		yield(dialog, "close_dialog")
+		map.lights_off()
+		map.lights_off()
+		map.lights_off()
+		map.lights_off()
+		map.lights_off()
+		yield(get_tree().create_timer(3.5), "timeout")
+		dialog.open_dialog(["The evil bad guy says: \"MWAHAHAHAHAHA\"", "\"Enjoy running into walls\""])
 
 func _reset_ambiance_timer():
 	$AmbianceSoundsTimer.wait_time = randi() % 15 + 5
@@ -125,7 +142,6 @@ func _on_MusicTimer_timeout():
 
 func level_failed():
 	emit_signal("level_failed")
-
 
 func _on_AmbianceSoundsTimer_timeout():
 	print('ping')
