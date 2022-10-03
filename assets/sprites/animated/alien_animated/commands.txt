@@ -1,0 +1,1 @@
+f=dazzle_back;convert alien_animated_column_$f.png -crop 32x64 +repage $f/$f.png

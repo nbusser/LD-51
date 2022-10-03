@@ -7,3 +7,4 @@ convert -crop 24x24 vent.png vent/vent.png
 convert -crop 32x128 vertical_door.png vertical_door/vertical_door.png
 convert -crop 49x39 chat.png chat/chat.png
 convert xcf/alien_animated_tmp.png -crop 32x64 alien_animated/alien_animated.png
+convert alien_animated_tmp.png -crop 32x768 +repage alien_animated/alien_animated_column.png
