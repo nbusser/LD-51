@@ -25,7 +25,6 @@ func change_state(new_state, play_sound=true):
 	
 	if new_state == Globals.LightingState.OFF:
 		$Light2D.color.a = 0
-		$BlinkingOffTimer.wait_time = 0.1
 		$BlinkingOffTimer.start()
 		
 		if play_sound:
@@ -51,12 +50,12 @@ func _is_blinking():
 
 func _on_BlinkingOffTimer_timeout():
 	$Light2D.color.a = 1
-	$LastBlink.wait_time = randf()*2
+	$LastBlink.wait_time = 0.3
 	$LastBlink.start()
 
 func _on_LastBlink_timeout():
 	$Light2D.color = Color(0, 0, 0, 0)
-	$EnemyBlindZone.disabled = true
+	$EnemyBlindZone/EnemyBlindZone.disabled = true
 
 func is_interactible():
 	return not _is_blinking() and state != Globals.LightingState.ON
