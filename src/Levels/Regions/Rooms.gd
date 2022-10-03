@@ -1,6 +1,6 @@
 extends Node
 
-onready var characters = $"../Characters"
+onready var characters = $"../../Characters"
 onready var tilemap = $"../WalkableMap"
 
 var _room_graph = {}
