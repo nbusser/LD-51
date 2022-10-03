@@ -1,3 +1,5 @@
+signal level_failed
+
 extends Node
 
 onready var hud = $UI/HUD
@@ -106,3 +108,6 @@ func trigger_calamity():
 
 func _on_MusicTimer_timeout():
 	timer.start()
+
+func level_failed():
+	emit_signal("level_failed")

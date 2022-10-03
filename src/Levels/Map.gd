@@ -88,4 +88,4 @@ func get_map_center_relative_to_player() -> Vector2:
 
 func kill_player():
 	# TODO: kill player
-	pass
+	$"../".level_failed()
