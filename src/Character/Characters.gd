@@ -21,6 +21,14 @@ func change_area(character, area, position):
 
 func update_position(character, position):
 	character_positions[character] = position
+	
+func add_character(character, region_type, region_number, region, world_pos, cell):
+	add_child(character)
+	character.update_map(region_type, region_number)
+	character_areas[character] = region
+	character_positions[character] = cell
+	character.global_position = world_pos
+	character.connect("kill", map, "kill_player")
 
 func remove_character(character):
 	character_areas.erase(character)

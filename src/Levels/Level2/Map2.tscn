@@ -53,7 +53,7 @@ tile_data = PoolIntArray( 7, 10, 1, 8, 10, 196610, 9, 10, 196610, 10, 10, 3, 655
 
 [node name="WallDecorationMap" parent="StaticAreas/StaticRegion" index="4"]
 tile_set = ExtResource( 7 )
-tile_data = PoolIntArray( 393227, 63, 0, 393228, 74, 0 )
+tile_data = PoolIntArray( 393227, 63, 0, 393228, 74, 0, 786440, 37, 0 )
 
 [node name="Room" parent="StaticAreas/StaticRegion/Rooms" index="0" instance=ExtResource( 9 )]
 

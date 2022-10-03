@@ -16,6 +16,10 @@ enum LightingState {
 	OFF
 }
 
+enum DECORATION_TILES {
+	VENT = 37
+}
+
 enum TILE_TYPES {
 	WALL = 0,
 	GROUND = 20,
@@ -39,3 +43,16 @@ enum REGION_TYPE {
 	STATIC,
 	MOBILE
 }
+
+func GET_REGION_INFOS(region):
+	var region_type_node = region.get_node("../")
+	var region_type
+	var region_number
+
+	if region_type_node.get_name() == "StaticAreas":
+		region_type = Globals.REGION_TYPE.STATIC
+	else:
+		region_type = Globals.REGION_TYPE.MOBILE
+	region_number = region.get_index()
+	
+	return [region_type, region_number]

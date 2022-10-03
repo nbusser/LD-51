@@ -56,3 +56,5 @@ bake_navigation = false
 
 [node name="Rooms" type="Node" parent="."]
 script = ExtResource( 1 )
+
+[node name="Spawners" type="Node" parent="."]

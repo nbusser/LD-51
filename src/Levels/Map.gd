@@ -4,6 +4,7 @@ onready var hud = get_node("../UI/HUD")
 onready var characters = $Characters
 onready var player = $Characters/Player
 onready var doors = $Doors
+onready var enemy = preload("res://src/Character/Enemy/Enemy.tscn")
 
 var current_region_type = Globals.REGION_TYPE.STATIC
 var current_region = 0
@@ -35,9 +36,11 @@ func lights_off():
 	var calamitables = player.get_node("CalamitySensor").get_overlapping_areas()
 	var lights = []
 	for calamitable in calamitables:
-		calamitable = calamitable.get_parent()
-		if(calamitable.is_calamitable() and calamitable.interactible_type == Globals.Interactibles.LIGHT):
-			lights.append(calamitable)
+		if calamitable.is_in_group("interactible"):
+			calamitable = calamitable.get_parent()
+			if(calamitable.is_calamitable() and calamitable.interactible_type == Globals.Interactibles.LIGHT):
+				lights.append(calamitable)
+	lights.shuffle()
 	if len(lights) == 0:
 		return
 	lights[0].change_state(Globals.LightingState.OFF)
@@ -46,9 +49,11 @@ func close_doors():
 	var calamitables = player.get_node("CalamitySensor").get_overlapping_areas()
 	var doors = []
 	for calamitable in calamitables:
-		calamitable = calamitable.get_parent()
-		if(calamitable.is_calamitable() and calamitable.interactible_type == Globals.Interactibles.DOOR):
-			doors.append(calamitable)
+		if calamitable.is_in_group("interactible"):
+			calamitable = calamitable.get_parent()
+			if(calamitable.is_calamitable() and calamitable.interactible_type == Globals.Interactibles.DOOR):
+				doors.append(calamitable)
+	doors.shuffle()
 	if len(doors) == 0:
 		return
 	doors[0].close()
@@ -75,7 +80,26 @@ func _trigger_alert(region, room):
 func spawn_monster():
 	# TODO: create enemy
 	# TODO: connect signal kill
-	pass
+	var spawners = []
+	var calamitables = player.get_node("CalamitySensor").get_overlapping_areas()
+	for calamitable in calamitables:
+		if calamitable.is_in_group("spawner"):
+			spawners.append(calamitable)
+	
+	spawners.shuffle()
+	if len (spawners) > 0:
+		_spawn_monster(spawners[0])
+
+func _spawn_monster(spawner):
+	var region = spawner.get_parent().get_parent()
+	var region_infos = Globals.GET_REGION_INFOS(region)
+	var region_type = region_infos[0]
+	var region_number = region_infos[1]
+	var pos = region.wall_deco_map.world_to_map(spawner.global_position)
+	
+	var mob = enemy.instance()
+	$Characters.add_character(mob, region_type, region_number, region, spawner.global_position, pos)
+	spawner.queue_free()
 
 func get_map_center_relative_to_player() -> Vector2:
 	var bounds = null

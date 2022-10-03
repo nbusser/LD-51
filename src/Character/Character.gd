@@ -23,6 +23,9 @@ var region = null
 export var initial_region_type = Globals.REGION_TYPE.STATIC
 export var initial_region_number = 0
 
+func init(region_type, region_number):
+	update_map(region_type, region_number)
+
 func handle_region_switch(old_region):
 	pass
 
