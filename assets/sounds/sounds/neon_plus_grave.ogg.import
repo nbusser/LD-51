@@ -11,5 +11,5 @@ dest_files=[ "res://.import/neon_plus_grave.ogg-b7281ae2b75cef853386a59d1c9ec82a
 
 [params]
 
-loop=true
+loop=false
 loop_offset=0
