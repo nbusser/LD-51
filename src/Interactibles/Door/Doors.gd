@@ -7,13 +7,13 @@ var door_cells = {}
 
 func _ready():
 	for s_area in map.get_node("StaticAreas").get_children():
-		var tilemap = s_area.get_node("WallDecorationMap")
+		var tilemap = s_area.get_node("TallMap")
 		var open_doors = tilemap.get_used_cells_by_id(Globals.TILE_TYPES.DOOR_OPEN_H) + tilemap.get_used_cells_by_id(Globals.TILE_TYPES.DOOR_OPEN_V)
 		var closed_doors = tilemap.get_used_cells_by_id(Globals.TILE_TYPES.DOOR_CLOSED_H) + tilemap.get_used_cells_by_id(Globals.TILE_TYPES.DOOR_CLOSED_V)
 		_instantiate_doors(s_area, open_doors, true)
 		_instantiate_doors(s_area, closed_doors, false)
 	for m_area in map.get_node("MobileAreas").get_children():
-		var tilemap = m_area.get_node("WallDecorationMap")
+		var tilemap = m_area.get_node("TallMap")
 		var open_doors = tilemap.get_used_cells_by_id(Globals.TILE_TYPES.DOOR_OPEN_H) + tilemap.get_used_cells_by_id(Globals.TILE_TYPES.DOOR_OPEN_V)
 		var closed_doors = tilemap.get_used_cells_by_id(Globals.TILE_TYPES.DOOR_CLOSED_H) + tilemap.get_used_cells_by_id(Globals.TILE_TYPES.DOOR_CLOSED_V)
 		_instantiate_doors(m_area, open_doors, true)
@@ -35,7 +35,7 @@ func _random_door_pos():
 	return door_cells.keys()[randi()%door_cells.keys().size()]
 
 func _change_door_state(area, pos, opened):
-	var tilemap = area.get_node("WallDecorationMap")
+	var tilemap = area.get_node("TallMap")
 	var walkable_map = area.get_node("WalkableMap")
 	var door = tilemap.get_cellv(pos)
 	var cellv
@@ -61,7 +61,7 @@ func close_door(area, pos):
 	_change_door_state(area, pos, false)
 
 func switch_random_door(area):
-	var tilemap = area.get_node("WallDecorationMap")
+	var tilemap = area.get_node("TallMap")
 	if door_cells.size() == 0:
 		return
 	var door_cell = _random_door_pos()
