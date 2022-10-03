@@ -15,9 +15,9 @@ var patrol_index = 0
 var rooms_manager = null
 
 onready var patrol_speed = $MoveTick.wait_time
-onready var chase_speed = patrol_speed * 0.8
+onready var chase_speed = patrol_speed * 0.3
 
-const SPEED_MALUS_BLIND = 1.5
+const SPEED_MALUS_BLIND = 1.3
 const SPEED_BONUS_ALERT = 0.7
 
 onready var characters_manager = $"../"
@@ -92,7 +92,7 @@ func _change_speed(new_speed):
 	$Tween.interpolate_property(
 		$MoveTick, "wait_time",
 		$MoveTick.wait_time, new_speed,
-		0.1, Tween.TRANS_LINEAR, Tween.EASE_IN
+		0.1, Tween.TRANS_CUBIC, Tween.EASE_IN
 	)
 	$Tween.start()
 
