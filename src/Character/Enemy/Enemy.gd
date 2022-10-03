@@ -137,8 +137,6 @@ func _on_EnemyBlindZone_area_exited(_area):
 
 func start_patroling():
 	set_patrol_room(rooms_manager.locate_character(self))
-	print(rooms_manager)
-	print(patrol_room)
 	if patrol_room == null:
 		set_patrol_room(rooms_manager.get_random_room())
 	$PatrolMode.start()

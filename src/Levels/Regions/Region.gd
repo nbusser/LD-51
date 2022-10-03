@@ -7,7 +7,7 @@ onready var floor_map = $FloorMap
 onready var wall_deco_map = $WallDecorationMap
 onready var ceiling_map = $CeilingMap
 onready var rooms = $Rooms
-onready var astar = Astar.new(tilemap)
+onready var astar = Astar.new([tilemap])
 onready var characters = $"../../Characters"
 onready var hud = $"../../../UI/HUD"
 
@@ -34,7 +34,7 @@ func rebake(changed_tile):
 	)
 
 func isNavigable(tile):
-	return astar.is_navigable_simple(tile) and not characters.is_cell_occupied(tile)
+	return astar.is_navigable_simple(tilemap.map_to_world(tile)) and not characters.is_cell_occupied(tile)
 
 func get_path_to_target(origin, target):
 	return astar.get_path_to_target(origin, target)

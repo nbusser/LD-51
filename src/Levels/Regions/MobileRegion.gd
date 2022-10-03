@@ -7,9 +7,9 @@ var backwards = false
 var is_moving = false
 var next_anchor_point = 1
 var segment
-var speed = 50
+var speed = 200
 onready var docks = []
-onready var static_regions = $"../../StaticRegion"
+onready var static_regions = $"../../StaticAreas"
 onready var walkable_map = $WalkableMap
 
 func _init().():
@@ -18,7 +18,7 @@ func _init().():
 func _ready():
 	assert(path.get_point_count() != 0)
 	path.visible = false
-	walkable_map.get_used_cells_by_id(Globals.WALKABLE.DOCK)
+	docks = walkable_map.get_used_cells_by_id(Globals.WALKABLE.DOCK)
 
 func _process(_delta):
 	if (!is_moving):
@@ -32,6 +32,7 @@ func reach_segment_end():
 	anchor_point = next_anchor_point
 	if (reached_end()):
 		stop_moving()
+		identify_docked_regions()
 		return
 	get_next_anchor_point()
 	prepare_next_segment()
@@ -62,9 +63,9 @@ func start_moving():
 func _on_MobileTween_tween_completed(_object, _key):
 	reach_segment_end()
 
-func identify_docked_region():
+func identify_docked_regions():
 	for d in docks:
 		var world_loc = walkable_map.map_to_world(d)
-		for s in static_regions:
-			if (s.walkable_map.world_to_map(world_loc) == Globals.WALKABLE.DOCK):
+		for s in static_regions.get_children():
+			if (s.walkable_map.get_cellv(s.walkable_map.world_to_map(world_loc)) == Globals.WALKABLE.DOCK):
 				print ("yes")
