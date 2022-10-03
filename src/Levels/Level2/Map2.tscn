@@ -125,19 +125,18 @@ points = PoolVector2Array( 474, 820, 473, 939, 715, 936, 726, 826, 464, 812 )
 
 [node name="WalkableMap" parent="MobileAreas/MobileRegion" index="0"]
 tile_set = ExtResource( 5 )
-tile_data = PoolIntArray( 917523, 1, 0 )
+tile_data = PoolIntArray( 917523, 1, 0, 1048595, 1, 0 )
 
 [node name="FloorMap" parent="MobileAreas/MobileRegion" index="1"]
-visible = false
 tile_set = ExtResource( 6 )
-tile_data = PoolIntArray( 917522, 0, 65538, 917523, 0, 65538, 917524, 0, 65538 )
+tile_data = PoolIntArray( 917522, 0, 196609, 917523, 0, 3, 917524, 0, 0, 983058, 0, 1, 983059, 0, 65538, 983060, 0, 131075, 1048594, 0, 131072, 1048595, 0, 131073, 1048596, 0, 196611 )
 
 [node name="FloorDecorationMap" parent="MobileAreas/MobileRegion" index="2"]
 tile_set = ExtResource( 2 )
 
 [node name="TallMap" parent="MobileAreas/MobileRegion" index="3"]
 tile_set = ExtResource( 8 )
-tile_data = PoolIntArray( 917522, 10, 196608, 917524, 10, 196608 )
+tile_data = PoolIntArray( 917522, 10, 0, 917524, 10, 0, 983058, 10, 65536, 983060, 10, 65536, 1048594, 10, 131072, 1048596, 10, 131072 )
 
 [node name="WallDecorationMap" parent="MobileAreas/MobileRegion" index="4"]
 tile_set = ExtResource( 7 )

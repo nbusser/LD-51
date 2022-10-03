@@ -10,7 +10,10 @@ var segment
 var speed = 200
 onready var docks = []
 onready var static_regions = $"../../StaticAreas"
+onready var mobile_regions = $"../../MobileAreas"
 onready var walkable_map = $WalkableMap
+
+var docked_regions = []
 
 func _init().():
 	pass
@@ -21,7 +24,7 @@ func _ready():
 	docks = walkable_map.get_used_cells_by_id(Globals.WALKABLE.DOCK)
 
 func _process(_delta):
-	if (!is_moving):
+	if (!is_moving && randi()%1000 == 945):
 		start_moving()
 
 func stop_moving():
@@ -32,7 +35,7 @@ func reach_segment_end():
 	anchor_point = next_anchor_point
 	if (reached_end()):
 		stop_moving()
-		identify_docked_regions()
+		update_docked_regions()
 		return
 	get_next_anchor_point()
 	prepare_next_segment()
@@ -63,9 +66,33 @@ func start_moving():
 func _on_MobileTween_tween_completed(_object, _key):
 	reach_segment_end()
 
-func identify_docked_regions():
+func get_reachable(array):
+	for m in docked_regions:
+		if (!array.has(m)):
+			array.append(m)
+			get_reachable(array)
+	return array
+
+func update_astar():
+	var reachable = get_reachable([self])
+	var tilemaps = []
+	for r in reachable:
+		tilemaps.append(r.walkable_map)
+	print(tilemaps)
+	print("OUI")
+	astar = Astar.new(tilemaps)
+
+func update_docked_regions():
+	print("COUCU")
 	for d in docks:
 		var world_loc = walkable_map.map_to_world(d)
 		for s in static_regions.get_children():
 			if (s.walkable_map.get_cellv(s.walkable_map.world_to_map(world_loc)) == Globals.WALKABLE.DOCK):
-				print ("yes")
+				docked_regions.append(s)
+				s.dock(self)
+				continue
+	for s in static_regions.get_children():
+		s.update_astar()
+	for m in mobile_regions.get_children():
+		m.update_astar()
+
