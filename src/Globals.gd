@@ -26,6 +26,7 @@ enum TILE_TYPES {
 }
 
 enum WALKABLE {
+	DOCK = 1,
 	YES = 0,
 	NO = -1
 }
