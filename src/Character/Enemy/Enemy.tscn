@@ -192,8 +192,7 @@ strategy = 0
 [node name="Sprite" parent="." index="0"]
 position = Vector2( 16, -1 )
 frames = SubResource( 2 )
-animation = "dazzle_walk_up"
-frame = 10
+animation = "idle_down"
 
 [node name="MoveTick" parent="." index="2"]
 wait_time = 1.0
