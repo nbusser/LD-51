@@ -6,3 +6,4 @@ convert -crop 32x32 lampe_sol_1.png lampe_sol_1/lampe_sol_1.png
 convert -crop 24x24 vent.png vent/vent.png
 convert -crop 32x128 vertical_door.png vertical_door/vertical_door.png
 convert -crop 49x39 chat.png chat/chat.png
+convert xcf/alien_animated_tmp.png -crop 32x64 alien_animated/alien_animated.png
