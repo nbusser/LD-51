@@ -46,6 +46,7 @@ func close_doors():
 	var calamitables = player.get_node("CalamitySensor").get_overlapping_areas()
 	var doors = []
 	for calamitable in calamitables:
+		calamitable = calamitable.get_parent()
 		if(calamitable.is_calamitable() and calamitable.interactible_type == Globals.Interactibles.DOOR):
 			doors.append(calamitable)
 	if len(doors) == 0:
