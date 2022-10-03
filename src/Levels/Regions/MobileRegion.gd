@@ -78,12 +78,9 @@ func update_astar():
 	var tilemaps = []
 	for r in reachable:
 		tilemaps.append(r.walkable_map)
-	print(tilemaps)
-	print("OUI")
 	astar = Astar.new(tilemaps)
 
 func update_docked_regions():
-	print("COUCU")
 	for d in docks:
 		var world_loc = walkable_map.map_to_world(d)
 		for s in static_regions.get_children():

@@ -57,5 +57,4 @@ func get_path_to_target(origin, destination):
 				computed_costs[candidate] = cost
 				backtrack_map[candidate] = current
 				frontier.push(candidate, cost + heuristic(current, destination))
-	print(i)
 	return null
