@@ -201,6 +201,10 @@ position = Vector2( 16, -1 )
 frames = SubResource( 2 )
 animation = "idle_down"
 
+[node name="SpawnSound" parent="SoundFx" index="0"]
+volume_db = 6.0
+sounds = [ ExtResource( 101 ) ]
+
 [node name="WalkSound" parent="SoundFx" index="1"]
 volume_db = -5.0
 sounds = [ ExtResource( 102 ) ]
