@@ -207,6 +207,7 @@ func _is_player_invincible():
 func lose_hp_player():
 	if not _is_player_invincible():
 		health -= 0.34
+		camera.add_trauma(0.2)
 		if health <= 0.0:
 			health = 0.0
 			kill_player()
