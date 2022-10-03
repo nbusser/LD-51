@@ -21,7 +21,6 @@ extents = Vector2( 283.5, 156.5 )
 
 [node name="Enemy" parent="Characters" index="1" instance=ExtResource( 3 )]
 position = Vector2( 480, 128 )
-scale = Vector2( 0.2, 0.2 )
 
 [node name="StaticRegion" parent="StaticAreas" index="0" instance=ExtResource( 4 )]
 
