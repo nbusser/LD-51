@@ -54,7 +54,9 @@ light_mask = 0
 z_index = 100
 bake_navigation = false
 
-[node name="Rooms" type="Node" parent="."]
+[node name="Rooms" type="Node2D" parent="."]
 script = ExtResource( 1 )
 
-[node name="Spawners" type="Node" parent="."]
+[node name="Spawners" type="Node2D" parent="."]
+
+[node name="Characters" type="Node2D" parent="."]
