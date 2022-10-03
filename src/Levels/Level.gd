@@ -167,7 +167,6 @@ func trigger_calamity():
 	else:
 		calamities.shuffle()
 	
-	print('Calamities: ', calamities)
 	var i = 0
 	while severity_bank > 0 and i < len(calamities):
 		var calamity = calamities[i]
@@ -179,23 +178,6 @@ func trigger_calamity():
 			_trigger_calamity(player_region, object)
 
 		i += 1
-	
-	print('Remaining: ', severity_bank)
-	return
-	
-	var calamity = randi()%len(Calamities)
-	if calamity == Calamities.LIGHTS_OFF:
-		print('light')
-		map.lights_off()
-	elif calamity == Calamities.ROOM_ALERT:
-		print('room alert')
-		map.room_alert(player_region)
-	elif calamity == Calamities.CLOSE_DOOR:
-		print('door')
-		map.close_doors()
-	elif calamity == Calamities.SPAWN_MONSTER:
-		map.spawn_monster()
-		print('spawn monster')
 
 func _on_MusicTimer_timeout():
 	timer.start()
