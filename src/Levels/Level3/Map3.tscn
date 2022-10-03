@@ -28,6 +28,9 @@ extents = Vector2( 300.5, 175.5 )
 [node name="Enemy" parent="Characters" index="1" instance=ExtResource( 3 )]
 position = Vector2( 576, 328 )
 
+[node name="Enemy2" parent="Characters" index="2" instance=ExtResource( 3 )]
+position = Vector2( -144, 527 )
+
 [node name="StaticRegion" parent="StaticAreas" index="0" instance=ExtResource( 4 )]
 
 [node name="FloorMap" parent="StaticAreas/StaticRegion" index="1"]
