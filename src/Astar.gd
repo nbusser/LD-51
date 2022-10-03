@@ -9,9 +9,10 @@ func _init(new_tilemaps):
 func is_navigable_type(tile_type):
 	return tile_type != -1
 
-func is_navigable_simple(loc):
+func is_navigable_simple(pos):
 	for t in tilemaps:
-		if is_navigable_type(t.get_cellv(t.world_to_map(loc))):
+		var local_pos = t.to_global(pos)
+		if is_navigable_type(t.get_cellv(t.world_to_map(local_pos))):
 			return true
 	return false
 
@@ -39,6 +40,7 @@ func path_from_backtrack_map(bm, current):
 	return path
 
 func get_path_to_target(origin, destination):
+	print(origin, " *-* ", destination)
 	var frontier = PriorityQueue.new()
 	var backtrack_map = {}
 	var computed_costs = {}

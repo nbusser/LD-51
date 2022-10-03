@@ -2,8 +2,27 @@ extends Node
 
 onready var map = $"../"
 
-var character_areas = {}
-var character_positions = {}
+var characters = []
+
+#func reparent_all():
+#	for c in characters:
+#		if (!c.region.isNavigable(c.tilemap.map_to_world(character_positions[c]))):
+#			var world_coords = c.to_global(c.tilemap.map_to_world(character_positions[c]))
+#			var done = false
+#			for r in $"../StaticAreas".get_children():
+#				var local_coords = r.to_local(world_coords)
+#				if (r.isNavigable(r.tilemap.map_to_world(local_coords))):
+#					character_areas[c] = r
+#					get_parent().remove_child(c)
+#					r.characters.call_deferred("add_child", c)
+#					break
+#			for r in $"../MobileAreas".get_children():
+#				var local_coords = r.to_local(world_coords)
+#				if (r.isNavigable(r.tilemap.map_to_world(local_coords))):
+#					character_areas[c] = r
+#					get_parent().remove_child(c)
+#					r.characters.call_deferred("add_child", c)
+#					break
 
 func get_enemies():
 	var enemies = []
@@ -12,12 +31,11 @@ func get_enemies():
 			enemies.append(character)
 	return enemies
 
-func is_cell_occupied(cell):
-	return character_positions.values().has(cell)
-
-func change_area(character, area, position):
-	character_areas[character] = area
-	character_positions[character] = position
+func is_position_occupied(gcoord):
+	for c in character_positions.values():
+		if (c - gcoord).size() < 0.3:
+			return true
+	return false
 
 func update_position(character, position):
 	character_positions[character] = position
@@ -51,3 +69,15 @@ func _ready():
 	init_positions(get_node("../StaticAreas").get_children()[0])
 	for enemy in get_enemies():
 		enemy.connect("kill", map, "kill_player")
+	for r in $"../StaticAreas".get_children():
+		yield(r, "ready")
+		for c in r.get_node("Characters").get_children():
+			characters.append(c)
+			character_areas[c] = r
+			character_positions[c] = r.tilemap.world_to_map(c.position)
+	for r in $"../MobileAreas".get_children():
+		yield(r, "ready")
+		for c in r.get_node("Characters").get_children():
+			characters.append(c)
+			character_areas[c] = r
+			character_positions[c] = r.tilemap.world_to_map(c.position)

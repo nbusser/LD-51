@@ -47,8 +47,8 @@ func rebake(changed_tile):
 		Vector2(changed_tile.x+1, changed_tile.y+1)
 	)
 
-func isNavigable(tile):
-	return astar.is_navigable_simple(tilemap.map_to_world(tile)) and not characters.is_cell_occupied(tile)
+func isNavigable(gcoord):
+	return astar.is_navigable_simple(gcoord) and not characters.is_position_occupied(gcoord)
 
 func get_path_to_target(origin, target):
 	return astar.get_path_to_target(origin, target)

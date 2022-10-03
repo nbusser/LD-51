@@ -2,7 +2,7 @@ extends Node2D
 
 onready var hud = get_node("../UI/HUD")
 onready var characters = $Characters
-onready var player = $Characters/Player
+export(NodePath) var player
 onready var doors = $Doors
 onready var enemy = preload("res://src/Character/Enemy/Enemy.tscn")
 
@@ -33,7 +33,7 @@ func switch_random_door():
 	doors.switch_random_door()
 
 func lights_off():
-	var calamitables = player.get_node("CalamitySensor").get_overlapping_areas()
+	var calamitables = self.get_node(player).get_node("CalamitySensor").get_overlapping_areas()
 	var lights = []
 	for calamitable in calamitables:
 		if calamitable.is_in_group("interactible"):

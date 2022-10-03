@@ -11,6 +11,7 @@ var speed = 200
 onready var docks = []
 onready var static_regions = $"../../StaticAreas"
 onready var mobile_regions = $"../../MobileAreas"
+onready var g_characters = $"../../Characters"
 onready var walkable_map = $WalkableMap
 
 var docked_regions = []
@@ -30,12 +31,13 @@ func _process(_delta):
 func stop_moving():
 	backwards = !backwards
 	is_moving = false
+	update_docked_regions()
+	refresh_dock()
 
 func reach_segment_end():
 	anchor_point = next_anchor_point
 	if (reached_end()):
 		stop_moving()
-		update_docked_regions()
 		return
 	get_next_anchor_point()
 	prepare_next_segment()
@@ -62,6 +64,7 @@ func start_moving():
 	is_moving = true
 	next_anchor_point = get_next_anchor_point()
 	prepare_next_segment()
+	refresh_undock()
 
 func _on_MobileTween_tween_completed(_object, _key):
 	reach_segment_end()
@@ -79,6 +82,17 @@ func update_astar():
 	for r in reachable:
 		tilemaps.append(r.walkable_map)
 	astar = Astar.new(tilemaps)
+	print(astar.tilemaps)
+
+func refresh_dock():
+	for s in static_regions.get_children():
+		s.update_astar()
+	for m in mobile_regions.get_children():
+		m.update_astar()
+
+func refresh_undock():
+	refresh_dock()
+#	g_characters.reparent_all()
 
 func update_docked_regions():
 	for d in docks:
@@ -88,8 +102,3 @@ func update_docked_regions():
 				docked_regions.append(s)
 				s.dock(self)
 				continue
-	for s in static_regions.get_children():
-		s.update_astar()
-	for m in mobile_regions.get_children():
-		m.update_astar()
-

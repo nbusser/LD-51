@@ -7,7 +7,7 @@ func _init().():
 	pass
 
 func dock(mobile):
-	pass
+	docked.append(mobile)
 
 func undock(mobile):
 	docked.erase(mobile)
