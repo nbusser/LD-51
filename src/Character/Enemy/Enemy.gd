@@ -7,6 +7,8 @@ enum Strategy {
 }
 
 export var strategy = Strategy.PATROL
+export var initial_room_type = Globals.REGION_TYPE.STATIC
+export var initial_room_number = 0
 var patrol_room setget set_patrol_room
 var patrol_index = 0
 
@@ -17,7 +19,7 @@ const SPEED_BONUS_ALERT = 0.1
 
 var is_blind = false
 
-func _init().(Globals.REGION_TYPE.STATIC, 0):
+func _init().(initial_room_type, initial_room_number):
 	pass
 
 func handle_region_switch(old_region):
