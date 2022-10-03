@@ -45,7 +45,13 @@ func _start_level():
 	var music_diff = 1.0 - fmod(current_player.get_playback_position(), 1.0)
 	music_timer.start(music_diff)
 
+func _reset_ambiance_timer():
+	$AmbianceSoundsTimer.wait_time = randi() % 15 + 5
+	$AmbianceSoundsTimer.start()
+
 func _ready():
+	_reset_ambiance_timer()
+
 	Globals.can_interact = false
 	
 	pulse.material.set_shader_param("time", 0.0)
@@ -119,3 +125,9 @@ func _on_MusicTimer_timeout():
 
 func level_failed():
 	emit_signal("level_failed")
+
+
+func _on_AmbianceSoundsTimer_timeout():
+	print('ping')
+	$SoundFx/AmbianceSound.play_sound()
+	_reset_ambiance_timer()

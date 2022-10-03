@@ -11,5 +11,5 @@ dest_files=[ "res://.import/bruit_vaisseau_3.ogg-76935a9124fabf44a5694308d642f19
 
 [params]
 
-loop=true
+loop=false
 loop_offset=0
