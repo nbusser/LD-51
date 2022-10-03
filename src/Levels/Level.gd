@@ -51,14 +51,15 @@ func _start_level():
 	music_timer.start(music_diff)
 	
 	if not skip_level_intro && current_level_number == 0:
-		yield(get_tree().create_timer(5), "timeout")
+		yield(get_tree().create_timer(4.5), "timeout")
 		timer.stop()
 		dialog.open_dialog(["The evil bad guy says: \"HAHAHAHAHAHHAHAHAHAHAHA\"", "\"Did you really think it was going to be this easy?\"", "\"My calamity beam will make your life a living hell\""])
 		yield(dialog, "close_dialog")
 		print(self.get_children())
 		$Map/StaticAreas/StaticRegion/Rooms/Room.blackout_room()
-		yield(get_tree().create_timer(3.5), "timeout")
-		dialog.open_dialog(["The evil bad guy says: \"MWAHAHAHAHAHA\"", "\"Enjoy running into walls\""])
+		player.camera.add_trauma(0.5)
+		yield(get_tree().create_timer(2), "timeout")
+		dialog.open_dialog(["The evil bad guy says: \"Enjoy running into walls\""])
 		yield(dialog, "close_dialog")
 
 func _reset_ambiance_timer():

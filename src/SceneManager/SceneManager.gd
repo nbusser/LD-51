@@ -27,23 +27,18 @@ func _ready():
 	randomize()
 	_run_main_menu()
 
-
 func _process(_delta):
 	if Input.is_action_pressed("quit"):
 		get_tree().quit()
 
-
 func _on_quit_game():
 	get_tree().quit()
-
 
 func _on_start_game():
 	_load_level()
 
-
 func _on_show_credits():
 	_run_credits(true)
-
 
 func _on_show_main_menu():
 	_run_main_menu()
@@ -64,8 +59,6 @@ func set_scene(new_scene):
 		tween.tween_property(scene_transition, "modulate:a", 1.0, Globals.SCENE_TRANSITION_DURATION)
 	tween.tween_callback(self, "_set_scene_callback", [new_scene])
 
-
-
 func _load_level(skip_level_intro = false):
 	var scene = levels[current_level_number].instance()
 	scene.init(current_level_number, skip_level_intro)
@@ -73,77 +66,56 @@ func _load_level(skip_level_intro = false):
 	scene.connect("level_failed", self, "_on_game_over")
 	self.current_scene = scene
 
-
 func _on_end_of_level():
-	if current_level_number + 1 >= 2:
-		# Win
+	if current_level_number + 1 >= levels.size():
 		_run_credits(false)
 	else:
 		_load_end_level()
 
-
 func first_level():
 	return current_level_number == 0
 
-
 func _on_game_over():
 	var scene = game_over.instance()
-
 	scene.connect("restart", self, "_on_restart_level")
 	scene.connect("quit", self, "_on_quit_game")
-
 	self.current_scene = scene
-
 
 func _on_restart_level():
 	_load_level(true)
 
-
 func _on_restart_select_level():
 	_load_end_level()
-
 
 func _load_end_level():
 	var scene = change_level.instance()
 	scene.init(current_level_number)
-
 	scene.connect("next_level", self, "_on_next_level")
-
 	self.current_scene = scene
-
 
 func _on_next_level():
 	current_level_number += 1
 	change_music_track(music_players[current_level_number % len(music_players)])
 	_load_level()
 
-
 func _run_credits(can_go_back):
 	var scene = credits.instance()
-
 	scene.set_back(can_go_back)
 	if can_go_back:
 		scene.connect("back", self, "_on_show_main_menu")
-
 	self.current_scene = scene
-
 
 func _run_main_menu():
 	var scene = main_menu.instance()
-
 	change_music_track(music_players[0])
-
 	scene.connect("start_game", self, "_on_start_game")
 	scene.connect("quit_game", self, "_on_quit_game")
 	scene.connect("show_credits", self, "_on_show_credits")
-
 	self.current_scene = scene
-
 
 func change_music_track(new_player):
 	if current_player != new_player:
 		for mp in music_players:
 			mp.stop()
-
 		new_player.play()
 		current_player = new_player
