@@ -93,7 +93,7 @@ current = true
 zoom = Vector2( 0.5, 0.5 )
 
 [node name="Flashlight" type="Light2D" parent="." index="5"]
-position = Vector2( 82, 79 )
+position = Vector2( 83, -41 )
 scale = Vector2( 1, 1.12109 )
 texture = ExtResource( 3 )
 offset = Vector2( 1, 256 )
