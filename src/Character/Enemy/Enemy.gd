@@ -15,6 +15,8 @@ onready var normal_wait_time = $MoveTick.wait_time
 const SPEED_MALUS_BLIND = 2
 const SPEED_BONUS_ALERT = 0.1
 
+onready var characters_manager = $"../"
+
 var is_blind = false
 
 func handle_region_switch(old_region):
@@ -51,6 +53,8 @@ func _process(_delta):
 			var destination
 			if len(path) == 0:
 				destination = region.tilemap.world_to_map(target)
+				if strategy == Strategy.CHASE:
+					print('kill')
 			else:
 				destination = region.tilemap.world_to_map(path[0])
 			move_to(destination)
