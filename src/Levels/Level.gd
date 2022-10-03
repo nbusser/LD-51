@@ -116,8 +116,9 @@ func _ready():
 	tween.set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_IN_OUT)
 	tween.tween_property(camera, "offset", Vector2(0.0, 0.0), 3.0)
 	tween.parallel().tween_property(camera, "zoom", Vector2(0.5, 0.5), 3.0)
-	tween.tween_callback(self, "_start_level")
+	print("YOYO")
 	
+	tween.tween_callback(self, "_start_level")
 	tween2.tween_interval(5.5)
 	tween2.tween_callback(get_tree(), "call_group", ["ceiling_tilemaps", "animate_hide"])
 
@@ -205,7 +206,7 @@ func _is_player_invincible():
 
 func lose_hp_player():
 	if not _is_player_invincible():
-		health -= 0.1
+		health -= 0.34
 		if health <= 0.0:
 			health = 0.0
 			kill_player()
