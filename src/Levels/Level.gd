@@ -17,7 +17,7 @@ onready var level_name = $"%LevelName"
 onready var level_card = $"%LevelCard"
 onready var dialog = $"%Dialog"
 
-var level_names = ["Alpha Condor", "Busser Force One"]
+var level_names = ["Alpha Condor", "Busser Force One", "StarCats", "Meow Space Station"]
 
 var difficulty
 var current_level_number = 0
