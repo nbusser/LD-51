@@ -15,13 +15,16 @@ onready var music_timer = $"%MusicTimer"
 onready var level_number = $"%LevelNumber"
 onready var level_name = $"%LevelName"
 onready var level_card = $"%LevelCard"
+onready var dialog = $"%Dialog"
 
 var level_names = ["Alpha Condor", "Busser Force One"]
 
 var difficulty
 var current_level_number = 0
+var skip_level_intro = false
 
-func init(level_number):
+func init(level_number, skip_level_intro):
+	self.skip_level_intro = Globals.SKIP_LEVEL_INTRO or skip_level_intro
 	difficulty = level_number
 	yield(get_node("UI/HUD"), "ready")
 	get_node("UI/HUD").set_level_decoration(level_number, level_names[level_number])
@@ -29,6 +32,9 @@ func init(level_number):
 
 func _start_level():
 	Globals.can_interact = true
+	
+	if not skip_level_intro:
+		dialog.open_dialog(["Welcome to space.", "The space cat overlord says: \"Find all my kittens.\""])
 	
 	var tween := create_tween()
 	tween.tween_property(hud, "modulate:a", 1.0, 0.5)
@@ -52,7 +58,7 @@ func _ready():
 	var tween := create_tween()
 	var tween2 := create_tween()
 	
-	if Globals.SKIP_LEVEL_INTRO:
+	if skip_level_intro:
 		get_tree().call_group("ceiling_tilemaps", "animate_hide")
 		self._start_level()
 		return

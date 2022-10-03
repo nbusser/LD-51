@@ -64,9 +64,9 @@ func set_scene(new_scene):
 
 
 
-func _load_level():
+func _load_level(skip_level_intro = false):
 	var scene = levels[current_level_number].instance()
-	scene.init(current_level_number)
+	scene.init(current_level_number, skip_level_intro)
 	scene.get_node("UI/HUD").connect("level_done", self, "_on_end_of_level")
 	scene.connect("level_failed", self, "_on_game_over")
 	self.current_scene = scene
@@ -94,7 +94,7 @@ func _on_game_over():
 
 
 func _on_restart_level():
-	_load_level()
+	_load_level(true)
 
 
 func _on_restart_select_level():
