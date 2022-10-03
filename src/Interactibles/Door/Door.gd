@@ -28,9 +28,11 @@ func interact():
 		open()
 
 func open():
+	$SoundFx/OpenSound.play_sound()
 	emit_signal("open_door", _area, _pos)
 
 func close():
+	$SoundFx/CloseSound.play_sound()
 	emit_signal("close_door", _area, _pos)
 
 func get_interactible_type():

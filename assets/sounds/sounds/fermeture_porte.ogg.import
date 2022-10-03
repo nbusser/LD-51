@@ -11,5 +11,5 @@ dest_files=[ "res://.import/fermeture_porte.ogg-aa420c3525b696806647456f5f1749ec
 
 [params]
 
-loop=true
+loop=false
 loop_offset=0

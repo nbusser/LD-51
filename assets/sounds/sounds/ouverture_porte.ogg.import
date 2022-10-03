@@ -11,5 +11,5 @@ dest_files=[ "res://.import/ouverture_porte.ogg-951c9fe3244a91f4f0816b6aa8eac792
 
 [params]
 
-loop=true
+loop=false
 loop_offset=0

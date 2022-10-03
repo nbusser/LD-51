@@ -1,6 +1,9 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://src/Interactibles/Door/Door.gd" type="Script" id=1]
+[ext_resource path="res://src/AudioBankPlayer.gd" type="Script" id=2]
+[ext_resource path="res://assets/sounds/sounds/fermeture_porte.ogg" type="AudioStream" id=3]
+[ext_resource path="res://assets/sounds/sounds/ouverture_porte.ogg" type="AudioStream" id=4]
 
 [sub_resource type="CircleShape2D" id=1]
 radius = 32.0
@@ -16,3 +19,11 @@ collision_mask = 512
 shape = SubResource( 1 )
 
 [node name="SoundFx" type="Node" parent="."]
+
+[node name="OpenSound" type="AudioStreamPlayer" parent="SoundFx"]
+script = ExtResource( 2 )
+sounds = [ ExtResource( 4 ) ]
+
+[node name="CloseSound" type="AudioStreamPlayer" parent="SoundFx"]
+script = ExtResource( 2 )
+sounds = [ ExtResource( 3 ) ]
