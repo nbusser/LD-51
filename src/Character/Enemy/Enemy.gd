@@ -13,9 +13,12 @@ var patrol_room setget set_patrol_room
 var patrol_index = 0
 
 var rooms_manager = null
-onready var normal_wait_time = $MoveTick.wait_time
-const SPEED_MALUS_BLIND = 2
-const SPEED_BONUS_ALERT = 0.1
+
+onready var patrol_speed = $MoveTick.wait_time
+onready var chase_speed = patrol_speed * 0.8
+
+const SPEED_MALUS_BLIND = 1.5
+const SPEED_BONUS_ALERT = 0.7
 
 onready var characters_manager = $"../"
 
@@ -25,7 +28,7 @@ func handle_region_switch(old_region):
 	rooms_manager = region.get_node("Rooms")
 
 func _ready():
-	$MoveTick.wait_time = get_speed()
+	update_speed()
 
 func get_current_patrol_point(world_coordinates=false):
 	if len(patrol_room.get_patrol_points()) == 0:
@@ -78,7 +81,7 @@ func _process(_delta):
 				destination = region.tilemap.world_to_map(path[0])
 			move_to(destination)
 
-func change_speed(new_speed):
+func _change_speed(new_speed):
 	$Tween.interpolate_property(
 		$MoveTick, "wait_time",
 		$MoveTick.wait_time, new_speed,
@@ -86,13 +89,18 @@ func change_speed(new_speed):
 	)
 	$Tween.start()
 
-func get_speed():
-	var speed = normal_wait_time
+func _get_speed():
+	var speed = chase_speed if strategy == Strategy.CHASE else patrol_speed
 	if not $AlertSpeedBoost.is_stopped():
 		speed *= SPEED_BONUS_ALERT
 	if is_blind:
 		speed *= SPEED_MALUS_BLIND
 	return speed
+
+func update_speed():
+	var new_speed = _get_speed()
+	if new_speed != $MoveTick.wait_time:
+		_change_speed(new_speed)
 
 func switch_strategy(_strategy):
 	strategy = _strategy
@@ -104,11 +112,12 @@ func switch_strategy(_strategy):
 	
 	if _strategy == Strategy.ALERT:
 		$AlertSpeedBoost.start()
-		change_speed(get_speed())
+
+	update_speed()
 
 func _update_blind(blind):
 	is_blind = blind
-	change_speed(get_speed())
+	update_speed()
 
 func _on_EnemyBlindZone_area_entered(_area):
 	_update_blind(true)
@@ -161,4 +170,4 @@ func _on_LostPlayerArea_area_exited(area):
 		switch_strategy(Strategy.PATROL)
 
 func _on_AlertSpeedBoost_timeout():
-	change_speed(get_speed())
+	update_speed()
