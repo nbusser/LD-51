@@ -21,7 +21,7 @@ extents = Vector2( 288.5, 225 )
 extents = Vector2( 132, 223.5 )
 
 [sub_resource type="RectangleShape2D" id=5]
-extents = Vector2( 311.5, 201 )
+extents = Vector2( 300.5, 175.5 )
 
 [node name="Map3" instance=ExtResource( 1 )]
 
@@ -84,7 +84,7 @@ points = PoolVector2Array( -111, 466, -115, 623, -174, 625 )
 [node name="Room5" parent="StaticAreas/StaticRegion/Rooms" index="4" instance=ExtResource( 9 )]
 
 [node name="RoomShape" parent="StaticAreas/StaticRegion/Rooms/Room5/RoomArea" index="0"]
-position = Vector2( 467.5, 802 )
+position = Vector2( 478.5, 827.5 )
 shape = SubResource( 5 )
 
 [node name="PatrolPath" parent="StaticAreas/StaticRegion/Rooms/Room5" index="1"]
