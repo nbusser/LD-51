@@ -89,9 +89,13 @@ func move_to(destination_tile):
 	if not Globals.can_interact:
 		return
 	if get_map_position() != destination_tile and can_move() and region.isNavigable(destination_tile):
+		
 		direction = destination_tile - get_map_position()
 
 		move_tick_timer.start()
+		
+		if not $SoundFx/WalkSound.playing:
+			$SoundFx/WalkSound.play_sound()
 		
 		var destination = tilemap.map_to_world(destination_tile)
 		

@@ -11,5 +11,8 @@ func _ready():
 
 
 func play_sound():
-	stream = sounds[randi() % len(sounds)]
-	.play()
+	if len(sounds) > 0:
+		stream = sounds[randi() % len(sounds)]
+		.play()
+	else:
+		print('ERROR: no sound ', self)

@@ -23,6 +23,9 @@ volume_db = -80.0
 script = ExtResource( 6 )
 sounds = [ ExtResource( 3 ), ExtResource( 2 ), ExtResource( 4 ), ExtResource( 5 ) ]
 
+[node name="WalkSound" type="AudioStreamPlayer" parent="SoundFx"]
+script = ExtResource( 6 )
+
 [node name="MoveTick" type="Timer" parent="."]
 wait_time = 0.2
 one_shot = true
@@ -36,3 +39,5 @@ collision_mask = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Locator"]
 shape = SubResource( 6 )
+
+[connection signal="finished" from="SoundFx/WalkSound" to="." method="_on_WalkSound_finished"]
