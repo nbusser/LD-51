@@ -71,6 +71,8 @@ func _trigger_alert(region, room):
 			character.receive_alert(room)
 
 func spawn_monster():
+	# TODO: create enemy
+	# TODO: connect signal kill
 	pass
 
 func get_map_center_relative_to_player() -> Vector2:
@@ -83,3 +85,7 @@ func get_map_center_relative_to_player() -> Vector2:
 	for m_area in self.get_node("MobileAreas").get_children():
 		bounds = bounds.merge(m_area.calculate_bounds())
 	return bounds.get_center() - player.position
+
+func kill_player():
+	# TODO: kill player
+	pass

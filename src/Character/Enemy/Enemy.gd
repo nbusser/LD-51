@@ -1,3 +1,5 @@
+signal kill
+
 extends Character
 
 enum Strategy {
@@ -54,7 +56,7 @@ func _process(_delta):
 			if len(path) == 0:
 				destination = region.tilemap.world_to_map(target)
 				if strategy == Strategy.CHASE:
-					print('kill')
+					emit_signal("kill")
 			else:
 				destination = region.tilemap.world_to_map(path[0])
 			move_to(destination)

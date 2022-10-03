@@ -1,7 +1,16 @@
 extends Node
 
+onready var map = $"../"
+
 var character_areas = {}
 var character_positions = {}
+
+func get_enemies():
+	var enemies = []
+	for character in get_children():
+		if not character.is_in_group('player'):
+			enemies.append(character)
+	return enemies
 
 func is_cell_occupied(cell):
 	return character_positions.values().has(cell)
@@ -32,3 +41,5 @@ func get_player_position(world_coordinates=false):
 
 func _ready():
 	init_positions(get_node("../StaticAreas").get_children()[0])
+	for enemy in get_enemies():
+		enemy.connect("kill", map, "kill_player")

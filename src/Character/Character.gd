@@ -80,11 +80,11 @@ func move(to_direction):
 	move_to(destination_tile)
 
 func move_to(destination_tile):
-	direction = destination_tile - get_map_position()
-
 	if not Globals.can_interact:
 		return
 	if get_map_position() != destination_tile and can_move() and region.isNavigable(destination_tile):
+		direction = destination_tile - get_map_position()
+
 		move_tick_timer.start()
 		
 		var destination = tilemap.map_to_world(destination_tile)
