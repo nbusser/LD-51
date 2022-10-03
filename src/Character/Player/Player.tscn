@@ -105,7 +105,7 @@ volume_db = -4.0
 sounds = [ ExtResource( 30 ) ]
 
 [node name="CatSound" type="AudioStreamPlayer" parent="SoundFx" index="2"]
-volume_db = 9.0
+volume_db = 13.0
 script = ExtResource( 31 )
 sounds = [ ExtResource( 33 ), ExtResource( 32 ), ExtResource( 34 ), ExtResource( 35 ), ExtResource( 36 ) ]
 
