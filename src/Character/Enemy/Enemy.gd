@@ -24,6 +24,8 @@ onready var characters_manager = $"../"
 
 var blind_sources = []
 
+var cannot_reach_dest_counter = 0
+
 func handle_region_switch(old_region):
 	rooms_manager = region.get_node("Rooms")
 
@@ -80,6 +82,11 @@ func _process(_delta):
 			else:
 				destination = region.tilemap.world_to_map(path[0])
 			move_to(destination)
+		else:
+			cannot_reach_dest_counter += 1
+			if cannot_reach_dest_counter == 60:
+				cannot_reach_dest_counter = 0
+				switch_strategy(Strategy.PATROL)
 
 func _change_speed(new_speed):
 	$Tween.interpolate_property(
@@ -119,6 +126,8 @@ func is_blind():
 	return len(blind_sources) > 0
 
 func _on_EnemyBlindZone_area_entered(_area):
+#	if _area.is_in_group("flashlight"):
+#		switch_strategy(Strategy.CHASE)
 	blind_sources.append(_area)
 	update_speed()
 
@@ -135,8 +144,7 @@ func start_patroling():
 	$PatrolMode.start()
 
 func _on_StartMoving_timeout():
-	if strategy == Strategy.PATROL:
-		start_patroling()
+	switch_strategy(strategy)
 
 func set_patrol_room(_patrol_room):
 	patrol_room = _patrol_room
