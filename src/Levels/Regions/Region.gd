@@ -4,13 +4,19 @@ onready var tilemap = $WalkableMap
 onready var wall_map = $TallMap
 onready var floor_map = $FloorMap
 onready var wall_deco_map = $WallDecorationMap
+onready var ceiling_map = $CeilingMap
 onready var rooms = $Rooms
 onready var astar = Astar.new(tilemap)
 onready var characters = $"../../Characters"
 onready var hud = $"../../../UI/HUD"
 
 func _ready():
+	_create_ceiling()
 	initialize_walkable()
+
+func _create_ceiling():
+	for c in floor_map.get_used_cells():
+		ceiling_map.set_cell(c.x, c.y - 1, 0, false, false, false, floor_map.get_cell_autotile_coord(c.x, c.y))
 
 func initialize_walkable():
 	for tile in floor_map.get_used_cells():

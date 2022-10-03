@@ -2,14 +2,14 @@ signal level_done
 
 extends Control
 
-onready var level_label = $VBoxContainer/VBoxContainer/LevelNumber/LevelNumberValue
+onready var level_label = $"%LevelName"
 onready var counter_label = $"%Counter"
 onready var total_label = $"%Total"
 var total_coins_count = 0
 var current_coins_count = 0
 
-func set_level_decoration(level_number, level_name):
-	level_label.text = str(level_number + 1) + ": " + level_name
+func set_level_decoration(level_number: int, level_name: String):
+	level_label.text = str(level_number + 1).pad_zeros(3) + " /// " + level_name.to_upper()
 
 func increment_coins():
 	current_coins_count = current_coins_count + 1

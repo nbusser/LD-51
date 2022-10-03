@@ -10,15 +10,20 @@ onready var characters = $Map/Characters
 onready var pulse = $"%VisualPulse"
 onready var timer = $"%Timer"
 onready var music_timer = $"%MusicTimer"
+onready var level_number = $"%LevelNumber"
+onready var level_name = $"%LevelName"
+onready var level_card = $"%LevelCard"
 
 var level_names = ["Alpha Condor", "Busser Force One"]
 
 var difficulty
+var current_level_number = 0
 
 func init(level_number):
 	difficulty = level_number
 	yield(get_node("UI/HUD"), "ready")
 	get_node("UI/HUD").set_level_decoration(level_number, level_names[level_number])
+	current_level_number = level_number
 
 func _start_level():
 	Globals.can_interact = true
@@ -42,10 +47,26 @@ func _ready():
 	pulse.material.set_shader_param("intensity", 0.0)
 	pulse.material.set_shader_param("enabled", false)
 	
-	var tween := create_tween().set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_IN_OUT)
+	var tween := create_tween()
+	var tween2 := create_tween()
+	
+	level_card.modulate.a = 0.0
+	get_tree().call_group("ceiling_tilemaps", "animate_show")
+	
+	level_number.text = "LEVEL %s //////////" % str(current_level_number + 1).pad_zeros(3)
+	level_name.text = level_names[current_level_number]
+	tween.tween_interval(0.5)
+	tween.tween_property(level_card, "modulate:a", 1.0, 0.5)
+	tween.tween_interval(2.0)
+	tween.tween_property(level_card, "modulate:a", 0.0, 0.5)
+	
+	tween.set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_IN_OUT)
 	tween.tween_property(camera, "offset", Vector2(0.0, 0.0), 3.0)
 	tween.parallel().tween_property(camera, "zoom", Vector2(0.5, 0.5), 3.0)
 	tween.tween_callback(self, "_start_level")
+	
+	tween2.tween_interval(5.5)
+	tween2.tween_callback(get_tree(), "call_group", ["ceiling_tilemaps", "animate_hide"])
 
 func _process(delta):
 	pulse.material.set_shader_param("time", timer.wait_time - timer.time_left)
