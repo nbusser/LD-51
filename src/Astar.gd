@@ -50,7 +50,7 @@ func get_path_to_target(origin, destination):
 	
 	while not frontier.is_empty():
 		var current = frontier.pop()
-		if (current - destination).length() < 50:
+		if (current - destination).length() < 16:
 			return path_from_backtrack_map(backtrack_map, current)
 		for candidate in get_navigable_neighbors(current.x, current.y):
 			var cost = computed_costs[current] + 1

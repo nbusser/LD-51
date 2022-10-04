@@ -23,6 +23,8 @@ func _ready():
 	assert(path.get_point_count() != 0)
 	path.visible = false
 	docks = walkable_map.get_used_cells_by_id(Globals.WALKABLE.DOCK)
+	update_docked_regions()
+	refresh_dock()
 
 func _process(_delta):
 	if (!is_moving && randi()%600 == 300):

@@ -21,6 +21,12 @@ var region = null
 export var initial_region_type = Globals.REGION_TYPE.STATIC
 export var initial_region_number = 0
 
+func correct(x):
+	return region.tilemap.map_to_world(region.tilemap.world_to_map(x))
+
+func center():
+	position = correct(position)
+
 func handle_region_switch(old_region):
 	pass
 
@@ -35,7 +41,7 @@ func _ready():
 	$SoundFx/SpawnSound.play_sound()
 	update_map(get_node("../.."))
 	self.connect("position_changed", manager, "update_position")
-	position = region.tilemap.map_to_world(get_tile(global_position))
+	center()
 
 func _process(delta):
 	_update_animation()
@@ -51,7 +57,6 @@ func get_character_speed():
 
 func _get_animation_ref():
 	var movement_state = "idle" if move_tick_timer.is_stopped() else "walk"
-
 	var direction_string
 	if direction == UP:
 		direction_string = "up"
@@ -82,27 +87,29 @@ func move_to(gcoords):
 	if !map_to_same_tile(gcoords, self.global_position) and can_move() and region.isNavigable(gcoords):
 		if region.tilemap.get_cellv(get_tile(global_position)) == Globals.WALKABLE.DOCK && region.tilemap.get_cellv(get_tile(gcoords)) == Globals.WALKABLE.NO:
 			var done = false
+			var old_gp = region.global_position
 			for r in $"../../../../StaticAreas".get_children():
-				if (r.isNavigable(gcoords)):
+				if (r != region && r.isNavigable(gcoords)):
 					get_parent().remove_child(self)
 					r.get_node("Characters").add_child(self)
 					done = true
 					break
 			if !done:
 				for r in $"../../../../MobileAreas".get_children():
-					if (r.isNavigable(gcoords)):
+					if (r != region && r.isNavigable(gcoords)):
 						get_parent().remove_child(self)
 						r.get_node("Characters").add_child(self)
 						done = true
 						break
 			update_map(self.get_node("../.."))
+			var shift = old_gp - region.global_position
+			position += shift
 			assert(done, "ERROR: REPARENTING FAILURE")
 		
 		direction = gcoords - global_position
 		move_tick_timer.start()
 		$SoundFx/WalkSound.play_sound()
 		var destination = region.tilemap.to_local(gcoords)
-		emit_signal("position_changed", self, gcoords)
 		$Tween.interpolate_property(
 			self, "position", self.position, destination, get_character_speed(), Tween.TRANS_LINEAR, Tween.EASE_IN_OUT
 		)

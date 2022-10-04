@@ -18,11 +18,14 @@ var contained_characters = []
 var _patrol_points
 var _patrol_cells = []
 
+func gb(x):
+	return region.to_global(x)
+
 func _check_patrol_accessible():
-	var first_point = _patrol_points[0]
+	var first_point = gb(_patrol_points[0])
 	var i = 1
 	while i < len(_patrol_points):
-		var second_point = _patrol_points[i]
+		var second_point = gb(_patrol_points[i])
 		var path = region.get_path_to_target(first_point, second_point)
 		if region.get_path_to_target(first_point, second_point) == null:
 			return false
@@ -41,9 +44,8 @@ func _ready():
 	
 	_patrol_points = patrol_path.get_points()
 	for i in range(len(_patrol_points)):
-		_patrol_points[i] += global_position #+ Vector2(0, -16)
 		_patrol_cells.append(tilemap.world_to_map(_patrol_points[i]))
-
+	
 	if len(_patrol_points) == 0:
 		print('ERROR: missing patrol for ', self)
 	else:
@@ -76,10 +78,15 @@ func _initialize_lights():
 func _on_RoomArea_area_entered(area):
 	if (area.is_in_group('room')):
 		emit_signal("declare_neighbour", area.get_parent())
-	contained_characters.append(area.get_parent())
+	else:
+		contained_characters.append(area.get_parent())
 
 func _on_RoomArea_area_exited(area):
-	contained_characters.erase(area.get_parent())
+	if (area.is_in_group('room')):
+		# TODO manage
+		emit_signal("remove_neighbour", area.get_parent())
+	else:
+		contained_characters.erase(area.get_parent())
 
 func contains_player():
 	for character in contained_characters:
@@ -96,7 +103,7 @@ func contains_character(target_character):
 func _stop_alert():
 	$SoundFx/Alarm.stop()
 	emit_signal("alert_stopped")
-	
+
 func _alert_update():
 	if $AlertTimer.time_left > 0:
 		if not is_in_alert():
@@ -116,7 +123,10 @@ func trigger_alert():
 
 func get_patrol_points(world_coordinated=false):
 	if world_coordinated:
-		return _patrol_points
+		var wced = []
+		for p in _patrol_points:
+			wced.append(gb(p))
+		return wced
 	else:
 		return _patrol_cells
 

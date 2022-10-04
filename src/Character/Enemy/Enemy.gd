@@ -43,6 +43,8 @@ func _get_animation_ref():
 		animation = "dazzle_" + animation
 	return animation
 
+var first = true
+
 func _process(_delta):
 	var detection_cone_rotation
 	if direction == UP:
@@ -57,30 +59,30 @@ func _process(_delta):
 	
 	if $StartMoving.time_left == 0 and can_move():
 		var origin_tile = get_tile(global_position)
-		var origin = global_position
-		
+		var origin = region.to_global(region.tilemap.map_to_world(origin_tile))
 		var target
+		
 		if strategy == Strategy.CHASE:
-			target = self.manager.get_player_position(true)
+#			print("chase")
+			target = characters.player.global_position
 		else:
-			if get_current_patrol_point(false) == null:
+			if get_current_patrol_point(true) == null:
 				# TODO: wandering AI
 				return
-			
 			if get_tile(global_position) == get_current_patrol_point(false):
 				patrol_index = patrol_room.get_next_patrol_index(patrol_index)
-			target = get_current_patrol_point(true)
-
+			target = region.to_global(region.tilemap.map_to_world(get_current_patrol_point(false)))
+			if first:
+				first = false
 		var path = region.get_path_to_target(origin, target)
-		
 		if path != null:
 			var destination
 			if len(path) == 0:
-				destination = region.tilemap.world_to_map(target)
+				destination = target
 				if strategy == Strategy.CHASE:
 					emit_signal("kill")
 			else:
-				destination = region.tilemap.world_to_map(path[0])
+				destination = path[0]
 			move_to(destination)
 		else:
 			cannot_reach_dest_counter += 1
@@ -90,9 +92,8 @@ func _process(_delta):
 
 func _change_speed(new_speed):
 	$Tween.interpolate_property(
-		$MoveTick, "wait_time",
-		$MoveTick.wait_time, new_speed,
-		0.1, Tween.TRANS_CUBIC, Tween.EASE_IN
+		$MoveTick, "wait_time", $MoveTick.wait_time, new_speed, 0.1, Tween.TRANS_CUBIC,
+		Tween.EASE_IN
 	)
 	$Tween.start()
 
@@ -111,18 +112,13 @@ func update_speed():
 
 func switch_strategy(_strategy):
 	var old_strategy = strategy
-
 	strategy = _strategy
-
 	if _strategy == Strategy.CHASE and old_strategy != strategy:
 		$SoundFx/ChaseSound.play_sound()
-
-
 	if _strategy == Strategy.PATROL:
 		start_patroling()
 	else:
 		$PatrolMode.stop()
-	
 	if _strategy == Strategy.ALERT:
 		$AlertSpeedBoost.start()
 

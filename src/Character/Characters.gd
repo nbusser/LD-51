@@ -3,6 +3,7 @@ extends Node
 onready var map = $"../"
 
 var characters = []
+var player = null
 
 func get_enemies():
 	var enemies = []
@@ -34,8 +35,12 @@ func _ready():
 	for r in $"../StaticAreas".get_children():
 		yield(r, "ready")
 		for c in r.get_node("Characters").get_children():
+			if c.is_in_group("player"):
+				player = r
 			characters.append(c)
 	for r in $"../MobileAreas".get_children():
 		yield(r, "ready")
 		for c in r.get_node("Characters").get_children():
+			if c.is_in_group("player"):
+				player = r
 			characters.append(c)
