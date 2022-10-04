@@ -67,7 +67,6 @@ func _is_in_room(cell):
 	)
 
 func _initialize_lights():
-	print(self)
 	for tile in wall_deco_map.get_used_cells_by_id(Globals.DECORATION_TILES.LIGHT):
 		if(_is_in_room(tile)):
 			var light_instance =  light.instance()

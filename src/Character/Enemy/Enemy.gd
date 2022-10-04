@@ -56,7 +56,7 @@ func _process(_delta):
 	$DetectionArea.rotation_degrees = detection_cone_rotation
 	
 	if $StartMoving.time_left == 0 and can_move():
-		var origin_tile = get_map_position()
+		var origin_tile = get_tile(global_position)
 		var origin = global_position
 		
 		var target
@@ -67,7 +67,7 @@ func _process(_delta):
 				# TODO: wandering AI
 				return
 			
-			if get_map_position() == get_current_patrol_point(false):
+			if get_tile(global_position) == get_current_patrol_point(false):
 				patrol_index = patrol_room.get_next_patrol_index(patrol_index)
 			target = get_current_patrol_point(true)
 

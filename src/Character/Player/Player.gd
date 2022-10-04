@@ -21,7 +21,7 @@ func _process(_delta):
 	if(direction.x != 0 and direction.y != 0):
 		direction.y = 0
 	if direction != Vector2.ZERO:
-		move(direction)
+		move(32*direction)
 
 	var interact_button_pressed = Input.get_action_strength("ui_select")
 
@@ -53,9 +53,9 @@ func _process(_delta):
 	interaction_hint.visible = can_interact() and interactible and interactible.is_interactible()
 
 func _on_Tween_tween_completed(hey, useless):
-	if (region.get_node("TallMap").get_cellv(get_map_position()) == Globals.ITEMS.CAT):
+	if (region.get_node("TallMap").get_cellv(get_tile(global_position)) == Globals.ITEMS.CAT):
 		$SoundFx/CatSound.play_sound()
-		emit_signal("cat_saved", get_map_position())
+		emit_signal("cat_saved", get_tile(global_position))
 
 func _on_InteractZone_area_entered(area):
 	interactible = area.get_parent()

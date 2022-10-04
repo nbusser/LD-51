@@ -25,7 +25,7 @@ func _ready():
 	docks = walkable_map.get_used_cells_by_id(Globals.WALKABLE.DOCK)
 
 func _process(_delta):
-	if (!is_moving && randi()%1000 == 945):
+	if (!is_moving && randi()%600 == 300):
 		start_moving()
 
 func stop_moving():
@@ -82,7 +82,6 @@ func update_astar():
 	for r in reachable:
 		tilemaps.append(r.walkable_map)
 	astar = Astar.new(tilemaps)
-	print(astar.tilemaps)
 
 func refresh_dock():
 	for s in static_regions.get_children():
@@ -92,13 +91,13 @@ func refresh_dock():
 
 func refresh_undock():
 	refresh_dock()
-#	g_characters.reparent_all()
 
 func update_docked_regions():
 	for d in docks:
-		var world_loc = walkable_map.map_to_world(d)
+		var world_loc = walkable_map.to_global(walkable_map.map_to_world(d))
 		for s in static_regions.get_children():
-			if (s.walkable_map.get_cellv(s.walkable_map.world_to_map(world_loc)) == Globals.WALKABLE.DOCK):
+			var local = s.to_local(world_loc)
+			if (s.walkable_map.get_cellv(s.walkable_map.world_to_map(local)) == Globals.WALKABLE.DOCK):
 				docked_regions.append(s)
 				s.dock(self)
 				continue
