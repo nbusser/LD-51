@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://src/SkyParallaxBackground/SkyParallaxBackground.tscn" type="PackedScene" id=1]
 [ext_resource path="res://assets/shaders/pulse.gdshader" type="Shader" id=2]
@@ -11,6 +11,7 @@
 [ext_resource path="res://assets/sounds/sounds/bruit_vaisseau_2.ogg" type="AudioStream" id=9]
 [ext_resource path="res://assets/sounds/sounds/bruit_vaisseau_1.ogg" type="AudioStream" id=10]
 [ext_resource path="res://assets/sounds/sounds/bruit_vaisseau_3.ogg" type="AudioStream" id=11]
+[ext_resource path="res://assets/sprites/health.png" type="Texture" id=12]
 
 [sub_resource type="ShaderMaterial" id=1]
 shader = ExtResource( 2 )
@@ -77,6 +78,13 @@ valign = 1
 [node name="Dialog" parent="UI" instance=ExtResource( 6 )]
 unique_name_in_owner = true
 
+[node name="HealthFilter" type="TextureRect" parent="UI"]
+unique_name_in_owner = true
+modulate = Color( 0.27451, 0.0431373, 0.0196078, 1 )
+anchor_right = 1.0
+anchor_bottom = 1.0
+texture = ExtResource( 12 )
+
 [node name="Timer" type="Timer" parent="."]
 unique_name_in_owner = true
 wait_time = 10.0
@@ -99,6 +107,16 @@ no_erase = true
 
 [node name="AmbianceSoundsTimer" type="Timer" parent="."]
 
+[node name="LoseHpCooldown" type="Timer" parent="."]
+unique_name_in_owner = true
+wait_time = 0.3
+one_shot = true
+
+[node name="CutsceneFallback" type="Timer" parent="."]
+wait_time = 9.0
+one_shot = true
+
 [connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]
 [connection signal="timeout" from="MusicTimer" to="." method="_on_MusicTimer_timeout"]
 [connection signal="timeout" from="AmbianceSoundsTimer" to="." method="_on_AmbianceSoundsTimer_timeout"]
+[connection signal="timeout" from="CutsceneFallback" to="." method="_on_CutsceneFallback_timeout"]

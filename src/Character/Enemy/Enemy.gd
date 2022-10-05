@@ -1,4 +1,5 @@
 signal kill
+signal lose_hp
 
 extends Character
 
@@ -17,7 +18,7 @@ var rooms_manager = null
 onready var patrol_speed = $MoveTick.wait_time
 onready var chase_speed = patrol_speed * 0.3
 
-const SPEED_MALUS_BLIND = 1.3
+const SPEED_MALUS_BLIND = 1.5
 const SPEED_BONUS_ALERT = 0.5
 
 onready var characters_manager = $"../"
@@ -80,7 +81,7 @@ func _process(_delta):
 			if len(path) == 0:
 				destination = target
 				if strategy == Strategy.CHASE:
-					emit_signal("kill")
+					emit_signal("lose_hp")
 			else:
 				destination = path[0]
 			move_to(destination)
@@ -158,7 +159,8 @@ func _on_PatrolMode_timeout():
 			print("WARNING: enemy should never be out a room")
 			return
 		var neighbours = rooms_manager.get_neighbours(room)
-		set_patrol_room(neighbours[randi()%len(neighbours)])
+		if len(neighbours) > 0:
+			set_patrol_room(neighbours[randi()%len(neighbours)])
 
 func receive_alert(alert_room):
 	if strategy == Strategy.PATROL:

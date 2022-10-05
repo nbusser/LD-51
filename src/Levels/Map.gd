@@ -32,66 +32,55 @@ func _ready():
 func switch_random_door():
 	doors.switch_random_door()
 
-func lights_off():
-	var calamitables = self.get_node(player).get_node("CalamitySensor").get_overlapping_areas()
+func get_all_calamitable_lights_in_room(room, cost=1):
 	var lights = []
-	for calamitable in calamitables:
-		if calamitable.is_in_group("interactible"):
-			calamitable = calamitable.get_parent()
-			if(calamitable.is_calamitable() and calamitable.interactible_type == Globals.Interactibles.LIGHT):
-				lights.append(calamitable)
-	lights.shuffle()
-	if len(lights) == 0:
-		return
-	lights[0].change_state(Globals.LightingState.OFF)
+	for light in room.get_node("LightBulbs").get_children():
+		if light.is_calamitable():
+			lights.append([light, cost])
+	return lights
 
-func close_doors():
-	var calamitables = player.get_node("CalamitySensor").get_overlapping_areas()
-	var doors = []
-	for calamitable in calamitables:
-		if calamitable.is_in_group("interactible"):
-			calamitable = calamitable.get_parent()
-			if(calamitable.is_calamitable() and calamitable.interactible_type == Globals.Interactibles.DOOR):
-				doors.append(calamitable)
-	doors.shuffle()
-	if len(doors) == 0:
-		return
-	doors[0].close()
-
-func room_alert(region):
+func get_all_possible_calamitables(region):
+	# Gather all calamitables
 	var player_room = region.rooms.locate_player()
-	print(player_room, "WARNING: player should never be out of a room")
-	if (player_room && !player_room.is_in_alert() && randi()%2):
-		_trigger_alert(region, player_room)
-		return
-	
-	var alertable := []
-	for room in region.rooms.get_children():
-		if (!room.is_in_alert()):
-			alertable.append(room)
-	if (len(alertable) > 0):
-		_trigger_alert(region, alertable[randi()%(len(alertable))])
 
-func _trigger_alert(region, room):
+	var calamitables = []
+	
+	if player_room:
+		calamitables += get_all_calamitable_lights_in_room(player_room, 2)
+		if not player_room.is_in_alert():
+			calamitables.append([player_room, 5])
+
+		for room in region.rooms.get_neighbours(player_room):
+			calamitables += get_all_calamitable_lights_in_room(room)
+			if not room.is_in_alert():
+				calamitables.append([room, 4])
+
+
+	var close_calamitables = player.get_node("CalamitySensor").get_overlapping_areas()
+	for calamitable in close_calamitables:
+		if calamitable.is_in_group("interactible"):
+			calamitable = calamitable.get_parent()
+			if calamitable.is_calamitable(): 
+				if calamitable.interactible_type == Globals.Interactibles.DOOR:
+					calamitables.append([calamitable, 2])
+		elif calamitable.is_in_group("spawner"):
+			calamitables.append([calamitable, 6])
+
+	return calamitables
+
+func light_off(light):
+	light.change_state(Globals.LightingState.OFF)
+
+func switch_door(door):
+	door.interact()
+
+func room_alert(region, room):
 	room.trigger_alert()
 	for character in characters.get_children():
 		if characters.character_areas.get(character) == region and not character.is_in_group("player"):
 			character.receive_alert(room)
 
-func spawn_monster():
-	# TODO: create enemy
-	# TODO: connect signal kill
-	var spawners = []
-	var calamitables = player.get_node("CalamitySensor").get_overlapping_areas()
-	for calamitable in calamitables:
-		if calamitable.is_in_group("spawner"):
-			spawners.append(calamitable)
-	
-	spawners.shuffle()
-	if len (spawners) > 0:
-		_spawn_monster(spawners[0])
-
-func _spawn_monster(spawner):
+func spawn_monster(spawner):
 	var region = spawner.get_parent().get_parent()
 	var region_infos = Globals.GET_REGION_INFOS(region)
 	var region_type = region_infos[0]
@@ -112,7 +101,3 @@ func get_map_center_relative_to_player() -> Vector2:
 	for m_area in self.get_node("MobileAreas").get_children():
 		bounds = bounds.merge(m_area.calculate_bounds())
 	return bounds.get_center() - player.position
-
-func kill_player():
-	# TODO: kill player
-	$"../".level_failed()

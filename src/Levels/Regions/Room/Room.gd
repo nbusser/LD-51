@@ -122,6 +122,10 @@ func trigger_alert():
 	$SoundFx/Alarm.play_sound()
 	$AlertTimer.start()
 
+func blackout_room():
+	for light in lights.get_children():
+		light.change_state(Globals.LightingState.OFF)
+
 func get_patrol_points(world_coordinated=false):
 	if world_coordinated:
 		var wced = []

@@ -11,5 +11,5 @@ dest_files=[ "res://.import/exctinction_machine.ogg-1cddd30e3c99c33bd5258a142fb2
 
 [params]
 
-loop=true
+loop=false
 loop_offset=0

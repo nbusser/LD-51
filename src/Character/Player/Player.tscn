@@ -1,4 +1,4 @@
-[gd_scene load_steps=42 format=2]
+[gd_scene load_steps=43 format=2]
 
 [ext_resource path="res://src/Character/Character.tscn" type="PackedScene" id=1]
 [ext_resource path="res://src/Character/Player/Player.gd" type="Script" id=2]
@@ -37,6 +37,7 @@
 [ext_resource path="res://assets/sounds/sounds/chat_4.ogg" type="AudioStream" id=35]
 [ext_resource path="res://assets/sounds/sounds/chat_5.ogg" type="AudioStream" id=36]
 [ext_resource path="res://assets/sounds/sounds/neon_2.ogg" type="AudioStream" id=37]
+[ext_resource path="res://src/Character/Player/Camera2D.gd" type="Script" id=38]
 
 [sub_resource type="SpriteFrames" id=3]
 animations = [ {
@@ -104,7 +105,7 @@ volume_db = -4.0
 sounds = [ ExtResource( 30 ) ]
 
 [node name="CatSound" type="AudioStreamPlayer" parent="SoundFx" index="2"]
-volume_db = 9.0
+volume_db = 13.0
 script = ExtResource( 31 )
 sounds = [ ExtResource( 33 ), ExtResource( 32 ), ExtResource( 34 ), ExtResource( 35 ), ExtResource( 36 ) ]
 
@@ -113,13 +114,15 @@ script = ExtResource( 31 )
 sounds = [ ExtResource( 37 ) ]
 
 [node name="Camera2D" type="Camera2D" parent="." index="4"]
+unique_name_in_owner = true
 position = Vector2( 79, 78 )
 current = true
 zoom = Vector2( 0.5, 0.5 )
+script = ExtResource( 38 )
 
 [node name="Flashlight" type="Light2D" parent="." index="5" groups=["flashlight"]]
 position = Vector2( 83, -41 )
-scale = Vector2( 1, 1.12109 )
+scale = Vector2( 1, 1.35 )
 texture = ExtResource( 3 )
 offset = Vector2( 1, 256 )
 texture_scale = 2.0
@@ -134,7 +137,7 @@ collision_layer = 256
 collision_mask = 0
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Flashlight/FlashlightZone" index="0"]
-polygon = PoolVector2Array( -117, 461.158, -65, 501.298, 14, 503.082, 89, 469.186, 114, 445.102, -1, 0.891991 )
+polygon = PoolVector2Array( -119, 468.889, -65, 501.298, 14, 503.082, 89, 469.186, 114, 445.102, -1, 0.891991 )
 
 [node name="Halo" type="Light2D" parent="." index="6"]
 position = Vector2( 73, 98 )

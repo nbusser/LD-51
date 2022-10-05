@@ -6,6 +6,7 @@ var interactible = null
 
 onready var progress_bar = $"%ProgressBar"
 onready var interaction_hint = $"%InteractionHint"
+onready var camera = $"%Camera2D"
 
 func handle_region_switch(old_region):
 	if (old_region != null):
@@ -73,5 +74,6 @@ func can_interact():
 	return not is_interacting() and $InteractCooldown.time_left == 0
 	
 func _on_InteractTimer_timeout():
-	interactible.interact()
-	$InteractCooldown.start()
+	if interactible:
+		interactible.interact()
+		$InteractCooldown.start()

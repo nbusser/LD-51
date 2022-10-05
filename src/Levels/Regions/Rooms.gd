@@ -24,7 +24,7 @@ func _process(_delta):
 	pass
 
 func get_neighbours(room):
-	return _room_graph[room]
+	return _room_graph.get(room, [])
 
 func locate_player():
 	for room in get_children():

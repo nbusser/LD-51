@@ -1,6 +1,6 @@
 extends Node
 
-const SKIP_LEVEL_INTRO = true
+const SKIP_LEVEL_INTRO = false
 const SCENE_TRANSITION_DURATION: float = 0.5
 
 var can_interact = true

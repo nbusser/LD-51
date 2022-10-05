@@ -12,7 +12,7 @@ radius = 64.0
 [sub_resource type="CircleShape2D" id=1]
 radius = 32.0
 
-[node name="LightBulb" type="Node2D" groups=["interactible"]]
+[node name="LightBulb" type="Node2D" groups=["interactible", "lightbulb"]]
 script = ExtResource( 3 )
 
 [node name="EnemyBlindZone" type="Area2D" parent="."]
