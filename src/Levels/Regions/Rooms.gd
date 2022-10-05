@@ -8,10 +8,15 @@ var _room_graph = {}
 func _ready():
 	for room in get_children():
 		room.connect("declare_neighbour", self, "_new_neighbour", [room])
+		room.connect("remove_neighbour", self, "_rm_neighbour", [room])
 		room.connect("alert_stopped", self, "stop_alert", [room])
 
 func _new_neighbour(room2, room1):
 	var neighbours = _room_graph.get(room1, []) + [room2]
+	_room_graph[room1] = neighbours
+
+func _rm_neighbour(room2, room1):
+	var neighbours = _room_graph.get(room1, []).erase(room2)
 	_room_graph[room1] = neighbours
 
 func _process(_delta):

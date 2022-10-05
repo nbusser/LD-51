@@ -1,4 +1,5 @@
 signal declare_neighbour(neighbour)
+signal remove_neighbour(neighbour)
 signal alert_stopped
 
 extends Node2D
