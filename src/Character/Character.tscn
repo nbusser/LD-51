@@ -35,5 +35,3 @@ collision_mask = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Locator"]
 shape = SubResource( 6 )
-
-[connection signal="finished" from="SoundFx/WalkSound" to="." method="_on_WalkSound_finished"]

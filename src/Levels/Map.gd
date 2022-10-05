@@ -6,22 +6,7 @@ onready var doors = $Doors
 onready var enemy = preload("res://src/Character/Enemy/Enemy.tscn")
 onready var player = characters.player
 
-var current_region_type = Globals.REGION_TYPE.STATIC
-var current_region = 0
-
-var door_cells = null
-
-func switch_region(new_region_type, new_number):
-	current_region_type = new_region_type
-	current_region = new_number
-	var root = null
-	if current_region_type == Globals.REGION_TYPE.STATIC:
-		root = $StaticAreas.get_children()[new_number]
-	else:
-		root = $MobileAreas.get_children()[new_number]
-
 func _ready():
-	switch_region(Globals.REGION_TYPE.STATIC, 0)
 	var cats_count = 0
 	for s_area in self.get_node("StaticAreas").get_children():
 		cats_count += s_area.get_node("TallMap").get_used_cells_by_id(Globals.ITEMS.CAT).size()
@@ -40,22 +25,16 @@ func get_all_calamitable_lights_in_room(room, cost=1):
 	return lights
 
 func get_all_possible_calamitables(region):
-	# Gather all calamitables
 	var player_room = region.rooms.locate_player()
-
 	var calamitables = []
-	
 	if player_room:
 		calamitables += get_all_calamitable_lights_in_room(player_room, 2)
 		if not player_room.is_in_alert():
 			calamitables.append([player_room, 5])
-
 		for room in region.rooms.get_neighbours(player_room):
 			calamitables += get_all_calamitable_lights_in_room(room)
 			if not room.is_in_alert():
 				calamitables.append([room, 4])
-
-
 	var close_calamitables = player.get_node("CalamitySensor").get_overlapping_areas()
 	for calamitable in close_calamitables:
 		if calamitable.is_in_group("interactible"):
@@ -65,7 +44,6 @@ func get_all_possible_calamitables(region):
 					calamitables.append([calamitable, 2])
 		elif calamitable.is_in_group("spawner"):
 			calamitables.append([calamitable, 6])
-
 	return calamitables
 
 func light_off(light):

@@ -1,4 +1,3 @@
-signal kill
 signal lose_hp
 
 extends Character

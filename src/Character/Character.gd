@@ -1,5 +1,3 @@
-signal position_changed(character, new_position)
-
 extends Node2D
 
 class_name Character
@@ -40,7 +38,6 @@ func _ready():
 	yield(get_tree(), "idle_frame")
 	$SoundFx/SpawnSound.play_sound()
 	update_map(get_node("../.."))
-	self.connect("position_changed", manager, "update_position")
 	center()
 
 func _process(_delta):

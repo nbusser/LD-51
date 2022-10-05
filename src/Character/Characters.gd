@@ -19,18 +19,16 @@ func is_position_occupied(gcoord):
 			return true
 	return false
 
-func add_character(character, region_type, region_number, region, world_pos, cell):
+func add_character(character, region_type, region_number, _region, world_pos, _cell):
 	add_child(character)
 	character.update_map(region_type, region_number)
 	character.global_position = world_pos
-	character.connect("kill", level, "kill_player")
 	print("connection")
 	character.connect("lose_hp", level, "lose_hp_player")
 
 func _ready():
 	for enemy in get_enemies():
 		print("connection2")
-		enemy.connect("kill", map, "kill_player")
 		enemy.connect("lose_hp", level, "lose_hp_player")
 	for r in $"../StaticAreas".get_children():
 		yield(r, "ready")

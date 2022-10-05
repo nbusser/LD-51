@@ -7,7 +7,6 @@ extends Node2D
 onready var map = $"../../../../../"
 onready var region = $"../.."
 onready var tilemap = $"../../WalkableMap"
-onready var doors_manager = $"../../../../../Doors"
 onready var wall_deco_map = $"../../WallDecorationMap"
 onready var lights = $LightBulbs
 onready var patrol_path = $PatrolPath
@@ -110,8 +109,8 @@ func _alert_update():
 			_stop_alert()
 
 func is_in_alert():
-	for light in lights.get_children():
-		if light.state == Globals.LightingState.ALERT:
+	for l in lights.get_children():
+		if l.state == Globals.LightingState.ALERT:
 			return true
 	return false
 
@@ -122,8 +121,8 @@ func trigger_alert():
 	$AlertTimer.start()
 
 func blackout_room():
-	for light in lights.get_children():
-		light.change_state(Globals.LightingState.OFF)
+	for l in lights.get_children():
+		l.change_state(Globals.LightingState.OFF)
 
 func get_patrol_points(world_coordinated=false):
 	if world_coordinated:
@@ -139,8 +138,8 @@ func get_next_patrol_index(i):
 
 func _on_AlertTimer_timeout():
 	if is_in_alert():
-		for light in lights.get_children():
-			light.change_state(Globals.LightingState.ON)
+		for l in lights.get_children():
+			l.change_state(Globals.LightingState.ON)
 			_stop_alert()
 
 
