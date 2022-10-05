@@ -2,9 +2,9 @@ extends Node2D
 
 onready var hud = get_node("../UI/HUD")
 onready var characters = $Characters
-export(NodePath) var player
 onready var doors = $Doors
 onready var enemy = preload("res://src/Character/Enemy/Enemy.tscn")
+onready var player = characters.player
 
 var current_region_type = Globals.REGION_TYPE.STATIC
 var current_region = 0

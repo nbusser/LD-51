@@ -4,9 +4,9 @@ extends Node
 
 onready var hud = $UI/HUD
 onready var map = get_node("Map")
-onready var player = $Map/Characters/Player
+onready var player = null
 onready var doors_manager = $Map/Doors
-onready var camera: Camera2D = $Map/Characters/Player/Camera2D
+var camera: Camera2D = null
 onready var characters = $Map/Characters
 
 onready var pulse = $"%VisualPulse"
@@ -83,6 +83,10 @@ func _reset_ambiance_timer():
 
 func _ready():
 	_reset_ambiance_timer()
+	player = $Map/Characters.player
+	print(player.get_children())
+	camera = player.get_node("Camera2D")
+	print("done")
 
 	Globals.can_interact = false
 	
@@ -176,7 +180,6 @@ func trigger_calamity():
 	var random_severity_income = randi() % 3 + 5
 	severity_bank = min(severity_bank + random_severity_income, MAX_SEVERITY)
 
-	var player_region = characters.character_areas.get(player)
 	var calamities = map.get_all_possible_calamitables(player_region)
 	
 	var policy = randi() % len(CalamityPolicy)

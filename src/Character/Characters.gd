@@ -39,11 +39,11 @@ func _ready():
 		yield(r, "ready")
 		for c in r.get_node("Characters").get_children():
 			if c.is_in_group("player"):
-				player = r
+				player = c
 			characters.append(c)
 	for r in $"../MobileAreas".get_children():
 		yield(r, "ready")
 		for c in r.get_node("Characters").get_children():
 			if c.is_in_group("player"):
-				player = r
+				player = c
 			characters.append(c)

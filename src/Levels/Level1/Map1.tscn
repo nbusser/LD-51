@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://src/Levels/Map.tscn" type="PackedScene" id=1]
 [ext_resource path="res://assets/sprites/walkableset.tres" type="TileSet" id=2]
@@ -8,6 +8,7 @@
 [ext_resource path="res://src/Levels/Regions/StaticRegion.tscn" type="PackedScene" id=6]
 [ext_resource path="res://assets/sprites/tallset.tres" type="TileSet" id=7]
 [ext_resource path="res://src/Levels/Regions/Room/Room.tscn" type="PackedScene" id=8]
+[ext_resource path="res://src/Character/Player/Player.tscn" type="PackedScene" id=9]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 415, 207 )
@@ -44,6 +45,9 @@ scale = Vector2( 0.8, 1 )
 [node name="RoomShape" parent="StaticAreas/StaticRegion/Rooms/Room/RoomArea" index="0"]
 position = Vector2( 405, 197 )
 shape = SubResource( 1 )
+
+[node name="Player" parent="StaticAreas/StaticRegion/Characters" index="0" instance=ExtResource( 9 )]
+position = Vector2( 249, 251 )
 
 [editable path="StaticAreas/StaticRegion"]
 [editable path="StaticAreas/StaticRegion/Rooms/Room"]
