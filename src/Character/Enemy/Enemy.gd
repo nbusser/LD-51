@@ -80,7 +80,6 @@ func _process(_delta):
 			if len(path) == 0:
 				destination = target
 				if strategy == Strategy.CHASE:
-					print("hit")
 					emit_signal("lose_hp")
 			else:
 				destination = path[0]

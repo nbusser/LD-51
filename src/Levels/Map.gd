@@ -66,7 +66,7 @@ func spawn_monster(spawner):
 	var pos = region.wall_deco_map.world_to_map(spawner.global_position)
 	
 	var mob = enemy.instance()
-	$Characters.add_character(mob, region_type, region_number, region, spawner.global_position, pos)
+	$Characters.add_character(mob, region, spawner.global_position)
 	spawner.queue_free()
 
 func get_map_center_relative_to_player() -> Vector2:
