@@ -63,7 +63,6 @@ func _process(_delta):
 		var target
 		
 		if strategy == Strategy.CHASE:
-#			print("chase")
 			target = characters.player.global_position
 		else:
 			if get_current_patrol_point(true) == null:

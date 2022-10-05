@@ -5,15 +5,15 @@ extends Interactible
 
 var _opened
 var _pos
-var _area
+var _region
 
 func _init().(Globals.Interactibles.DOOR):
 	pass
 
-func init(area, opened, pos):
+func init(region, opened, pos):
 	_opened = opened
 	_pos = pos
-	_area = area
+	_region = region
 
 func is_interactible():
 	return true
@@ -29,11 +29,11 @@ func interact():
 
 func open():
 	$SoundFx/OpenSound.play_sound()
-	emit_signal("open_door", _area, _pos)
+	emit_signal("open_door", _region, _pos)
 
 func close():
 	$SoundFx/CloseSound.play_sound()
-	emit_signal("close_door", _area, _pos)
+	emit_signal("close_door", _region, _pos)
 
 func get_interactible_type():
 	return interactible_type

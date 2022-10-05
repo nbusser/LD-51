@@ -5,7 +5,6 @@ extends Node
 onready var hud = $UI/HUD
 onready var map = get_node("Map")
 onready var player = null
-onready var doors_manager = $Map/Doors
 var camera: Camera2D = null
 onready var characters = $Map/Characters
 

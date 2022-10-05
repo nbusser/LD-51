@@ -2,7 +2,6 @@ extends Node2D
 
 onready var hud = get_node("../UI/HUD")
 onready var characters = $Characters
-onready var doors = $Doors
 onready var enemy = preload("res://src/Character/Enemy/Enemy.tscn")
 onready var player = characters.player
 
@@ -15,6 +14,7 @@ func _ready():
 	hud.set_coins(cats_count)
 
 func switch_random_door():
+	var doors = player.region.get_node("Doors")
 	doors.switch_random_door()
 
 func get_all_calamitable_lights_in_room(room, cost=1):
