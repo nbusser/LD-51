@@ -46,8 +46,6 @@ func get_path_to_target(origin, destination):
 	computed_costs[origin] = 0
 	frontier.push(origin, heuristic(origin, destination))
 	
-	var i = 0
-	
 	while not frontier.is_empty():
 		var current = frontier.pop()
 		if (current - destination).length() < 16:

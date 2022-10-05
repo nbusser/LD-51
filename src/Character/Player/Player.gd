@@ -53,7 +53,7 @@ func _process(_delta):
 	
 	interaction_hint.visible = can_interact() and interactible and interactible.is_interactible()
 
-func _on_Tween_tween_completed(hey, useless):
+func _on_Tween_tween_completed(_hey, _useless):
 	if (region.get_node("TallMap").get_cellv(get_tile(global_position)) == Globals.ITEMS.CAT):
 		$SoundFx/CatSound.play_sound()
 		emit_signal("cat_saved", get_tile(global_position))

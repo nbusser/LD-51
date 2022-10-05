@@ -24,15 +24,12 @@ func add_character(character, region_type, region_number, region, world_pos, cel
 	character.update_map(region_type, region_number)
 	character.global_position = world_pos
 	character.connect("kill", level, "kill_player")
+	print("connection")
 	character.connect("lose_hp", level, "lose_hp_player")
 
-func init_positions(area):
-	for character in get_children():
-		var tilemap = area.get_node("WalkableMap")
-
 func _ready():
-	init_positions(get_node("../StaticAreas").get_children()[0])
 	for enemy in get_enemies():
+		print("connection2")
 		enemy.connect("kill", map, "kill_player")
 		enemy.connect("lose_hp", level, "lose_hp_player")
 	for r in $"../StaticAreas".get_children():

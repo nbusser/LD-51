@@ -14,7 +14,7 @@ var door_cells = null
 func switch_region(new_region_type, new_number):
 	current_region_type = new_region_type
 	current_region = new_number
-	var root
+	var root = null
 	if current_region_type == Globals.REGION_TYPE.STATIC:
 		root = $StaticAreas.get_children()[new_number]
 	else:

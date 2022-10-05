@@ -27,7 +27,7 @@ func correct(x):
 func center():
 	position = correct(position)
 
-func handle_region_switch(old_region):
+func handle_region_switch(_old_region):
 	pass
 
 func update_map(new_region):
@@ -43,7 +43,7 @@ func _ready():
 	self.connect("position_changed", manager, "update_position")
 	center()
 
-func _process(delta):
+func _process(_delta):
 	_update_animation()
 
 func get_tile(gcoords):

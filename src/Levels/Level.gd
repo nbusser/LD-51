@@ -29,12 +29,12 @@ var skip_level_intro = false
 var health = 1.0
 var dead = false
 
-func init(level_number, skip_level_intro):
-	self.skip_level_intro = Globals.SKIP_LEVEL_INTRO or skip_level_intro
-	difficulty = level_number
+func init(level_number_v, skip_level_intro_v):
+	skip_level_intro = Globals.SKIP_LEVEL_INTRO or skip_level_intro_v
+	difficulty = level_number_v
 	yield(get_node("UI/HUD"), "ready")
-	get_node("UI/HUD").set_level_decoration(level_number, level_names[level_number])
-	current_level_number = level_number
+	get_node("UI/HUD").set_level_decoration(level_number_v, level_names[level_number_v])
+	current_level_number = level_number_v
 
 func _start_level():
 	Globals.can_interact = true
@@ -84,10 +84,7 @@ func _reset_ambiance_timer():
 func _ready():
 	_reset_ambiance_timer()
 	player = $Map/Characters.player
-	print(player.get_children())
 	camera = player.get_node("Camera2D")
-	print("done")
-
 	Globals.can_interact = false
 	
 	pulse.material.set_shader_param("time", 0.0)
@@ -227,7 +224,6 @@ func level_failed():
 func _on_AmbianceSoundsTimer_timeout():
 	$SoundFx/AmbianceSound.play_sound()
 	_reset_ambiance_timer()
-
 
 func _on_CutsceneFallback_timeout():
 	hud.modulate.a = 1.0

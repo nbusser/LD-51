@@ -27,7 +27,7 @@ var blind_sources = []
 
 var cannot_reach_dest_counter = 0
 
-func handle_region_switch(old_region):
+func handle_region_switch(_old_region):
 	rooms_manager = region.get_node("Rooms")
 
 func _ready():
@@ -81,6 +81,7 @@ func _process(_delta):
 			if len(path) == 0:
 				destination = target
 				if strategy == Strategy.CHASE:
+					print("hit")
 					emit_signal("lose_hp")
 			else:
 				destination = path[0]
@@ -176,12 +177,12 @@ func stop_alert(alert_room):
 	if strategy == Strategy.ALERT and patrol_room == alert_room:
 		switch_strategy(Strategy.PATROL)
 
-func _on_DetectionArea_area_entered(area):
+func _on_DetectionArea_area_entered(_area):
 	# TODO: raycast for walls ?
 	switch_strategy(Strategy.CHASE)
 
 
-func _on_LostPlayerArea_area_exited(area):
+func _on_LostPlayerArea_area_exited(_area):
 	if strategy == Strategy.CHASE:
 		switch_strategy(Strategy.PATROL)
 

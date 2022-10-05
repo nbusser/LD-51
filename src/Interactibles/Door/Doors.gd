@@ -37,18 +37,18 @@ func _random_door_pos():
 func _change_door_state(area, pos, opened):
 	var tilemap = area.get_node("TallMap")
 	var walkable_map = area.get_node("WalkableMap")
-	var door = tilemap.get_cellv(pos)
+	var door_t = tilemap.get_cellv(pos)
 	var cellv
-	if (door == Globals.TILE_TYPES.DOOR_CLOSED_H):
+	if (door_t == Globals.TILE_TYPES.DOOR_CLOSED_H):
 		cellv = Globals.TILE_TYPES.DOOR_OPEN_H
 		walkable_map.set_cellv(pos, Globals.WALKABLE.YES)
-	elif (door == Globals.TILE_TYPES.DOOR_CLOSED_V):
+	elif (door_t == Globals.TILE_TYPES.DOOR_CLOSED_V):
 		cellv = Globals.TILE_TYPES.DOOR_OPEN_V
 		walkable_map.set_cellv(pos, Globals.WALKABLE.YES)
-	elif (door == Globals.TILE_TYPES.DOOR_OPEN_H):
+	elif (door_t == Globals.TILE_TYPES.DOOR_OPEN_H):
 		cellv = Globals.TILE_TYPES.DOOR_CLOSED_H
 		walkable_map.set_cellv(pos, Globals.WALKABLE.NO)
-	elif (door == Globals.TILE_TYPES.DOOR_OPEN_V):
+	elif (door_t == Globals.TILE_TYPES.DOOR_OPEN_V):
 		cellv = Globals.TILE_TYPES.DOOR_CLOSED_V
 		walkable_map.set_cellv(pos, Globals.WALKABLE.NO)
 	door_cells[pos].change_state(opened)

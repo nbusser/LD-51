@@ -27,7 +27,6 @@ func _check_patrol_accessible():
 	var i = 1
 	while i < len(_patrol_points):
 		var second_point = gb(_patrol_points[i])
-		var path = region.get_path_to_target(first_point, second_point)
 		if region.get_path_to_target(first_point, second_point) == null:
 			return false
 		first_point = second_point
@@ -117,8 +116,8 @@ func is_in_alert():
 	return false
 
 func trigger_alert():
-	for light in lights.get_children():
-		light.change_state(Globals.LightingState.ALERT)
+	for l in lights.get_children():
+		l.change_state(Globals.LightingState.ALERT)
 	$SoundFx/Alarm.play_sound()
 	$AlertTimer.start()
 
