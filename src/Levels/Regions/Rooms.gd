@@ -13,13 +13,12 @@ func _ready():
 
 func _new_neighbour(room2, room1):
 	var neighbours = _room_graph.get(room1, []) + [room2]
-	print(neighbours)
 	_room_graph[room1] = neighbours
 
 func _rm_neighbour(room2, room1):
 	var neighbours = _room_graph.get(room1, [])
-	print(neighbours.erase(room2))
-	_room_graph[room1] = neighbours.erase(room2)
+	neighbours.erase(room2)
+	_room_graph[room1] = neighbours
 
 func _process(_delta):
 	pass
