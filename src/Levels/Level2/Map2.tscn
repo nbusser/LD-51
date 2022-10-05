@@ -40,7 +40,7 @@ tile_data = PoolIntArray( -786422, 10, 1, -786421, 10, 196610, -786420, 10, 3, -
 
 [node name="WallDecorationMap" parent="StaticAreas/StaticRegion" index="4"]
 tile_set = ExtResource( 7 )
-tile_data = PoolIntArray( -786421, 65, 0, 9, 65, 0, 12, 74, 0, 131086, 65, 0, 393228, 74, 0, 589832, 65, 0, 589841, 65, 0, 655373, 65, 0, 786440, 37, 0 )
+tile_data = PoolIntArray( -786421, 65, 0, 12, 74, 0, 131081, 65, 0, 262158, 65, 0, 393228, 74, 0, 524297, 65, 0, 655376, 65, 0, 786440, 37, 0 )
 
 [node name="Room" parent="StaticAreas/StaticRegion/Rooms" index="0" instance=ExtResource( 9 )]
 
@@ -71,14 +71,14 @@ shape = SubResource( 5 )
 [node name="PatrolPath" parent="StaticAreas/StaticRegion/Rooms/Room3" index="1"]
 points = PoolVector2Array( 274, -208, 467, -208 )
 
-[node name="Enemy" parent="StaticAreas/StaticRegion/Characters" index="0" instance=ExtResource( 3 )]
-position = Vector2( 241, 80 )
-
-[node name="Enemy3" parent="StaticAreas/StaticRegion/Characters" index="1" instance=ExtResource( 3 )]
-position = Vector2( 271, -214 )
-
-[node name="Player" parent="StaticAreas/StaticRegion/Characters" index="2" instance=ExtResource( 10 )]
+[node name="Player" parent="StaticAreas/StaticRegion/Characters" index="0" instance=ExtResource( 10 )]
 position = Vector2( 577, 289 )
+
+[node name="Enemy" parent="StaticAreas/StaticRegion/Characters" index="1" instance=ExtResource( 3 )]
+position = Vector2( 269, 78 )
+
+[node name="Enemy2" parent="StaticAreas/StaticRegion/Characters" index="2" instance=ExtResource( 3 )]
+position = Vector2( 361, -217 )
 
 [editable path="StaticAreas/StaticRegion"]
 [editable path="StaticAreas/StaticRegion/Rooms/Room"]
