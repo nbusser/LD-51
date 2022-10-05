@@ -64,6 +64,9 @@ func prepare_next_segment():
 
 func start_moving():
 	is_moving = true
+	for r in docked_regions:
+		r.undock(self)
+	docked_regions = []
 	next_anchor_point = get_next_anchor_point()
 	prepare_next_segment()
 	refresh_undock()
