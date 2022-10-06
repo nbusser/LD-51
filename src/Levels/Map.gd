@@ -61,10 +61,6 @@ func room_alert(region, room):
 func spawn_monster(spawner):
 	var region = spawner.get_parent().get_parent()
 	var region_infos = Globals.GET_REGION_INFOS(region)
-	var region_type = region_infos[0]
-	var region_number = region_infos[1]
-	var pos = region.wall_deco_map.world_to_map(spawner.global_position)
-	
 	var mob = enemy.instance()
 	$Characters.add_character(mob, region, spawner.global_position)
 	spawner.queue_free()

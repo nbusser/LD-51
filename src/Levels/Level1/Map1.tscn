@@ -66,7 +66,7 @@ points = PoolVector2Array( 536.25, 159, 520, 92, 730, 92, 731.25, 323, 177.5, 32
 position = Vector2( 272, 264 )
 
 [node name="Enemy" parent="StaticAreas/StaticRegion/Characters" index="1" instance=ExtResource( 10 )]
-position = Vector2( 686, 246 )
+position = Vector2( 731, 348 )
 
 [node name="MobileRegion" parent="MobileAreas" index="0" instance=ExtResource( 11 )]
 
