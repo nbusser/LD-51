@@ -196,6 +196,7 @@ animations = [ {
 radius = 256.0
 
 [node name="Enemy" instance=ExtResource( 1 )]
+position = Vector2( 0, -6 )
 script = ExtResource( 2 )
 strategy = 0
 
@@ -227,7 +228,7 @@ no_erase = true
 wait_time = 1.0
 
 [node name="Halo" type="Light2D" parent="." index="3"]
-position = Vector2( 16, 1 )
+position = Vector2( 16, -22 )
 scale = Vector2( 0.324219, 0.314453 )
 texture = ExtResource( 3 )
 texture_scale = 2.0
