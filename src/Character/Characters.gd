@@ -6,12 +6,6 @@ onready var level = $"../../"
 var characters = []
 var player = null
 
-func is_position_occupied(gcoord):
-	for c in characters:
-		if (c.global_position - gcoord).length() < 16:
-			return true
-	return false
-
 func add_character(character, region, world_pos):
 	region.get_node("Characters").add_child(character)
 	character.update_map(region)

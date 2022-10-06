@@ -48,7 +48,7 @@ func rebake(changed_tile):
 	)
 
 func isNavigable(gcoord):
-	return astar.is_navigable_simple(gcoord) and not characters.is_position_occupied(gcoord)
+	return astar.is_navigable_simple(gcoord)
 
 func get_path_to_target(origin, target):
 	return astar.get_path_to_target(origin, target)
