@@ -90,13 +90,14 @@ radius = 1024.0
 [sub_resource type="CircleShape2D" id=4]
 
 [node name="Player" groups=["player"] instance=ExtResource( 1 )]
+position = Vector2( 0, -18 )
 scale = Vector2( 0.2, 0.2 )
 z_index = 1
 z_as_relative = false
 script = ExtResource( 2 )
 
 [node name="Sprite" parent="." index="0"]
-position = Vector2( 81, 22 )
+position = Vector2( -4, -58 )
 scale = Vector2( 1.4, 1.4 )
 frames = SubResource( 3 )
 animation = "idle_down"
@@ -122,10 +123,10 @@ zoom = Vector2( 0.5, 0.5 )
 script = ExtResource( 38 )
 
 [node name="Flashlight" type="Light2D" parent="." index="5" groups=["flashlight"]]
-position = Vector2( 83, -41 )
+position = Vector2( 3, -121 )
 scale = Vector2( 1, 1.35 )
 texture = ExtResource( 3 )
-offset = Vector2( 1, 256 )
+offset = Vector2( 0, 256 )
 texture_scale = 2.0
 color = Color( 0.74902, 0.745098, 0.623529, 1 )
 energy = 0.9
@@ -150,6 +151,7 @@ color = Color( 0.85098, 0.819608, 0.623529, 1 )
 shadow_enabled = true
 
 [node name="InteractZone" type="Area2D" parent="." index="7"]
+position = Vector2( 6.10352e-05, -120 )
 collision_layer = 512
 collision_mask = 512
 
@@ -163,9 +165,10 @@ one_shot = true
 one_shot = true
 
 [node name="Locator" parent="." index="10" groups=["player"]]
-position = Vector2( 0, 0 )
+position = Vector2( 6.10352e-05, -120 )
 
 [node name="CalamitySensor" type="Area2D" parent="." index="11"]
+position = Vector2( 6.10352e-05, -120 )
 collision_layer = 0
 collision_mask = 64
 
@@ -208,10 +211,12 @@ align = 1
 valign = 1
 
 [node name="DetectionZone" type="Area2D" parent="." index="13"]
+position = Vector2( 6.10352e-05, -120 )
 collision_layer = 128
 collision_mask = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DetectionZone" index="0"]
+position = Vector2( 0, 3.05176e-05 )
 shape = SubResource( 4 )
 
 [connection signal="tween_completed" from="Tween" to="." method="_on_Tween_tween_completed"]

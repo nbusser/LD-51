@@ -8,6 +8,8 @@ onready var progress_bar = $"%ProgressBar"
 onready var interaction_hint = $"%InteractionHint"
 onready var camera = $"%Camera2D"
 
+var speed = 120
+
 func handle_region_switch(old_region):
 	if (old_region != null):
 		self.disconnect("cat_saved", old_region, "save_cat")
@@ -16,13 +18,47 @@ func handle_region_switch(old_region):
 func _ready():
 	interaction_hint.hide()
 
-func _process(_delta):
-	var direction := Vector2(Input.get_action_strength("ui_right") - Input.get_action_strength("ui_left"), Input.get_action_strength("ui_down") - Input.get_action_strength("ui_up"))
-	# No diagonal move
-	if(direction.x != 0 and direction.y != 0):
-		direction.y = 0
-	if direction != Vector2.ZERO:
-		move(32*direction)
+func _process(delta):
+	var dir := Vector2(Input.get_action_strength("ui_right") - Input.get_action_strength("ui_left"), Input.get_action_strength("ui_down") - Input.get_action_strength("ui_up")).normalized()
+	if (Globals.can_interact && dir != Vector2(0, 0)):
+		var new_position = position + dir * speed * delta
+		var old_position_g = region.to_global(position)
+		if region.astar.is_navigable_simple(region.to_global(new_position)):
+			position = new_position
+			move_tick_timer.start()
+			$SoundFx/WalkSound.play_sound()
+			var current_cell = region.wall_map.world_to_map(position)
+			var current_wall_tile = region.wall_map.get_cell(current_cell.x, current_cell.y + 1)
+			self.z_index = 1 if current_wall_tile != 10 else 0
+			var displacement = global_position - old_position_g
+			if (abs(displacement.x) > abs(displacement.y)):
+				direction = RIGHT if displacement.x > 0 else LEFT
+			else:
+				direction = DOWN if displacement.y > 0 else UP
+			if region.tilemap.get_cellv(get_tile(old_position_g)) == Globals.WALKABLE.DOCK && region.tilemap.get_cellv(get_tile(global_position)) == Globals.WALKABLE.NO:
+				var done = false
+				var old_gp = region.global_position
+				for r in $"../../../../StaticAreas".get_children():
+					if (r != region && r.isNavigable(global_position)):
+						get_parent().remove_child(self)
+						r.get_node("Characters").add_child(self)
+						done = true
+						break
+				if !done:
+					for r in $"../../../../MobileAreas".get_children():
+						if (r != region && r.isNavigable(global_position)):
+							get_parent().remove_child(self)
+							r.get_node("Characters").add_child(self)
+							done = true
+							break
+				update_map(self.get_node("../.."))
+				var shift = old_gp - region.global_position
+				position += shift
+				print("reparent")
+				assert(done, "ERROR: REPARENTING FAILURE")
+		if (region.get_node("TallMap").get_cellv(get_tile(global_position)) == Globals.ITEMS.CAT):
+			$SoundFx/CatSound.play_sound()
+			emit_signal("cat_saved", get_tile(global_position))
 
 	var interact_button_pressed = Input.get_action_strength("ui_select")
 
