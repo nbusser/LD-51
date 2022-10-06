@@ -54,7 +54,6 @@ func _process(delta):
 				update_map(self.get_node("../.."))
 				var shift = old_gp - region.global_position
 				position += shift
-				print("reparent")
 				assert(done, "ERROR: REPARENTING FAILURE")
 		if (region.get_node("TallMap").get_cellv(get_tile(global_position)) == Globals.ITEMS.CAT):
 			$SoundFx/CatSound.play_sound()

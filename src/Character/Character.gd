@@ -38,7 +38,8 @@ func _ready():
 	yield(get_tree(), "idle_frame")
 	$SoundFx/SpawnSound.play_sound()
 	update_map(get_node("../.."))
-	center()
+	if (not self.is_in_group("player")):
+		center()
 
 func _process(_delta):
 	_update_animation()

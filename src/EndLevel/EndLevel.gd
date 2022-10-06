@@ -3,6 +3,7 @@ extends Control
 signal next_level
 
 var level_number
+var pressed = false
 
 onready var level_label = $CenterContainer/VBoxContainer/CenterContainer/HBoxContainer/LevelNumber
 
@@ -14,5 +15,6 @@ func init(new_level_number):
 	self.level_number = new_level_number
 
 func _on_NextLevelButton_pressed():
-	$CenterContainer/VBoxContainer/CenterContainer3/NextLevelButton.disabled = true
-	emit_signal("next_level")
+	if !pressed:
+		pressed = true
+		emit_signal("next_level")

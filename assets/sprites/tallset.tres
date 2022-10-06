@@ -1,4 +1,4 @@
-[gd_resource type="TileSet" load_steps=62 format=2]
+[gd_resource type="TileSet" load_steps=63 format=2]
 
 [ext_resource path="res://assets/sprites/tileset_walls_v2.png" type="Texture" id=1]
 [ext_resource path="res://assets/sprites/tileset_futuristic.png" type="Texture" id=2]
@@ -166,6 +166,9 @@ polygon = PoolVector2Array( 128, 5.07988, 128, 18.1037, 11.8682, 18.1037, 0, 18.
 [sub_resource type="OccluderPolygon2D" id=55]
 polygon = PoolVector2Array( 8.70255, 128, 24.3311, 128, 24.3311, 110.171, 26.2847, 108.776, 26.8428, 30.912, 23.4939, 30.0747, 23.7729, 0, 8.14438, 0, 7.8653, 30.912, 5.35355, 30.6329, 5.35355, 109.613, 7.8653, 109.613 )
 
+[sub_resource type="OccluderPolygon2D" id=56]
+polygon = PoolVector2Array( 0, 32, 32, 32, 32, 64, 0, 64 )
+
 [resource]
 1/name = "tileset_futuristic.png 1"
 1/texture = ExtResource( 2 )
@@ -225,11 +228,12 @@ polygon = PoolVector2Array( 8.70255, 128, 24.3311, 128, 24.3311, 110.171, 26.284
 4/z_index = 0
 5/name = "tileset_futuristic.png 5"
 5/texture = ExtResource( 2 )
-5/tex_offset = Vector2( 0, -32 )
+5/tex_offset = Vector2( 2, -32 )
 5/modulate = Color( 1, 1, 1, 1 )
 5/region = Rect2( 288, 128, 32, 64 )
 5/tile_mode = 0
 5/occluder_offset = Vector2( 0, -32 )
+5/occluder = SubResource( 56 )
 5/navigation_offset = Vector2( 0, 0 )
 5/shape_offset = Vector2( 0, 0 )
 5/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )

@@ -48,6 +48,9 @@ z_index = 2
 tile_set = ExtResource( 5 )
 tile_data = PoolIntArray( 327689, 65, 0, 327694, 65, 0, 327701, 65, 0, 327702, 77, 0, 720908, 65, 0, 720914, 65, 0, 720916, 52, 0 )
 
+[node name="CeilingMap" parent="StaticAreas/StaticRegion" index="5"]
+position = Vector2( 1, 0 )
+
 [node name="Room" parent="StaticAreas/StaticRegion/Rooms" index="0" instance=ExtResource( 8 )]
 position = Vector2( 164, 115 )
 scale = Vector2( 0.8, 1 )
@@ -57,10 +60,10 @@ position = Vector2( 405, 197 )
 shape = SubResource( 1 )
 
 [node name="PatrolPath" parent="StaticAreas/StaticRegion/Rooms/Room" index="1"]
-points = PoolVector2Array( 513.75, 174, 520, 92, 730, 92, 731.25, 323, 177.5, 328, 186.25, 284, 682.5, 276, 688.75, 190 )
+points = PoolVector2Array( 536.25, 159, 520, 92, 730, 92, 731.25, 323, 177.5, 328, 186.25, 284, 682.5, 276, 688.75, 190, 548.75, 160 )
 
 [node name="Player" parent="StaticAreas/StaticRegion/Characters" index="0" instance=ExtResource( 9 )]
-position = Vector2( 249, 251 )
+position = Vector2( 272, 264 )
 
 [node name="Enemy" parent="StaticAreas/StaticRegion/Characters" index="1" instance=ExtResource( 10 )]
 position = Vector2( 686, 246 )
