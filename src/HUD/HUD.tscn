@@ -111,6 +111,8 @@ script = ExtResource( 1 )
 unique_name_in_owner = true
 margin_left = 16.0
 margin_top = 12.0
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+custom_colors/font_outline_modulate = Color( 0, 0, 0, 1 )
 text = "000 /// LEVEL_NAME"
 
 [node name="Screen" type="Node2D" parent="."]
@@ -119,7 +121,7 @@ position = Vector2( 882, 16 )
 [node name="AnimatedSprite" type="AnimatedSprite" parent="Screen"]
 scale = Vector2( 2, 2 )
 frames = SubResource( 23 )
-frame = 21
+frame = 1
 playing = true
 centered = false
 
