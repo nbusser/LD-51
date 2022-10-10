@@ -41,8 +41,9 @@ func _ready():
 	
 	patrol_path.visible = false
 	
-	_patrol_points = patrol_path.get_points()
+	_patrol_points = (patrol_path.get_points())
 	for i in range(len(_patrol_points)):
+		_patrol_points[i] = patrol_path.to_global(_patrol_points[i])
 		_patrol_cells.append(tilemap.world_to_map(_patrol_points[i]))
 	
 	if len(_patrol_points) == 0:
@@ -50,7 +51,7 @@ func _ready():
 	else:
 		yield(map, "ready")
 		if not _check_patrol_accessible():
-			print('ERROR: patrol is not accessible ', self)
+			print('ERROR: patrol is not accessible ', self, region)
 
 	_initialize_lights()
 

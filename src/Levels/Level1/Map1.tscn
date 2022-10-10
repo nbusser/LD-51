@@ -60,7 +60,7 @@ position = Vector2( 405, 197 )
 shape = SubResource( 1 )
 
 [node name="PatrolPath" parent="StaticAreas/StaticRegion/Rooms/Room" index="1"]
-points = PoolVector2Array( 536.25, 159, 520, 92, 730, 92, 731.25, 323, 177.5, 328, 186.25, 284, 682.5, 276, 688.75, 190, 548.75, 160 )
+points = PoolVector2Array( 536.25, 159, 520, 92, 730, 92, 731.25, 323, 176.25, 315, 186.25, 284, 682.5, 276, 688.75, 190 )
 
 [node name="Player" parent="StaticAreas/StaticRegion/Characters" index="0" instance=ExtResource( 9 )]
 position = Vector2( 272, 264 )
@@ -100,7 +100,7 @@ position = Vector2( 720, 72 )
 shape = SubResource( 2 )
 
 [node name="PatrolPath" parent="MobileAreas/MobileRegion/Rooms/Room" index="1"]
-points = PoolVector2Array( 633, 46, 848, 50 )
+points = PoolVector2Array( 633, 46, 848, 50, 853, 80, 602, 82 )
 
 [node name="Room2" parent="MobileAreas/MobileRegion/Rooms" index="1" instance=ExtResource( 8 )]
 
@@ -109,7 +109,7 @@ position = Vector2( 800.5, -77.5 )
 shape = SubResource( 3 )
 
 [node name="PatrolPath" parent="MobileAreas/MobileRegion/Rooms/Room2" index="1"]
-points = PoolVector2Array( 750, -114, 852, -112, 851, -19, 744, -21, 757, -106 )
+points = PoolVector2Array( 750, -114, 852, -112, 851, -19, 744, -21 )
 
 [node name="Line2D" parent="MobileAreas/MobileRegion" index="7"]
 points = PoolVector2Array( 592, 160, 591, -15 )
