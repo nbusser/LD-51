@@ -78,7 +78,7 @@ func _process(_delta):
 			var destination
 			if len(path) == 0:
 				destination = target
-				if strategy == Strategy.CHASE:
+				if strategy == Strategy.CHASE && (self.global_position - characters.player.global_position).length() <= 32:
 					emit_signal("lose_hp")
 			else:
 				destination = path[0]
@@ -91,7 +91,7 @@ func _process(_delta):
 					var destination
 					if len(path) == 0:
 						destination = target
-						if strategy == Strategy.CHASE:
+						if strategy == Strategy.CHASE && (self.global_position - characters.player.global_position).length() <= 32:
 							emit_signal("lose_hp")
 					else:
 						destination = path[0]
