@@ -84,6 +84,19 @@ func _process(_delta):
 				destination = path[0]
 			move_to(destination)
 		else:
+			if strategy == Strategy.CHASE:
+				target = characters.player.global_position + Vector2(0, -32)
+				path = region.get_path_to_target(origin, target)
+				if path != null:
+					var destination
+					if len(path) == 0:
+						destination = target
+						if strategy == Strategy.CHASE:
+							emit_signal("lose_hp")
+					else:
+						destination = path[0]
+					move_to(destination)
+					return
 			cannot_reach_dest_counter += 1
 			if cannot_reach_dest_counter == 60:
 				cannot_reach_dest_counter = 0
