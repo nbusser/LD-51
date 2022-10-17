@@ -117,13 +117,13 @@ sounds = [ ExtResource( 37 ) ]
 
 [node name="Camera2D" type="Camera2D" parent="." index="4"]
 unique_name_in_owner = true
-position = Vector2( 0, -120 )
+position = Vector2( 0, -135 )
 current = true
 zoom = Vector2( 0.5, 0.5 )
 script = ExtResource( 38 )
 
 [node name="Flashlight" type="Light2D" parent="." index="5" groups=["flashlight"]]
-position = Vector2( 3, -121 )
+position = Vector2( 3, -136 )
 scale = Vector2( 1, 1.35 )
 texture = ExtResource( 3 )
 offset = Vector2( 0, 256 )
