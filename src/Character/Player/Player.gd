@@ -34,7 +34,12 @@ func _process(delta):
 		elif region.astar.is_navigable_simple(region.to_global(Vector2(position.x, new_position.y))):
 			position = Vector2(position.x, new_position.y)
 			can_move = true
-		
+		elif (region.wall_map.get_cellv(region.wall_map.world_to_map(position)) == Globals.TILE_TYPES.DOOR_CLOSED_H) && (region.wall_map.get_cellv(region.wall_map.world_to_map(new_position)) == Globals.TILE_TYPES.DOOR_CLOSED_H):
+			position = new_position
+			can_move = true
+		elif (region.wall_map.get_cellv(region.wall_map.world_to_map(position)) == Globals.TILE_TYPES.DOOR_CLOSED_V) && (region.wall_map.get_cellv(region.wall_map.world_to_map(new_position)) == Globals.TILE_TYPES.DOOR_CLOSED_V):
+			position = new_position
+			can_move = true
 		if can_move:
 			move_tick_timer.start()
 			$SoundFx/WalkSound.play_sound()
