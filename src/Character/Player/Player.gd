@@ -23,8 +23,19 @@ func _process(delta):
 	if (Globals.can_interact && dir != Vector2(0, 0)):
 		var new_position = position + dir * speed * delta
 		var old_position_g = region.to_global(position)
+		
+		var can_move = false
 		if region.astar.is_navigable_simple(region.to_global(new_position)):
 			position = new_position
+			can_move = true
+		elif region.astar.is_navigable_simple(region.to_global(Vector2(new_position.x, position.y))):
+			position = Vector2(new_position.x, position.y)
+			can_move = true
+		elif region.astar.is_navigable_simple(region.to_global(Vector2(position.x, new_position.y))):
+			position = Vector2(position.x, new_position.y)
+			can_move = true
+		
+		if can_move:
 			move_tick_timer.start()
 			$SoundFx/WalkSound.play_sound()
 			var current_cell = region.wall_map.world_to_map(position)
