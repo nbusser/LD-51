@@ -29,7 +29,8 @@ func _ready():
 
 func _process(_delta):
 	if Input.is_action_pressed("quit"):
-		get_tree().quit()
+		# get_tree().quit()
+		pass
 
 func _on_quit_game():
 	get_tree().quit()
@@ -72,13 +73,10 @@ func _on_end_of_level():
 	else:
 		_load_end_level()
 
-func first_level():
-	return current_level_number == 0
-
 func _on_game_over():
 	var scene = game_over.instance()
 	scene.connect("restart", self, "_on_restart_level")
-	scene.connect("quit", self, "_on_quit_game")
+	scene.connect("main_menu", self, "_on_show_main_menu")
 	self.current_scene = scene
 
 func _on_restart_level():

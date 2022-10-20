@@ -37,11 +37,11 @@ margin_right = 592.0
 margin_bottom = 160.0
 text = "Restart"
 
-[node name="Quit" type="Button" parent="CenterContainer/VBoxContainer"]
+[node name="MainMenu" type="Button" parent="CenterContainer/VBoxContainer"]
 margin_top = 192.0
 margin_right = 592.0
 margin_bottom = 224.0
-text = "Quit"
+text = "Main Menu"
 
 [connection signal="pressed" from="CenterContainer/VBoxContainer/Restart" to="." method="_on_Restart_pressed"]
-[connection signal="pressed" from="CenterContainer/VBoxContainer/Quit" to="." method="_on_Quit_pressed"]
+[connection signal="pressed" from="CenterContainer/VBoxContainer/MainMenu" to="." method="_on_MainMenu_pressed"]
