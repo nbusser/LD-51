@@ -17,6 +17,7 @@ onready var level_card = $"%LevelCard"
 onready var dialog = $"%Dialog"
 onready var lose_hp_cooldown = $"%LoseHpCooldown"
 onready var health_filter = $"%HealthFilter"
+onready var canvas_modulate = $"%CanvasModulate"
 
 var calamities_count = 0 
 
@@ -27,6 +28,8 @@ var current_level_number = 0
 var skip_level_intro = false
 var health = 1.0
 var dead = false
+
+var canvas_modulate_initial_color
 
 func init(level_number_v, skip_level_intro_v):
 	skip_level_intro = Globals.SKIP_LEVEL_INTRO or skip_level_intro_v
@@ -105,6 +108,8 @@ func _ready():
 	camera.offset = map.get_map_center_relative_to_player()
 	camera.zoom = Vector2(3.0, 3.0)
 	hud.modulate.a = 0.0
+	canvas_modulate_initial_color = canvas_modulate.color
+	canvas_modulate.color = canvas_modulate_initial_color.linear_interpolate(Color.white, 0.5)
 	
 	get_tree().call_group("ceiling_tilemaps", "animate_show")
 	
@@ -116,6 +121,7 @@ func _ready():
 	tween.set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_IN_OUT)
 	tween.tween_property(camera, "offset", Vector2(0.0, 0.0), 3.0)
 	tween.parallel().tween_property(camera, "zoom", Vector2(0.5, 0.5), 3.0)
+	tween.parallel().tween_property(canvas_modulate, "color", canvas_modulate_initial_color, 3.0)
 	
 	$CutsceneFallback.start()
 	tween.tween_callback(self, "_start_level")
