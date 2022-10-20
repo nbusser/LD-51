@@ -36,6 +36,7 @@ func _on_quit_game():
 	get_tree().quit()
 
 func _on_start_game():
+	current_level_number = 0
 	_load_level()
 
 func _on_show_credits():
