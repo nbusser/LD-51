@@ -31,7 +31,6 @@ shape = SubResource( 1 )
 
 [node name="Light2D" type="Light2D" parent="."]
 texture = ExtResource( 2 )
-energy = 0.8
 shadow_enabled = true
 
 [node name="SoundFx" type="Node" parent="."]

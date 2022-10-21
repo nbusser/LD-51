@@ -229,7 +229,7 @@ wait_time = 0.8
 
 [node name="Halo" type="Light2D" parent="." index="3"]
 position = Vector2( 16, -22 )
-scale = Vector2( 0.324219, 0.314453 )
+scale = Vector2( 0.314, 0.314 )
 texture = ExtResource( 3 )
 texture_scale = 2.0
 color = Color( 0.627451, 0.270588, 0.219608, 0.52549 )
