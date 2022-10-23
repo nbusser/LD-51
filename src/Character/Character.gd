@@ -43,6 +43,13 @@ func _ready():
 
 func _process(_delta):
 	_update_animation()
+		
+	var map_pos = region.tilemap.world_to_map(position)
+	var current_wall_tile = region.wall_map.get_cell(map_pos.x, map_pos.y + 1)
+	if current_wall_tile == TileMap.INVALID_CELL:
+		self.z_index = 1
+	else:
+		self.z_index = 0
 
 func get_tile(gcoords):
 	return region.tilemap.world_to_map(region.tilemap.to_local(gcoords))
@@ -112,7 +119,3 @@ func move_to(gcoords):
 			self, "position", self.position, destination, get_character_speed(), Tween.TRANS_LINEAR, Tween.EASE_IN_OUT
 		)
 		$Tween.start()
-		
-		var destination_tile = region.tilemap.world_to_map(destination)
-		var current_wall_tile = region.wall_map.get_cell(destination_tile.x, destination_tile.y + 1)
-		self.z_index = 1 if current_wall_tile != 10 else 0
