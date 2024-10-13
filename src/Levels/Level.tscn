@@ -4,14 +4,14 @@
 [ext_resource path="res://assets/shaders/pulse.gdshader" type="Shader" id=2]
 [ext_resource path="res://src/HUD/HUD.tscn" type="PackedScene" id=3]
 [ext_resource path="res://src/Levels/Level.gd" type="Script" id=4]
-[ext_resource path="res://assets/sprites/pulse.png" type="Texture" id=5]
+[ext_resource path="res://assets/sprites/pulse.png" type="Texture2D" id=5]
 [ext_resource path="res://src/HUD/Dialog.tscn" type="PackedScene" id=6]
 [ext_resource path="res://src/AudioBankPlayer.gd" type="Script" id=7]
 [ext_resource path="res://assets/sounds/sounds/ventilation_1.ogg" type="AudioStream" id=8]
 [ext_resource path="res://assets/sounds/sounds/bruit_vaisseau_2.ogg" type="AudioStream" id=9]
 [ext_resource path="res://assets/sounds/sounds/bruit_vaisseau_1.ogg" type="AudioStream" id=10]
 [ext_resource path="res://assets/sounds/sounds/bruit_vaisseau_3.ogg" type="AudioStream" id=11]
-[ext_resource path="res://assets/sprites/health.png" type="Texture" id=12]
+[ext_resource path="res://assets/sprites/health.png" type="Texture2D" id=12]
 
 [sub_resource type="ShaderMaterial" id=1]
 shader = ExtResource( 2 )
@@ -44,32 +44,32 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-margin_left = -512.0
-margin_top = -64.0
-margin_right = 512.0
-margin_bottom = 64.0
-rect_min_size = Vector2( 0, 128 )
+offset_left = -512.0
+offset_top = -64.0
+offset_right = 512.0
+offset_bottom = 64.0
+custom_minimum_size = Vector2( 0, 128 )
 
 [node name="VBoxContainer" type="VBoxContainer" parent="UI/LevelCard"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-custom_constants/separation = -4
+theme_override_constants/separation = -4
 
 [node name="LevelNumber" type="Label" parent="UI/LevelCard/VBoxContainer"]
 unique_name_in_owner = true
-margin_right = 1024.0
-margin_bottom = 64.0
+offset_right = 1024.0
+offset_bottom = 64.0
 theme_type_variation = "LevelLabel"
-custom_colors/font_color = Color( 0.301961, 0.392157, 0.462745, 1 )
+theme_override_colors/font_color = Color( 0.301961, 0.392157, 0.462745, 1 )
 text = "LEVEL 000 //////////"
 align = 1
 valign = 1
 
 [node name="LevelName" type="Label" parent="UI/LevelCard/VBoxContainer"]
 unique_name_in_owner = true
-margin_top = 60.0
-margin_right = 1024.0
-margin_bottom = 124.0
+offset_top = 60.0
+offset_right = 1024.0
+offset_bottom = 124.0
 theme_type_variation = "LevelLabel"
 text = "LEVEL_NAME"
 align = 1

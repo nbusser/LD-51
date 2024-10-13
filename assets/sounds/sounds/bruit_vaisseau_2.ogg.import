@@ -1,15 +1,19 @@
 [remap]
 
-importer="ogg_vorbis"
-type="AudioStreamOGGVorbis"
-path="res://.import/bruit_vaisseau_2.ogg-c3d2fa53d13d5978cdc0f0eb062a7a45.oggstr"
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://ces5d3cp6rej5"
+path="res://.godot/imported/bruit_vaisseau_2.ogg-c3d2fa53d13d5978cdc0f0eb062a7a45.oggvorbisstr"
 
 [deps]
 
 source_file="res://assets/sounds/sounds/bruit_vaisseau_2.ogg"
-dest_files=[ "res://.import/bruit_vaisseau_2.ogg-c3d2fa53d13d5978cdc0f0eb062a7a45.oggstr" ]
+dest_files=["res://.godot/imported/bruit_vaisseau_2.ogg-c3d2fa53d13d5978cdc0f0eb062a7a45.oggvorbisstr"]
 
 [params]
 
 loop=false
 loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

@@ -2,10 +2,10 @@ extends Node2D
 
 class_name Character
 
-onready var move_tick_timer = $MoveTick
-onready var characters = $"../../../../Characters"
+@onready var move_tick_timer = $MoveTick
+@onready var characters = $"../../../../Characters"
 
-onready var manager = get_parent()
+@onready var manager = get_parent()
 
 const UP = Vector2(0, -32)
 const DOWN = Vector2(0, 32)
@@ -16,11 +16,11 @@ var direction = DOWN
 
 var region = null
 
-export var initial_region_type = Globals.REGION_TYPE.STATIC
-export var initial_region_number = 0
+@export var initial_region_type = Globals.REGION_TYPE.STATIC
+@export var initial_region_number = 0
 
 func correct(x):
-	return region.tilemap.map_to_world(region.tilemap.world_to_map(x))
+	return region.tilemap.map_to_local(region.tilemap.local_to_map(x))
 
 func center():
 	position = correct(position)
@@ -35,7 +35,7 @@ func update_map(new_region):
 
 func _ready():
 	# Waits for Game.gd to run randomize()
-	yield(get_tree(), "idle_frame")
+	await get_tree().idle_frame
 	$SoundFx/SpawnSound.play_sound()
 	update_map(get_node("../.."))
 	if (not self.is_in_group("player")):
@@ -44,15 +44,17 @@ func _ready():
 func _process(_delta):
 	_update_animation()
 		
-	var map_pos = region.tilemap.world_to_map(position)
+	var map_pos = region.tilemap.local_to_map(position)
 	var current_wall_tile = region.wall_map.get_cell(map_pos.x, map_pos.y + 1)
-	if current_wall_tile == TileMap.INVALID_CELL:
+	# TODO changed as part of the upgrade to Godot 4, used to be TileMap.INVALID_CELL (I don't know
+	# what I am doing)
+	if current_wall_tile == -1:
 		self.z_index = 1
 	else:
 		self.z_index = 0
 
 func get_tile(gcoords):
-	return region.tilemap.world_to_map(region.tilemap.to_local(gcoords))
+	return region.tilemap.local_to_map(region.tilemap.to_local(gcoords))
 
 func can_move():
 	return move_tick_timer.is_stopped()
@@ -77,8 +79,8 @@ func _get_animation_ref():
 func _update_animation():
 	var animation = _get_animation_ref()
 	
-	if $Sprite.animation != animation:
-		$Sprite.animation = animation
+	if $Sprite2D.animation != animation:
+		$Sprite2D.animation = animation
 
 func move(to_direction):
 	move_to(global_position + to_direction)

@@ -1,15 +1,19 @@
 [remap]
 
-importer="ogg_vorbis"
-type="AudioStreamOGGVorbis"
-path="res://.import/fermeture_porte.ogg-aa420c3525b696806647456f5f1749ec.oggstr"
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://kuxsjnrp40f7"
+path="res://.godot/imported/fermeture_porte.ogg-aa420c3525b696806647456f5f1749ec.oggvorbisstr"
 
 [deps]
 
 source_file="res://assets/sounds/sounds/fermeture_porte.ogg"
-dest_files=[ "res://.import/fermeture_porte.ogg-aa420c3525b696806647456f5f1749ec.oggstr" ]
+dest_files=["res://.godot/imported/fermeture_porte.ogg-aa420c3525b696806647456f5f1749ec.oggvorbisstr"]
 
 [params]
 
 loop=false
 loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

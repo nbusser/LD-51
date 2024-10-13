@@ -1,18 +1,18 @@
 extends Node2D
 class_name Region
 
-onready var tilemap = $WalkableMap
-onready var wall_map = $TallMap
-onready var floor_map = $FloorMap
-onready var wall_deco_map = $WallDecorationMap
-onready var ceiling_map = $CeilingMap
-onready var rooms = $Rooms
-onready var astar = Astar.new([tilemap])
-onready var spawners = $Spawners
-onready var characters = $"../../Characters"
-onready var hud = $"../../../UI/HUD"
+@onready var tilemap = $WalkableMap
+@onready var wall_map = $TallMap
+@onready var floor_map = $FloorMap
+@onready var wall_deco_map = $WallDecorationMap
+@onready var ceiling_map = $CeilingMap
+@onready var rooms = $Rooms
+@onready var astar = Astar.new([tilemap])
+@onready var spawners = $Spawners
+@onready var characters = $"../../Characters"
+@onready var hud = $"../../../UI/HUD"
 
-onready var spawner = preload("res://src/Spawner/Spawner.tscn")
+@onready var spawner = preload("res://src/Spawner/Spawner.tscn")
 
 func _ready():
 	_create_ceiling()
@@ -22,7 +22,7 @@ func _ready():
 func _initialize_spawners():
 	for tile in wall_deco_map.get_used_cells_by_id(Globals.DECORATION_TILES.VENT):
 		var spawner_instance = spawner.instance()
-		spawner_instance.global_position = wall_deco_map.map_to_world(tile)
+		spawner_instance.global_position = wall_deco_map.map_to_local(tile)
 		spawners.add_child(spawner_instance)
 
 func _create_ceiling():

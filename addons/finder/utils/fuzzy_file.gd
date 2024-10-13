@@ -4,8 +4,8 @@ var _name: String
 var _extension: String
 var _path: String
 var _score: float
-var _icon: Texture
-var _preview: Texture
+var _icon: Texture2D
+var _preview: Texture2D
 # Specific to scripts
 var _parsing_result: GDscriptParser.GDScriptParserResult
 var _matching_properties := []  # of GDscriptParser.GDScriptParserResultProperty
@@ -16,7 +16,7 @@ signal updated(file)
 
 
 func _init(
-	name: String, extension: String, path: String, score: float, icon: Texture, preview: Texture
+	name: String, extension: String, path: String, score: float, icon: Texture2D, preview: Texture2D
 ):
 	_name = name
 	_extension = extension
@@ -46,11 +46,11 @@ func score() -> float:
 	return _score
 
 
-func icon() -> Texture:
+func icon() -> Texture2D:
 	return _icon
 
 
-func preview() -> Texture:
+func preview() -> Texture2D:
 	return _preview
 
 
@@ -75,12 +75,12 @@ func set_score(score: float) -> void:
 	emit_signal("updated", self)
 
 
-func set_icon(icon: Texture) -> void:
+func set_icon(icon: Texture2D) -> void:
 	_icon = icon
 	emit_signal("updated", self)
 
 
-func set_preview(preview: Texture) -> void:
+func set_preview(preview: Texture2D) -> void:
 	_preview = preview
 	emit_signal("updated", self)
 
@@ -106,4 +106,4 @@ func clear_matching_properties():
 
 
 func sort_properties(sorter) -> void:
-	_matching_properties.sort_custom(sorter, "sort_properties")
+	_matching_properties.sort_custom(Callable(sorter, "sort_properties"))

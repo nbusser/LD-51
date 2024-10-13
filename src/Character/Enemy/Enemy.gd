@@ -1,26 +1,26 @@
-signal lose_hp
-
 extends Character
 
+signal lose_hp
+
 enum Strategy {
-	PATROL
-	CHASE
+	PATROL,
+	CHASE,
 	ALERT
 }
 
-export var strategy = Strategy.PATROL
-var patrol_room setget set_patrol_room
+@export var strategy = Strategy.PATROL
+var patrol_room : set = set_patrol_room
 var patrol_index = 0
 
 var rooms_manager = null
 
-onready var patrol_speed = $MoveTick.wait_time
-onready var chase_speed = patrol_speed * 0.3
+@onready var patrol_speed = $MoveTick.wait_time
+@onready var chase_speed = patrol_speed * 0.3
 
 const SPEED_MALUS_BLIND = 1.5
 const SPEED_BONUS_ALERT = 0.5
 
-onready var characters_manager = $"../"
+@onready var characters_manager = $"../"
 
 var blind_sources = []
 
@@ -38,7 +38,7 @@ func get_current_patrol_point(world_coordinates=false):
 	return patrol_room.get_patrol_points(world_coordinates)[patrol_index]
 	
 func _get_animation_ref():
-	var animation = ._get_animation_ref()
+	var animation = super._get_animation_ref()
 	if is_blind():
 		animation = "dazzle_" + animation
 	return animation
@@ -59,7 +59,7 @@ func _process(_delta):
 	
 	if $StartMoving.time_left == 0 and can_move():
 		var origin_tile = get_tile(global_position)
-		var origin = region.to_global(region.tilemap.map_to_world(origin_tile))
+		var origin = region.to_global(region.tilemap.map_to_local(origin_tile))
 		var target
 		
 		if strategy == Strategy.CHASE:
@@ -70,7 +70,7 @@ func _process(_delta):
 				return
 			if get_tile(global_position) == get_current_patrol_point(false):
 				patrol_index = patrol_room.get_next_patrol_index(patrol_index)
-			target = region.to_global(region.tilemap.map_to_world(get_current_patrol_point(false)))
+			target = region.to_global(region.tilemap.map_to_local(get_current_patrol_point(false)))
 			if first:
 				first = false
 		var path = region.get_path_to_target(origin, target)

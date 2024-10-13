@@ -1,150 +1,125 @@
-[gd_resource type="Theme" load_steps=21 format=2]
+[gd_resource type="Theme" load_steps=21 format=3 uid="uid://cv3g068c8utk6"]
 
-[ext_resource path="res://assets/fonts/upheaval.tres" type="DynamicFont" id=1]
-[ext_resource path="res://assets/fonts/squarewave_regular.tres" type="DynamicFont" id=2]
-[ext_resource path="res://assets/fonts/squarewave_bold.tres" type="DynamicFont" id=3]
-[ext_resource path="res://assets/fonts/squarewave_italic.tres" type="DynamicFont" id=4]
-[ext_resource path="res://assets/fonts/upheaval_big.tres" type="DynamicFont" id=5]
-[ext_resource path="res://assets/sprites/plaque.png" type="Texture" id=6]
-[ext_resource path="res://assets/sprites/progress_bar.png" type="Texture" id=7]
+[ext_resource type="FontFile" path="res://assets/fonts/upheaval.tres" id="1"]
+[ext_resource type="FontFile" path="res://assets/fonts/squarewave_regular.tres" id="2"]
+[ext_resource type="FontFile" path="res://assets/fonts/squarewave_bold.tres" id="3"]
+[ext_resource type="FontFile" path="res://assets/fonts/squarewave_italic.tres" id="4"]
+[ext_resource type="FontFile" path="res://assets/fonts/upheaval_big.tres" id="5"]
+[ext_resource type="Texture2D" uid="uid://b2wqojcv2dpv1" path="res://assets/sprites/plaque.png" id="6"]
+[ext_resource type="Texture2D" uid="uid://b58ewxhawr427" path="res://assets/sprites/progress_bar.png" id="7"]
 
-[sub_resource type="StreamTexture" id=4]
-load_path = "res://.import/button.png-01faf565b773239305f3664038f20e61.stex"
+[sub_resource type="CompressedTexture2D" id="4"]
 
-[sub_resource type="AtlasTexture" id=2]
-atlas = SubResource( 4 )
-region = Rect2( 0, 32, 53, 32 )
+[sub_resource type="AtlasTexture" id="2"]
+atlas = SubResource("4")
+region = Rect2(0, 32, 53, 32)
 
-[sub_resource type="StyleBoxTexture" id=5]
-texture = SubResource( 2 )
-region_rect = Rect2( 0, 0, 53, 32 )
-margin_left = 25.0
-margin_right = 23.0
+[sub_resource type="StyleBoxTexture" id="5"]
+texture = SubResource("2")
 axis_stretch_horizontal = 1
 axis_stretch_vertical = 1
+region_rect = Rect2(0, 0, 53, 32)
 
-[sub_resource type="AtlasTexture" id=7]
-atlas = SubResource( 4 )
-region = Rect2( 0, 0, 53, 32 )
+[sub_resource type="AtlasTexture" id="7"]
+atlas = SubResource("4")
+region = Rect2(0, 0, 53, 32)
 
-[sub_resource type="StyleBoxTexture" id=3]
-texture = SubResource( 7 )
-region_rect = Rect2( 0, 0, 53, 32 )
-margin_left = 25.0
-margin_right = 23.0
+[sub_resource type="StyleBoxTexture" id="3"]
+texture = SubResource("7")
 axis_stretch_horizontal = 1
 axis_stretch_vertical = 1
+region_rect = Rect2(0, 0, 53, 32)
 
-[sub_resource type="AtlasTexture" id=8]
-atlas = SubResource( 4 )
-region = Rect2( 0, 64, 53, 32 )
+[sub_resource type="AtlasTexture" id="8"]
+atlas = SubResource("4")
+region = Rect2(0, 64, 53, 32)
 
-[sub_resource type="StyleBoxTexture" id=6]
-texture = SubResource( 8 )
-region_rect = Rect2( 0, 0, 53, 32 )
-margin_left = 25.0
-margin_right = 23.0
+[sub_resource type="StyleBoxTexture" id="6"]
+texture = SubResource("8")
 axis_stretch_horizontal = 1
 axis_stretch_vertical = 1
+region_rect = Rect2(0, 0, 53, 32)
 
-[sub_resource type="StyleBoxFlat" id=15]
+[sub_resource type="StyleBoxFlat" id="15"]
 content_margin_top = 8.0
 content_margin_bottom = 8.0
-bg_color = Color( 0, 0, 0, 1 )
+bg_color = Color(0, 0, 0, 1)
 border_width_left = 2
 border_width_top = 2
 border_width_right = 2
 border_width_bottom = 2
-border_color = Color( 1, 1, 1, 1 )
+border_color = Color(1, 1, 1, 1)
 expand_margin_left = 8.0
-expand_margin_right = 8.0
 expand_margin_top = 8.0
+expand_margin_right = 8.0
 expand_margin_bottom = 8.0
 
-[sub_resource type="StyleBoxTexture" id=11]
-texture = ExtResource( 7 )
-region_rect = Rect2( 13, 0, 13, 16 )
-margin_left = 4.0
-margin_right = 5.0
-margin_top = 4.0
-margin_bottom = 4.0
+[sub_resource type="StyleBoxTexture" id="11"]
+texture = ExtResource("7")
 axis_stretch_horizontal = 1
 axis_stretch_vertical = 1
+region_rect = Rect2(13, 0, 13, 16)
 
-[sub_resource type="StyleBoxTexture" id=12]
-texture = ExtResource( 7 )
-region_rect = Rect2( 0, 0, 13, 16 )
-margin_left = 4.0
-margin_right = 5.0
-margin_top = 4.0
-margin_bottom = 4.0
+[sub_resource type="StyleBoxTexture" id="12"]
+texture = ExtResource("7")
 axis_stretch_horizontal = 1
 axis_stretch_vertical = 1
+region_rect = Rect2(0, 0, 13, 16)
 
-[sub_resource type="StyleBoxTexture" id=13]
-texture = ExtResource( 7 )
-region_rect = Rect2( 13, 16, 13, 16 )
-margin_left = 4.0
-margin_right = 5.0
-margin_top = 4.0
-margin_bottom = 4.0
+[sub_resource type="StyleBoxTexture" id="13"]
+texture = ExtResource("7")
 axis_stretch_horizontal = 1
 axis_stretch_vertical = 1
+region_rect = Rect2(13, 16, 13, 16)
 
-[sub_resource type="StyleBoxTexture" id=14]
-texture = ExtResource( 7 )
-region_rect = Rect2( 0, 16, 13, 16 )
-margin_left = 4.0
-margin_right = 5.0
-margin_top = 4.0
-margin_bottom = 4.0
+[sub_resource type="StyleBoxTexture" id="14"]
+texture = ExtResource("7")
 axis_stretch_horizontal = 1
 axis_stretch_vertical = 1
+region_rect = Rect2(0, 16, 13, 16)
 
-[sub_resource type="StyleBoxTexture" id=9]
-texture = ExtResource( 6 )
-region_rect = Rect2( 0, 0, 171, 64 )
-margin_left = 86.0
-margin_right = 86.0
+[sub_resource type="StyleBoxTexture" id="9"]
+texture = ExtResource("6")
 axis_stretch_horizontal = 1
 axis_stretch_vertical = 1
+region_rect = Rect2(0, 0, 171, 64)
 
 [resource]
-default_font = ExtResource( 2 )
-Button/colors/font_color = Color( 0.870588, 0.796078, 0.623529, 1 )
-Button/colors/font_color_disabled = Color( 0.45098, 0.317647, 0.301961, 1 )
-Button/colors/font_color_focus = Color( 0.870588, 0.796078, 0.623529, 1 )
-Button/colors/font_color_hover = Color( 0.933333, 0.92549, 0.870588, 1 )
-Button/colors/font_color_pressed = Color( 0.67451, 0.541176, 0.443137, 1 )
-Button/fonts/font = ExtResource( 1 )
-Button/styles/focus = SubResource( 5 )
-Button/styles/hover = SubResource( 5 )
-Button/styles/normal = SubResource( 3 )
-Button/styles/pressed = SubResource( 6 )
-LevelLabel/base_type = "Label"
-LevelLabel/colors/font_color = Color( 0.121569, 0.101961, 0.141176, 1 )
-LevelLabel/fonts/font = ExtResource( 5 )
-Panel/styles/panel = SubResource( 15 )
-ProgressBar/styles/bg = SubResource( 11 )
-ProgressBar/styles/fg = SubResource( 12 )
-ProgressBar2/base_type = "ProgressBar"
-ProgressBar2/styles/bg = SubResource( 13 )
-ProgressBar2/styles/fg = SubResource( 14 )
-RichTextLabel/fonts/bold_font = ExtResource( 3 )
-RichTextLabel/fonts/italics_font = ExtResource( 4 )
-ScreenCounterLabel/base_type = "Label"
-ScreenCounterLabel/colors/font_color = Color( 0.658824, 0.811765, 0.854902, 1 )
-ScreenCounterLabel/fonts/font = ExtResource( 1 )
-ScreenLabel/base_type = "Label"
-ScreenLabel/colors/font_color = Color( 0.658824, 0.811765, 0.854902, 1 )
-ScreenLabel/fonts/font = ExtResource( 1 )
-ScreenLabelBig/base_type = "Label"
-ScreenLabelBig/colors/font_color = Color( 0.658824, 0.811765, 0.854902, 1 )
-ScreenLabelBig/fonts/font = ExtResource( 5 )
-TitleLabel/base_type = "Label"
-TitleLabel/colors/font_color = Color( 0.870588, 0.796078, 0.623529, 1 )
-TitleLabel/colors/font_color_shadow = Color( 0.933333, 0.92549, 0.870588, 1 )
+default_font = ExtResource("2")
+Button/colors/font_color = Color(0.870588, 0.796078, 0.623529, 1)
+Button/colors/font_color_disabled = Color(0.45098, 0.317647, 0.301961, 1)
+Button/colors/font_color_focus = Color(0.870588, 0.796078, 0.623529, 1)
+Button/colors/font_color_hover = Color(0.933333, 0.92549, 0.870588, 1)
+Button/colors/font_color_pressed = Color(0.67451, 0.541176, 0.443137, 1)
+Button/fonts/font = ExtResource("1")
+Button/styles/focus = SubResource("5")
+Button/styles/hover = SubResource("5")
+Button/styles/normal = SubResource("3")
+Button/styles/pressed = SubResource("6")
+LevelLabel/base_type = &"Label"
+LevelLabel/colors/font_color = Color(0.121569, 0.101961, 0.141176, 1)
+LevelLabel/fonts/font = ExtResource("5")
+Panel/styles/panel = SubResource("15")
+ProgressBar/styles/bg = SubResource("11")
+ProgressBar/styles/fg = SubResource("12")
+ProgressBar2/base_type = &"ProgressBar"
+ProgressBar2/styles/bg = SubResource("13")
+ProgressBar2/styles/fg = SubResource("14")
+RichTextLabel/fonts/bold_font = ExtResource("3")
+RichTextLabel/fonts/italics_font = ExtResource("4")
+ScreenCounterLabel/base_type = &"Label"
+ScreenCounterLabel/colors/font_color = Color(0.658824, 0.811765, 0.854902, 1)
+ScreenCounterLabel/fonts/font = ExtResource("1")
+ScreenLabel/base_type = &"Label"
+ScreenLabel/colors/font_color = Color(0.658824, 0.811765, 0.854902, 1)
+ScreenLabel/fonts/font = ExtResource("1")
+ScreenLabelBig/base_type = &"Label"
+ScreenLabelBig/colors/font_color = Color(0.658824, 0.811765, 0.854902, 1)
+ScreenLabelBig/fonts/font = ExtResource("5")
+TitleLabel/base_type = &"Label"
+TitleLabel/colors/font_color = Color(0.870588, 0.796078, 0.623529, 1)
+TitleLabel/colors/font_color_shadow = Color(0.933333, 0.92549, 0.870588, 1)
 TitleLabel/constants/shadow_offset_x = 0
 TitleLabel/constants/shadow_offset_y = -2
-TitleLabel/fonts/font = ExtResource( 5 )
-TitleLabel/styles/normal = SubResource( 9 )
+TitleLabel/fonts/font = ExtResource("5")
+TitleLabel/styles/normal = SubResource("9")

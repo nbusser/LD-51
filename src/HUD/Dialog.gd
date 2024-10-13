@@ -1,13 +1,13 @@
-signal close_dialog
-
 extends Control
 
-onready var text_label = $"%Text"
-onready var key_label = $"%KeyLabel"
+signal close_dialog
+
+@onready var text_label = $"%Text"
+@onready var key_label = $"%KeyLabel"
 var text_values: Array = []
 var current_step: int = 0
 var writing_text = false
-var tween_text: SceneTreeTween
+var tween_text: Tween
 
 func _ready():
 	hide()
@@ -33,23 +33,23 @@ func _load_step(step: int):
 	text_label.visible_characters = 0
 	text_label.text = text_values[step]
 	tween_text.tween_property(text_label, "visible_characters", text_label.text.length(), max(0.5, text_label.text.length() * 0.01))
-	tween_text.tween_callback(self, "_finished_writing")
+	tween_text.tween_callback(Callable(self, "_finished_writing"))
 
 func open_dialog(text: Array):
 	get_tree().paused = true
 	text_values = text
 	_load_step(0)
 
-func close_dialog():
+func end_dialog():
 	get_tree().paused = false
 	hide()
 	emit_signal("close_dialog")
 
 func _unhandled_input(event):
-	if visible and event is InputEventKey and event.scancode == KEY_SPACE and event.is_pressed():
+	if visible and event is InputEventKey and event.keycode == KEY_SPACE and event.is_pressed():
 		if writing_text:
 			_finished_writing()
 		elif current_step < text_values.size() - 1:
 			_load_step(current_step + 1)
 		else:
-			close_dialog()
+			end_dialog()

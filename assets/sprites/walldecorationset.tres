@@ -1,14 +1,14 @@
 [gd_resource type="TileSet" load_steps=6 format=2]
 
-[ext_resource path="res://assets/sprites/animated/vent/vent.tres" type="Texture" id=1]
-[ext_resource path="res://assets/sprites/tileset_futuristic.png" type="Texture" id=2]
-[ext_resource path="res://assets/sprites/animated/lampe_sol_1/lampe_sol.tres" type="Texture" id=3]
+[ext_resource path="res://assets/sprites/animated/vent/vent.tres" type="Texture2D" id=1]
+[ext_resource path="res://assets/sprites/tileset_futuristic.png" type="Texture2D" id=2]
+[ext_resource path="res://assets/sprites/animated/lampe_sol_1/lampe_sol.tres" type="Texture2D" id=3]
 
 [sub_resource type="OccluderPolygon2D" id=1]
-polygon = PoolVector2Array( 9.63068, 0.0476379, 9.16629, 14.9078, 4.52249, 18.1585, 9.16629, 24.1955, 9.63071, 50.6651, 11.4882, 76.206, 4.52249, 82.7074, 8.70193, 87.8155, 9.16632, 128, 23.0977, 127.288, 22.6333, 89.6731, 26.3484, 84.1005, 21.2402, 78.0636, 20.7758, 26.0529, 26.8128, 19.5516, 22.1689, 13.0503, 23.0977, 0 )
+polygon = PackedVector2Array( 9.63068, 0.0476379, 9.16629, 14.9078, 4.52249, 18.1585, 9.16629, 24.1955, 9.63071, 50.6651, 11.4882, 76.206, 4.52249, 82.7074, 8.70193, 87.8155, 9.16632, 128, 23.0977, 127.288, 22.6333, 89.6731, 26.3484, 84.1005, 21.2402, 78.0636, 20.7758, 26.0529, 26.8128, 19.5516, 22.1689, 13.0503, 23.0977, 0 )
 
 [sub_resource type="OccluderPolygon2D" id=2]
-polygon = PoolVector2Array( 0.680725, 17.5464, 7.64645, 17.5464, 17.3984, 20.3327, 27.6148, 16.1533, 70.8022, 16.6176, 77.7679, 20.7971, 85.1979, 17.082, 96, 16.6176, 96, 5.93689, 85.1979, 5.00812, 77.7679, 0, 68.4803, 4.54376, 66.6227, 7.79443, 27.1504, 8.25879, 21.1135, 2.22186, 10.4327, 5.00812, 0, 5.00812 )
+polygon = PackedVector2Array( 0.680725, 17.5464, 7.64645, 17.5464, 17.3984, 20.3327, 27.6148, 16.1533, 70.8022, 16.6176, 77.7679, 20.7971, 85.1979, 17.082, 96, 16.6176, 96, 5.93689, 85.1979, 5.00812, 77.7679, 0, 68.4803, 4.54376, 66.6227, 7.79443, 27.1504, 8.25879, 21.1135, 2.22186, 10.4327, 5.00812, 0, 5.00812 )
 
 [resource]
 31/name = "tileset_futuristic.png 31"

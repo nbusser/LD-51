@@ -1,9 +1,9 @@
 shader_type canvas_item;
 render_mode blend_add;
 
-uniform vec4 color: hint_color;
-uniform vec4 color2: hint_color;
-uniform vec4 color3: hint_color;
+uniform vec4 color: source_color;
+uniform vec4 color2: source_color;
+uniform vec4 color3: source_color;
 uniform float time;
 uniform float intensity = 0.0;
 uniform bool enabled = false;

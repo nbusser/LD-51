@@ -8,18 +8,18 @@ script = ExtResource( 2 )
 
 [node name="WalkableMap" parent="." index="0"]
 tile_set = null
-tile_data = PoolIntArray(  )
+tile_data = PackedInt32Array(  )
 
 [node name="FloorMap" parent="." index="1"]
 tile_set = null
 
 [node name="FloorDecorationMap" parent="." index="2"]
 tile_set = null
-tile_data = PoolIntArray(  )
+tile_data = PackedInt32Array(  )
 
 [node name="TallMap" parent="." index="3"]
 tile_set = null
 
 [node name="WallDecorationMap" parent="." index="4"]
 tile_set = null
-tile_data = PoolIntArray(  )
+tile_data = PackedInt32Array(  )

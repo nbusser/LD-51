@@ -1,15 +1,15 @@
 extends Node
 
-onready var characters = $"../../../Characters"
-onready var tilemap = $"../WalkableMap"
+@onready var characters = $"../../../Characters"
+@onready var tilemap = $"../WalkableMap"
 
 var _room_graph = {}
 
 func _ready():
 	for room in get_children():
-		room.connect("declare_neighbour", self, "_new_neighbour", [room])
-		room.connect("remove_neighbour", self, "_rm_neighbour", [room])
-		room.connect("alert_stopped", self, "stop_alert", [room])
+		room.connect("declare_neighbour", Callable(self, "_new_neighbour").bind(room))
+		room.connect("remove_neighbour", Callable(self, "_rm_neighbour").bind(room))
+		room.connect("alert_stopped", Callable(self, "stop_alert").bind(room))
 
 func _new_neighbour(room2, room1):
 	var neighbours = _room_graph.get(room1, []) + [room2]

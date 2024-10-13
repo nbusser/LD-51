@@ -1,15 +1,19 @@
 [remap]
 
-importer="ogg_vorbis"
-type="AudioStreamOGGVorbis"
-path="res://.import/neon_1.ogg-2c0d894f988a2f79ff24424ecefa1d07.oggstr"
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://curlucsp6rwwh"
+path="res://.godot/imported/neon_1.ogg-2c0d894f988a2f79ff24424ecefa1d07.oggvorbisstr"
 
 [deps]
 
 source_file="res://assets/sounds/sounds/neon_1.ogg"
-dest_files=[ "res://.import/neon_1.ogg-2c0d894f988a2f79ff24424ecefa1d07.oggstr" ]
+dest_files=["res://.godot/imported/neon_1.ogg-2c0d894f988a2f79ff24424ecefa1d07.oggvorbisstr"]
 
 [params]
 
 loop=false
 loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

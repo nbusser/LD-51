@@ -1,10 +1,10 @@
-signal level_done
-
 extends Control
 
-onready var level_label = $"%LevelName"
-onready var counter_label = $"%Counter"
-onready var total_label = $"%Total"
+signal level_done
+
+@onready var level_label = $"%LevelName"
+@onready var counter_label = $"%Counter"
+@onready var total_label = $"%Total"
 var total_coins_count = 0
 var current_coins_count = 0
 

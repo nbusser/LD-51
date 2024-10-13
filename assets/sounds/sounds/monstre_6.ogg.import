@@ -1,15 +1,19 @@
 [remap]
 
-importer="ogg_vorbis"
-type="AudioStreamOGGVorbis"
-path="res://.import/monstre_6.ogg-b2354a0538ee392a8ca204505755c516.oggstr"
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://ciou5ehamwib6"
+path="res://.godot/imported/monstre_6.ogg-b2354a0538ee392a8ca204505755c516.oggvorbisstr"
 
 [deps]
 
 source_file="res://assets/sounds/sounds/monstre_6.ogg"
-dest_files=[ "res://.import/monstre_6.ogg-b2354a0538ee392a8ca204505755c516.oggstr" ]
+dest_files=["res://.godot/imported/monstre_6.ogg-b2354a0538ee392a8ca204505755c516.oggvorbisstr"]
 
 [params]
 
 loop=false
 loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

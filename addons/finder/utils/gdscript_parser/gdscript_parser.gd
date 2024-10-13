@@ -17,7 +17,7 @@ var _named_enum_expr := RegEx.new()
 var _constant_expr := RegEx.new()
 var _variable_expr := RegEx.new()
 var _function_expr := RegEx.new()
-var _cache_dir_path := Directory.new()
+var _cache_dir_path := DirAccess.new()
 var _parsed_scripts := {}
 var _dir_walker: DirWalker
 
@@ -127,7 +127,9 @@ class GDScriptParserResult:
 		return arr
 
 	static func deserialize(json: String) -> GDScriptParserResult:
-		var parsed := JSON.parse(json)
+		var test_json_conv = JSON.new()
+		test_json_conv.parse(json)
+		var parsed := test_json_conv.get_data()
 
 		if parsed.error != OK and parsed.result is Dictionary:
 			return null
@@ -201,7 +203,7 @@ func parse(file_path: String) -> GDScriptParserResult:
 
 	# So it starts at zero for the parsers
 	var idx := -1
-	while file.get_position() < file.get_len():
+	while file.get_position() < file.get_length():
 		idx += 1
 
 		var line := file.get_line()
@@ -363,8 +365,8 @@ func _get_file_identifier(file_path: String, checksum: String) -> String:
 	return "%s_%s.json" % [file_path.md5_text(), checksum]
 
 
-func _load_cached_parsed_scripts(dir: Directory, file: File) -> void:
-	if OS.get_unix_time() - file.get_modified_time(file.get_path_absolute()) > 86400:
+func _load_cached_parsed_scripts(dir: DirAccess, file: File) -> void:
+	if Time.get_unix_time_from_system() - file.get_modified_time(file.get_path_absolute()) > 86400:
 		_cache_dir_path.remove(file.get_path_absolute())
 		return
 
@@ -392,11 +394,11 @@ func _cache_parsed_script(
 	if file.open("%s/%s" % [PARSED_RESULT_CACHE_PATH, file_identifier], File.WRITE) != OK:
 		print_debug("[Finder] Could not save parsed script cache")
 		return
-	file.store_string(JSON.print(parsed_script.serialize()))
+	file.store_string(JSON.stringify(parsed_script.serialize()))
 	file.close()
 
 
-func _delete_old_parsed_script(dir: Directory, file: File, file_identifier):
+func _delete_old_parsed_script(dir: DirAccess, file: File, file_identifier):
 	# Because the file identifier is composed of the MD5 of the file path
 	# We can check it to see if we are overriding a previously cached
 	# file, in which case we delete the old one.

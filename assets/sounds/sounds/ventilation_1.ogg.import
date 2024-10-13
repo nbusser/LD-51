@@ -1,15 +1,19 @@
 [remap]
 
-importer="ogg_vorbis"
-type="AudioStreamOGGVorbis"
-path="res://.import/ventilation_1.ogg-cc784dd12f8b02866f3bb19bd79a53e4.oggstr"
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://ctjfm5ueayl67"
+path="res://.godot/imported/ventilation_1.ogg-cc784dd12f8b02866f3bb19bd79a53e4.oggvorbisstr"
 
 [deps]
 
 source_file="res://assets/sounds/sounds/ventilation_1.ogg"
-dest_files=[ "res://.import/ventilation_1.ogg-cc784dd12f8b02866f3bb19bd79a53e4.oggstr" ]
+dest_files=["res://.godot/imported/ventilation_1.ogg-cc784dd12f8b02866f3bb19bd79a53e4.oggvorbisstr"]
 
 [params]
 
 loop=false
 loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

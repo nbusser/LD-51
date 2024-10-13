@@ -1,4 +1,4 @@
-extends Reference
+extends RefCounted
 class_name Astar
 
 var tilemaps
@@ -12,7 +12,7 @@ func is_navigable_type(tile_type):
 func is_navigable_simple(pos):
 	for t in tilemaps:
 		var local_pos = t.to_local(pos)
-		if is_navigable_type(t.get_cellv(t.world_to_map(local_pos))):
+		if is_navigable_type(t.get_cellv(t.local_to_map(local_pos))):
 			return true
 	return false
 

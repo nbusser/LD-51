@@ -12,7 +12,7 @@ const STRICT_MATCH_CHAR = "!"
 static func classify(file: FuzzyFile, search: String) -> bool:
 	var search_fragments := search.split(" ")
 
-	if search_fragments[-1].empty():
+	if search_fragments[-1].is_empty():
 		search_fragments.remove(search_fragments.size() - 1)
 
 	var valid_fragments := 0
@@ -142,10 +142,10 @@ static func _levenshtein_distance(this: String, that: String, strict_mode: bool)
 	return float(distances[-1]) / float(len(_that))
 
 
-static func _check_for_abbreaviation(full_split: PoolStringArray, abbreviation: String) -> float:
+static func _check_for_abbreaviation(full_split: PackedStringArray, abbreviation: String) -> float:
 	var index := 0
 	for piece in full_split:
-		if piece.empty():
+		if piece.is_empty():
 			continue
 
 		if index == len(abbreviation):
@@ -174,7 +174,7 @@ static func _check_for_camel_case_abbreaviation(full: String, abbreviation: Stri
 	# enforce upper case
 	var builder_list := []
 	for c in full:
-		if builder_list.empty():
+		if builder_list.is_empty():
 			builder_list.append(c.to_upper())
 			continue
 		# get the last character in the last element in the builder

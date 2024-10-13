@@ -1,15 +1,15 @@
-tool
+@tool
 extends Control
 class_name FileItem
 
-onready var texture_rect: TextureRect = $MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer/MarginContainer/CenterContainer/TextureRect
-onready var color_rect = $ColorRect
-onready var texture_rect_preview = $MarginContainer/HBoxContainer/CenterContainer2/TextureRect
-onready var margin_container = $MarginContainer
-onready var accent_color_rect = $AccentColorRect
-onready var file_name: Label = $"MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer/FileName"
-onready var file_path: Label = $"MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer/FilePath"
-onready var item_list: ItemList = $MarginContainer/HBoxContainer/VBoxContainer/ItemList
+@onready var texture_rect: TextureRect = $MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer/MarginContainer/CenterContainer/TextureRect
+@onready var color_rect = $ColorRect
+@onready var texture_rect_preview = $MarginContainer/HBoxContainer/CenterContainer2/TextureRect
+@onready var margin_container = $MarginContainer
+@onready var accent_color_rect = $AccentColorRect
+@onready var file_name: Label = $"MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer/FileName"
+@onready var file_path: Label = $"MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer/FilePath"
+@onready var item_list: ItemList = $MarginContainer/HBoxContainer/VBoxContainer/ItemList
 
 var _file: FuzzyFile
 var _focused := false
@@ -31,7 +31,7 @@ func set_file(
 	base_color: Color,
 	icons: Dictionary
 ) -> void:
-	if not file.is_connected("updated", self, "set_file"):
+	if not file.is_connected("updated", Callable(self, "set_file")):
 		file.connect(
 			"updated",
 			self,
@@ -43,25 +43,25 @@ func set_file(
 	_accent_color = accent_color
 	_base_color = base_color
 
-	self.rect_scale *= base_scale
+	self.scale *= base_scale
 
-	file_name.set("custom_fonts/font", bold_font)
+	file_name.set("theme_override_fonts/font", bold_font)
 	file_name.text = "%s.%s" % [file.name(), file.extension()]
-	file_name.hint_tooltip = file_name.text
+	file_name.tooltip_text = file_name.text
 
 	file_path.text = file.path()
-	file_path.hint_tooltip = file_path.text
-	file_path.set("custom_fonts/font", smaller_font)
+	file_path.tooltip_text = file_path.text
+	file_path.set("theme_override_fonts/font", smaller_font)
 
 	texture_rect.texture = file.icon()
 	texture_rect.modulate = accent_color
-	texture_rect_preview.get_parent().rect_min_size *= base_scale
-	texture_rect_preview.rect_min_size *= base_scale
+	texture_rect_preview.get_parent().custom_minimum_size *= base_scale
+	texture_rect_preview.custom_minimum_size *= base_scale
 
 	texture_rect_preview.texture = file.preview()
 	# Modulate the icon so it always have contrast with the background
 	var constrasted = base_color.contrasted()
-	texture_rect_preview.modulate = Color.white.blend(constrasted * 0.25)
+	texture_rect_preview.modulate = Color.WHITE.blend(constrasted * 0.25)
 
 	if compact_mode:
 		texture_rect_preview.get_parent().visible = false
@@ -69,8 +69,8 @@ func set_file(
 	var matching_properties := file.matching_properties()
 	item_list.clear()
 	item_list.visible = matching_properties.size() > 0
-	item_list.rect_min_size = (
-		(Vector2(0, 48) if matching_properties.size() >= 2 else item_list.rect_min_size)
+	item_list.custom_minimum_size = (
+		(Vector2(0, 48) if matching_properties.size() >= 2 else item_list.custom_minimum_size)
 		* base_scale
 	)
 	if matching_properties.size() > 0:
@@ -88,7 +88,7 @@ func _on_mouse_entered():
 
 func _on_mouse_exited():
 	_focused = false
-	color_rect.color = Color.transparent
+	color_rect.color = Color.TRANSPARENT
 	accent_color_rect.visible = false
 
 
@@ -96,7 +96,7 @@ func _on_gui_input(event: InputEvent):
 	if (
 		event is InputEventMouseButton
 		and event.is_pressed()
-		and event.button_index == BUTTON_LEFT
+		and event.button_index == MOUSE_BUTTON_LEFT
 		and not _item_list_focused
 	):
 		emit_signal("clicked", _file)
@@ -106,7 +106,7 @@ func _on_gui_input(event: InputEvent):
 func _input(event: InputEvent):
 	if (
 		event is InputEventKey
-		and event.scancode == KEY_ENTER
+		and event.keycode == KEY_ENTER
 		and _focused
 		and not _item_list_focused
 	):

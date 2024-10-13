@@ -1,9 +1,10 @@
 extends Region
 
-onready var walkable_map = $WalkableMap
+@onready var walkable_map = $WalkableMap
 var docked = []
 
-func _init().():
+func _init():
+	# super() TODO commented out as part of the upgrade to Godot 4
 	pass
 
 func dock(mobile):

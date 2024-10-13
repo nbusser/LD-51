@@ -1,13 +1,14 @@
+extends Interactible
+
 signal open_door(area, pos)
 signal close_door(area, pos)
-
-extends Interactible
 
 var _opened
 var _pos
 var _region
 
-func _init().(Globals.Interactibles.DOOR):
+func _init():
+	super(Globals.Interactibles.DOOR)
 	pass
 
 func init(region, opened, pos):

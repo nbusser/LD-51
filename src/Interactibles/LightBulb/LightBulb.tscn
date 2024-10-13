@@ -1,7 +1,7 @@
 [gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://src/AudioBankPlayer.gd" type="Script" id=1]
-[ext_resource path="res://assets/sprites/light_shape.png" type="Texture" id=2]
+[ext_resource path="res://assets/sprites/light_shape.png" type="Texture2D" id=2]
 [ext_resource path="res://src/Interactibles/LightBulb/LightBulb.gd" type="Script" id=3]
 [ext_resource path="res://assets/sounds/sounds/neon_3.ogg" type="AudioStream" id=4]
 [ext_resource path="res://assets/sounds/sounds/neon_tick.ogg" type="AudioStream" id=5]
@@ -29,7 +29,7 @@ collision_mask = 512
 [node name="PlayerInteractZone" type="CollisionShape2D" parent="PlayerInteractZone"]
 shape = SubResource( 1 )
 
-[node name="Light2D" type="Light2D" parent="."]
+[node name="PointLight2D" type="PointLight2D" parent="."]
 texture = ExtResource( 2 )
 shadow_enabled = true
 

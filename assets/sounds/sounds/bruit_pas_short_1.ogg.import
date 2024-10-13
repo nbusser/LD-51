@@ -1,15 +1,19 @@
 [remap]
 
-importer="ogg_vorbis"
-type="AudioStreamOGGVorbis"
-path="res://.import/bruit_pas_short_1.ogg-db5e239f651f4e976acc356f7814a34d.oggstr"
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://co2y48tt8n6w5"
+path="res://.godot/imported/bruit_pas_short_1.ogg-db5e239f651f4e976acc356f7814a34d.oggvorbisstr"
 
 [deps]
 
 source_file="res://assets/sounds/sounds/bruit_pas_short_1.ogg"
-dest_files=[ "res://.import/bruit_pas_short_1.ogg-db5e239f651f4e976acc356f7814a34d.oggstr" ]
+dest_files=["res://.godot/imported/bruit_pas_short_1.ogg-db5e239f651f4e976acc356f7814a34d.oggvorbisstr"]
 
 [params]
 
 loop=false
 loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

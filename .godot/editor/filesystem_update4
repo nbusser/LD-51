@@ -1,0 +1,15 @@
+res://default_env.tres
+res://src/SceneManager/SceneManager.tscn
+res://theme.tres
+res://src/Globals.gd
+res://src/Levels/Level.gd
+res://src/HUD/HUD.gd
+res://src/AudioBankPlayer.gd
+res://src/Character/Character.gd
+res://src/Character/Enemy/Enemy.gd
+res://src/Interactibles/Door/Door.gd
+res://src/Levels/Regions/StaticRegion.gd
+res://src/Levels/Regions/Room/Room.gd
+res://src/Interactibles/LightBulb/LightBulb.gd
+res://src/Character/Player/Player.gd
+res://src/HUD/Dialog.gd

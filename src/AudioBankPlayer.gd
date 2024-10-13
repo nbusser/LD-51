@@ -1,8 +1,7 @@
 extends AudioStreamPlayer
 
-export(Array, AudioStream) var sounds
-
-export var no_erase = false
+@export var sounds = []
+@export var no_erase = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -17,6 +16,6 @@ func play_sound():
 
 	if len(sounds) > 0:
 		stream = sounds[randi() % len(sounds)]
-		.play()
+		super.play()
 	else:
 		print('ERROR: no sound ', self)

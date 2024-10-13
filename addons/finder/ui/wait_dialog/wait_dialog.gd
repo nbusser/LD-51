@@ -1,10 +1,10 @@
-tool
+@tool
 extends Control
 class_name WaitDialog
 
-onready var popup_panel = $PopupPanel
-onready var animation_player = $AnimationPlayer
-onready var label = $PopupPanel/Label
+@onready var popup_panel = $PopupPanel
+@onready var animation_player = $AnimationPlayer
+@onready var label = $PopupPanel/Label
 
 
 func _ready():

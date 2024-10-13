@@ -1,15 +1,19 @@
 [remap]
 
-importer="ogg_vorbis"
-type="AudioStreamOGGVorbis"
-path="res://.import/neon_4.ogg-90821d50691bfcc7cb2ba82d0387e5ce.oggstr"
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://dfbtqdyuwtvgb"
+path="res://.godot/imported/neon_4.ogg-90821d50691bfcc7cb2ba82d0387e5ce.oggvorbisstr"
 
 [deps]
 
 source_file="res://assets/sounds/sounds/neon_4.ogg"
-dest_files=[ "res://.import/neon_4.ogg-90821d50691bfcc7cb2ba82d0387e5ce.oggstr" ]
+dest_files=["res://.godot/imported/neon_4.ogg-90821d50691bfcc7cb2ba82d0387e5ce.oggvorbisstr"]
 
 [params]
 
 loop=false
 loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

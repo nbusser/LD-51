@@ -1,9 +1,9 @@
 extends Node
 
-onready var door = preload("res://src/Interactibles/Door/Door.tscn")
-onready var map = $"../../../.."
-onready var tallmap = $"../TallMap"
-onready var walkable_map = $"../WalkableMap"
+@onready var door = preload("res://src/Interactibles/Door/Door.tscn")
+@onready var map = $"../../../.."
+@onready var tallmap = $"../TallMap"
+@onready var walkable_map = $"../WalkableMap"
 
 var door_cells = {}
 
@@ -15,11 +15,11 @@ func _ready():
 
 func _instantiate_doors(cells, opened):
 	for door_pos in cells:
-		var new_door = door.instance()
+		var new_door = door.instantiate()
 		new_door.init(self, opened, door_pos)
-		new_door.position = walkable_map.map_to_world(door_pos)
-		new_door.connect("open_door", self, "open_door")
-		new_door.connect("close_door", self, "close_door")
+		new_door.position = walkable_map.map_to_local(door_pos)
+		new_door.connect("open_door", Callable(self, "open_door"))
+		new_door.connect("close_door", Callable(self, "close_door"))
 		add_child(new_door)
 		door_cells[door_pos] = new_door
 

@@ -1,4 +1,4 @@
-tool
+@tool
 extends EditorPlugin
 
 const ACTIVATION_SHORTCUT = KEY_SHIFT
@@ -8,17 +8,17 @@ const RELOADING_DELAY := 5  # seconds
 var _last_valid_key_event = null
 var _finder: Finder
 var _parser: GDscriptParser
-var _excluded_paths := PoolStringArray()
+var _excluded_paths := PackedStringArray()
 var _smart_suggestions := false
 var _compact_mode := false
 var _last_reloaded := 0
 
 
 func _enter_tree():
-	_finder = preload("res://addons/finder/finder.tscn").instance()
-	_finder.connect("clicked", self, "_on_clicked")
-	_finder.connect("clicked_property", self, "_on_clicked_property")
-	_finder.connect("rebuild", self, "_build_file_tree", [true])
+	_finder = preload("res://addons/finder/finder.tscn").instantiate()
+	_finder.connect("clicked", Callable(self, "_on_clicked"))
+	_finder.connect("clicked_property", Callable(self, "_on_clicked_property"))
+	_finder.connect("rebuild", Callable(self, "_build_file_tree").bind(true))
 	_finder.set_editor_interface(get_editor_interface())
 
 	_parser = GDscriptParser.new()
@@ -30,7 +30,7 @@ func _enter_tree():
 	)
 
 	get_editor_interface().get_editor_settings().connect(
-		"settings_changed", self, "_update_preferences"
+		"changed", self, "_update_preferences"
 	)
 
 	_build_file_tree()
@@ -42,9 +42,9 @@ func _enter_tree():
 	_update_preferences(true)
 
 
-func _unhandled_key_input(event: InputEventKey):
-	if event.scancode == ACTIVATION_SHORTCUT and not event.is_pressed():
-		var current_time = OS.get_ticks_msec()
+func _unhandled_key_input(event: InputEvent):
+	if event.keycode == ACTIVATION_SHORTCUT and not event.is_pressed():
+		var current_time = Time.get_ticks_msec()
 
 		if _last_valid_key_event == null:
 			_last_valid_key_event = {event = event, time = current_time}
@@ -55,13 +55,13 @@ func _unhandled_key_input(event: InputEventKey):
 				# else we gonna get some nasty errors.
 				var remaing_time_due_reloading := (
 					RELOADING_DELAY
-					- (OS.get_unix_time() - _last_reloaded)
+					- (Time.get_unix_time_from_system() - _last_reloaded)
 				)
 				if remaing_time_due_reloading > 0:
-					var wait: WaitDialog = load("res://addons/finder/ui/wait_dialog/wait_dialog.tscn").instance()
+					var wait: WaitDialog = load("res://addons/finder/ui/wait_dialog/wait_dialog.tscn").instantiate()
 					add_child(wait)
 					wait.popup()
-					yield(get_tree().create_timer(remaing_time_due_reloading), "timeout")
+					await get_tree().create_timer(remaing_time_due_reloading).timeout
 					wait.queue_free()
 
 				_finder.popup_centered()
@@ -70,7 +70,7 @@ func _unhandled_key_input(event: InputEventKey):
 
 
 func _update_preferences(first_time: bool = false):
-	var excluded_paths: PoolStringArray = get_editor_interface().get_editor_settings().get(
+	var excluded_paths: PackedStringArray = get_editor_interface().get_editor_settings().get(
 		"finder/excluded_paths"
 	)
 	var compact_mode: bool = get_editor_interface().get_editor_settings().get("finder/compact_mode")
@@ -95,7 +95,7 @@ func _update_preferences(first_time: bool = false):
 		if not first_time:
 			_exit_tree()
 			_enter_tree()
-			_last_reloaded = OS.get_unix_time()
+			_last_reloaded = Time.get_unix_time_from_system()
 
 		_build_file_tree(true)
 
@@ -103,14 +103,14 @@ func _update_preferences(first_time: bool = false):
 func _build_file_tree(ignore_cache: bool = false):
 	var files := []  # accumulated png paths to return
 	var dir_queue := ["res://"]  # directories remaining to be traversed
-	var dir: Directory  # current directory being traversed
+	var dir: DirAccess  # current directory being traversed
 	var gui := get_editor_interface().get_base_control()
 
 	if ignore_cache:
 		_parser.purge_cache()
 
 	var file: String  # current file being examined
-	while file or not dir_queue.empty():
+	while file or not dir_queue.is_empty():
 		# continue looping until there are no files or directories left
 		if file:
 			# there is another file in this directory
@@ -156,14 +156,14 @@ func _build_file_tree(ignore_cache: bool = false):
 				# close the current directory
 				dir.list_dir_end()
 
-			if dir_queue.empty():
+			if dir_queue.is_empty():
 				# there are no more directories. terminate the loop
 				break
 
 			# there are more directories. open the next directory
-			dir = Directory.new()
+			dir = DirAccess.new()
 			dir.open(dir_queue.pop_front())
-			dir.list_dir_begin(true, true)
+			dir.list_dir_begin() # TODOConverter3To4 fill missing arguments https://github.com/godotengine/godot/pull/40547
 		file = dir.get_next()
 
 	_finder.set_files(files)
@@ -188,14 +188,14 @@ func _find_best_icon_for_file_extension(gui, file: FuzzyFile) -> void:
 
 
 func _on_resource_preview_ready(
-	path: String, preview: Texture, thumbnail_preview: Texture, file: FuzzyFile
+	path: String, preview: Texture2D, thumbnail_preview: Texture2D, file: FuzzyFile
 ):
 	file.set_preview(preview)
 
 
 func _on_clicked(file: FuzzyFile):
 	# Hack so we don't accidently transfer a "ui_accept" to the editor
-	yield(get_tree().create_timer(0.1), "timeout")
+	await get_tree().create_timer(0.1).timeout
 
 	var whole_path = file.whole_path()
 
@@ -211,7 +211,7 @@ func _on_clicked(file: FuzzyFile):
 
 
 func _on_clicked_property(file: FuzzyFile, property: GDscriptParser.GDScriptParserResultProperty):
-	yield(get_tree().create_timer(0.1), "timeout")
+	await get_tree().create_timer(0.1).timeout
 
 	var whole_path = file.whole_path()
 
@@ -222,7 +222,7 @@ func _on_clicked_property(file: FuzzyFile, property: GDscriptParser.GDScriptPars
 	get_editor_interface().call_deferred("edit_resource", load(whole_path))
 	var script_editor := get_editor_interface().get_script_editor()
 	# Yeah, another hack, but blame Godot for not exposing gotocolumn from the script_editor itself
-	yield(get_tree().create_timer(0.1), "timeout")
+	await get_tree().create_timer(0.1).timeout
 	var script_text_editor_container := script_editor.get_child(0).get_child(1).get_child(1)
 
 	var idx := 0
@@ -234,10 +234,10 @@ func _on_clicked_property(file: FuzzyFile, property: GDscriptParser.GDScriptPars
 		var script = open_scripts[idx]
 
 		if script.resource_path == whole_path:
-			var text_edit: TextEdit = script_text_editor.find_node("TextEdit", true, false)
-			yield(get_tree().create_timer(0.1), "timeout")
-			text_edit.call_deferred("cursor_set_column", property.column)
-			text_edit.call_deferred("cursor_set_line", property.row, false)
+			var text_edit: TextEdit = script_text_editor.find_child("TextEdit", true, false)
+			await get_tree().create_timer(0.1).timeout
+			text_edit.call_deferred("set_caret_column", property.column)
+			text_edit.call_deferred("set_caret_line", property.row, false)
 			text_edit.call_deferred(
 				"select",
 				property.row,
@@ -274,7 +274,7 @@ func _build_editor_settings():
 		editor_settings.add_property_info(
 			{
 				"name": "finder/excluded_paths",
-				"type": TYPE_STRING_ARRAY,
+				"type": TYPE_PACKED_STRING_ARRAY,
 			}
 		)
 
@@ -309,5 +309,5 @@ func _exit_tree():
 	)
 
 	get_editor_interface().get_editor_settings().disconnect(
-		"settings_changed", self, "_update_preferences"
+		"changed", self, "_update_preferences"
 	)

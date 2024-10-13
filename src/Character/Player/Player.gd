@@ -1,19 +1,19 @@
-signal cat_saved(pos)
-
 extends Character
+
+signal cat_saved(pos)
 
 var interactible = null
 
-onready var progress_bar = $"%ProgressBar"
-onready var interaction_hint = $"%InteractionHint"
-onready var camera = $"%Camera2D"
+@onready var progress_bar = $"%ProgressBar"
+@onready var interaction_hint = $"%InteractionHint"
+@onready var camera = $"%Camera2D"
 
 var speed = 120
 
 func handle_region_switch(old_region):
 	if (old_region != null):
-		self.disconnect("cat_saved", old_region, "save_cat")
-	self.connect("cat_saved", region, "save_cat")
+		self.disconnect("cat_saved", Callable(old_region, "save_cat"))
+	self.connect("cat_saved", Callable(region, "save_cat"))
 
 func _ready():
 	interaction_hint.hide()
@@ -34,16 +34,16 @@ func _process(delta):
 		elif region.astar.is_navigable_simple(region.to_global(Vector2(position.x, new_position.y))):
 			position = Vector2(position.x, new_position.y)
 			can_move = true
-		elif (region.wall_map.get_cellv(region.wall_map.world_to_map(position)) == Globals.TILE_TYPES.DOOR_CLOSED_H) && (region.wall_map.get_cellv(region.wall_map.world_to_map(new_position)) == Globals.TILE_TYPES.DOOR_CLOSED_H):
+		elif (region.wall_map.get_cellv(region.wall_map.local_to_map(position)) == Globals.TILE_TYPES.DOOR_CLOSED_H) && (region.wall_map.get_cellv(region.wall_map.local_to_map(new_position)) == Globals.TILE_TYPES.DOOR_CLOSED_H):
 			position = new_position
 			can_move = true
-		elif (region.wall_map.get_cellv(region.wall_map.world_to_map(position)) == Globals.TILE_TYPES.DOOR_CLOSED_V) && (region.wall_map.get_cellv(region.wall_map.world_to_map(new_position)) == Globals.TILE_TYPES.DOOR_CLOSED_V):
+		elif (region.wall_map.get_cellv(region.wall_map.local_to_map(position)) == Globals.TILE_TYPES.DOOR_CLOSED_V) && (region.wall_map.get_cellv(region.wall_map.local_to_map(new_position)) == Globals.TILE_TYPES.DOOR_CLOSED_V):
 			position = new_position
 			can_move = true
 		if can_move:
 			move_tick_timer.start()
 			$SoundFx/WalkSound.play_sound()
-			var current_cell = region.wall_map.world_to_map(position)
+			var current_cell = region.wall_map.local_to_map(position)
 			var current_wall_tile = region.wall_map.get_cell(current_cell.x, current_cell.y + 1)
 			self.z_index = 1 if current_wall_tile != 10 else 0
 			var displacement = global_position - old_position_g
@@ -91,7 +91,7 @@ func _process(delta):
 			$SoundFx/InteractLightSound.stop()
 			$InteractTimer.stop()
 	
-	var gaze_angle := (get_viewport().get_mouse_position() - OS.get_window_size()/2).normalized()
+	var gaze_angle := (get_viewport().get_mouse_position() - Vector2(get_window().get_size()/2)).normalized()
 	$Flashlight.rotation = gaze_angle.angle() - PI/2
 	
 	progress_bar.visible = is_interacting() or not can_interact()

@@ -1,15 +1,19 @@
 [remap]
 
-importer="ogg_vorbis"
-type="AudioStreamOGGVorbis"
-path="res://.import/alarme_1.ogg-d6bb936e3a52d05335c4d3b2efed81f3.oggstr"
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://yfepjvhy8b2e"
+path="res://.godot/imported/alarme_1.ogg-d6bb936e3a52d05335c4d3b2efed81f3.oggvorbisstr"
 
 [deps]
 
 source_file="res://assets/sounds/sounds/alarme_1.ogg"
-dest_files=[ "res://.import/alarme_1.ogg-d6bb936e3a52d05335c4d3b2efed81f3.oggstr" ]
+dest_files=["res://.godot/imported/alarme_1.ogg-d6bb936e3a52d05335c4d3b2efed81f3.oggvorbisstr"]
 
 [params]
 
 loop=false
 loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

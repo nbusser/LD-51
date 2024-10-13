@@ -1,9 +1,9 @@
-tool
+@tool
 extends ScrollContainer
 
-onready var v_box_container: VBoxContainer = $VBoxContainer
-onready var empty_label: Label = $VBoxContainer/EmptyLabel
-onready var easter_egg_label: Label = $VBoxContainer/EasterEggLabel
+@onready var v_box_container: VBoxContainer = $VBoxContainer
+@onready var empty_label: Label = $VBoxContainer/EmptyLabel
+@onready var easter_egg_label: Label = $VBoxContainer/EasterEggLabel
 
 var file_item = preload("res://addons/finder/ui/file_item_list/file_item.tscn")
 var _editor_interface: EditorInterface
@@ -36,10 +36,10 @@ func set_active(active: bool):
 
 func set_custom_resources(gui: Control, editor_settings: EditorSettings):
 	var font := gui.get_font("main", "EditorFonts").duplicate()
-	if font is DynamicFont:
+	if font is FontFile:
 		font.size *= 0.75
 		_smaller_font = font
-		easter_egg_label.add_font_override("font", _smaller_font)
+		easter_egg_label.add_theme_font_override("font", _smaller_font)
 
 	_bold_font = gui.get_font("bold", "EditorFonts")
 
@@ -60,10 +60,10 @@ func clear():
 			continue
 
 		if child is FileItem:
-			child.disconnect("clicked", self, "_on_clicked")
-			child.disconnect("clicked_property", self, "_on_clicked_property")
-			if child._file.is_connected("updated", self, "set_file"):
-				child._file.disconnect("updated", self, "set_file")
+			child.disconnect("clicked", Callable(self, "_on_clicked"))
+			child.disconnect("clicked_property", Callable(self, "_on_clicked_property"))
+			if child._file.is_connected("updated", Callable(self, "set_file")):
+				child._file.disconnect("updated", Callable(self, "set_file"))
 
 		v_box_container.remove_child(child)
 		child.queue_free()
@@ -73,10 +73,10 @@ func clear():
 
 
 func add_item(file: FuzzyFile):
-	var label: FileItem = file_item.instance()
+	var label: FileItem = file_item.instantiate()
 	v_box_container.add_child(label)
-	label.connect("clicked", self, "_on_clicked")
-	label.connect("clicked_property", self, "_on_clicked_property")
+	label.connect("clicked", Callable(self, "_on_clicked"))
+	label.connect("clicked_property", Callable(self, "_on_clicked_property"))
 
 	var compact_mode = _editor_interface.get_editor_settings().get("finder/compact_mode")
 	var base_scale = _editor_interface.get_editor_settings().get(
@@ -99,7 +99,7 @@ func add_item(file: FuzzyFile):
 		label.focus_previous = _previous_focus.get_path()
 		v_box_container.add_child(HSeparator.new())
 	elif v_box_container.get_child_count() > 3:
-		label.focus_neighbour_top = v_box_container.get_child(v_box_container.get_child_count() - 3).get_path()
+		label.focus_neighbor_top = v_box_container.get_child(v_box_container.get_child_count() - 3).get_path()
 
 	if (v_box_container.get_child_count()) % 2 == 0 and v_box_container.get_child_count() > 3:
 		v_box_container.add_child(HSeparator.new())
@@ -108,13 +108,13 @@ func add_item(file: FuzzyFile):
 	easter_egg_label.visible = false
 
 
-func _unhandled_key_input(event: InputEventKey):
+func _unhandled_key_input(event: InputEvent):
 	if not _active:
 		return
 
-	if event.scancode == KEY_PAGEUP:
+	if event.keycode == KEY_PAGEUP:
 		_focus_first()
-	elif event.scancode == KEY_PAGEDOWN:
+	elif event.keycode == KEY_PAGEDOWN:
 		_focus_last()
 
 
@@ -134,10 +134,10 @@ func _focus_first():
 	# The zeroth index is the EmptyLabel and the oneth is the EasterEggLabel
 	if v_box_container.get_child_count() > 2:
 		v_box_container.get_child(2).call_deferred("grab_focus")
-		get_v_scrollbar().value = 0
+		get_v_scroll_bar().value = 0
 
 
 func _focus_last():
 	if v_box_container.get_child_count() > 2:
 		v_box_container.get_child(v_box_container.get_child_count() - 2).call_deferred("grab_focus")
-		get_v_scrollbar().value = get_v_scrollbar().max_value
+		get_v_scroll_bar().value = get_v_scroll_bar().max_value

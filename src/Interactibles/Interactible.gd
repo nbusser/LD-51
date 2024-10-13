@@ -1,7 +1,7 @@
 extends Node2D
 class_name Interactible
 
-var interactible_type setget , get_interactible_type
+var interactible_type : get = get_interactible_type
 
 func _init(_interactible_type):
 	interactible_type = _interactible_type

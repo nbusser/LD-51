@@ -8,11 +8,11 @@ func _init(path: String):
 
 
 func walk(handler: FuncRef, args: Array = []):
-	var dir := Directory.new()
+	var dir := DirAccess.new()
 	if dir.open(_path) != OK:
 		return false
 
-	dir.list_dir_begin(true, true)
+	dir.list_dir_begin() # TODOConverter3To4 fill missing arguments https://github.com/godotengine/godot/pull/40547
 	var file_name = dir.get_next()
 	while file_name != "":
 		if not dir.current_is_dir():
@@ -28,5 +28,5 @@ func walk(handler: FuncRef, args: Array = []):
 		file_name = dir.get_next()
 
 
-static func delete_every_file(dir: Directory, file: File) -> void:
+static func delete_every_file(dir: DirAccess, file: File) -> void:
 	dir.remove(file.get_path_absolute())

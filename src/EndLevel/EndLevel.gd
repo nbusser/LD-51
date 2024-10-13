@@ -5,7 +5,7 @@ signal next_level
 var level_number
 var pressed = false
 
-onready var level_label = $CenterContainer/VBoxContainer/CenterContainer/HBoxContainer/LevelNumber
+@onready var level_label = $CenterContainer/VBoxContainer/CenterContainer/HBoxContainer/LevelNumber
 
 func _ready():
 	assert(level_number != null, "init must be called before creating EndLevel scene")

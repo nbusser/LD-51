@@ -8,7 +8,7 @@
 [node name="Character" type="Node2D" groups=["character"]]
 script = ExtResource( 7 )
 
-[node name="Sprite" type="AnimatedSprite" parent="."]
+[node name="Sprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2( 79, 78 )
 playing = true
 

@@ -1,16 +1,16 @@
+extends Node2D
 signal declare_neighbour(neighbour)
 signal remove_neighbour(neighbour)
+
 signal alert_stopped
 
-extends Node2D
-
-onready var map = $"../../../../../"
-onready var region = $"../.."
-onready var tilemap = $"../../WalkableMap"
-onready var wall_deco_map = $"../../WallDecorationMap"
-onready var lights = $LightBulbs
-onready var patrol_path = $PatrolPath
-onready var light = preload("res://src/Interactibles/LightBulb/LightBulb.tscn")
+@onready var map = $"../../../../../"
+@onready var region = $"../.."
+@onready var tilemap = $"../../WalkableMap"
+@onready var wall_deco_map = $"../../WallDecorationMap"
+@onready var lights = $LightBulbs
+@onready var patrol_path = $PatrolPath
+@onready var light = preload("res://src/Interactibles/LightBulb/LightBulb.tscn")
 
 var doors_positions
 var contained_characters = []
@@ -34,7 +34,7 @@ func _check_patrol_accessible():
 
 func _ready():
 	for light_bulb in $LightBulbs.get_children():
-		light_bulb.connect("light_alert_stopped", self, "_alert_update")
+		light_bulb.connect("light_alert_stopped", Callable(self, "_alert_update"))
 	
 	if $RoomArea/RoomShape.shape == null:
 		print('ERROR: missing room shape for ', self)
@@ -44,12 +44,12 @@ func _ready():
 	_patrol_points = (patrol_path.get_points())
 	for i in range(len(_patrol_points)):
 		_patrol_points[i] = patrol_path.to_global(_patrol_points[i])
-		_patrol_cells.append(tilemap.world_to_map(_patrol_points[i]))
+		_patrol_cells.append(tilemap.local_to_map(_patrol_points[i]))
 	
 	if len(_patrol_points) == 0:
 		print('ERROR: missing patrol for ', self)
 	else:
-		yield(map, "ready")
+		await map.ready
 		if not _check_patrol_accessible():
 			print('ERROR: patrol is not accessible ', self, region)
 
@@ -58,8 +58,8 @@ func _ready():
 func _is_in_room(cell):
 	var offset = $RoomArea/RoomShape.global_position
 	var shape_extent = $RoomArea/RoomShape.shape.extents
-	var upper_left_cell = tilemap.world_to_map(offset - shape_extent)
-	var bottom_right_cell = tilemap.world_to_map(offset + shape_extent)
+	var upper_left_cell = tilemap.local_to_map(offset - shape_extent)
+	var bottom_right_cell = tilemap.local_to_map(offset + shape_extent)
 	
 	return (
 		cell.x >= upper_left_cell.x 
@@ -72,7 +72,7 @@ func _initialize_lights():
 	for tile in wall_deco_map.get_used_cells_by_id(Globals.DECORATION_TILES.LIGHT):
 		if(_is_in_room(tile)):
 			var light_instance =  light.instance()
-			light_instance.global_position = wall_deco_map.map_to_world(tile)
+			light_instance.global_position = wall_deco_map.map_to_local(tile)
 			$LightBulbs.add_child(light_instance)
 
 func _on_RoomArea_area_entered(area):
@@ -147,4 +147,3 @@ func _on_AlertTimer_timeout():
 func _on_Alarm_finished():
 	if is_in_alert():
 		$AlertTimer.start()
-

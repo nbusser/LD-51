@@ -1,17 +1,17 @@
-tool
+@tool
 extends Control
 class_name Finder
 
 const MAX_RECENT_FILES := 5
 const DELAY_BETWEEN_REPAINTS := 50  # ms
 
-onready var line_edit: LineEdit = $WindowDialog/VBoxContainer/HBoxContainer/LineEdit
-onready var file_item_list = $WindowDialog/VBoxContainer/FileItemList
-onready var texture_rect = $WindowDialog/VBoxContainer/HBoxContainer/MarginContainer/TextureRect
-onready var reload_button: ToolButton = $WindowDialog/VBoxContainer/HBoxContainer/MarginContainer2/ReloadTextureRect
-onready var window_dialog = $WindowDialog
-onready var relevance_sorter: RelevanceSorter = RelevanceSorter.new()
-onready var tool_button = $ToolButton
+@onready var line_edit: LineEdit = $Window/VBoxContainer/HBoxContainer/LineEdit
+@onready var file_item_list = $Window/VBoxContainer/FileItemList
+@onready var texture_rect = $Window/VBoxContainer/HBoxContainer/MarginContainer/TextureRect
+@onready var reload_button: Button = $Window/VBoxContainer/HBoxContainer/MarginContainer2/ReloadTextureRect
+@onready var window_dialog = $Window
+@onready var relevance_sorter: RelevanceSorter = RelevanceSorter.new()
+@onready var tool_button = $Button
 
 var _editor_interface: EditorInterface
 
@@ -20,7 +20,7 @@ var _last_search = null
 var _last_repaint := 0
 
 var _files := []
-var _recent_files := PoolStringArray()
+var _recent_files := PackedStringArray()
 var _is_last_control_focused = false
 
 signal clicked(file)
@@ -45,13 +45,13 @@ func set_files(files: Array) -> void:
 
 
 func prepare():
-	file_item_list.connect("clicked", self, "_on_clicked")
-	file_item_list.connect("clicked_property", self, "_on_clicked_property")
-	reload_button.connect("pressed", self, "_on_reload_button_pressed")
-	window_dialog.connect("about_to_show", self, "_about_to_show")
-	window_dialog.connect("popup_hide", self, "_popup_hide")
-	line_edit.connect("text_changed", self, "_on_finder_text_changed")
-	tool_button.connect("pressed", self, "popup_centered")
+	file_item_list.connect("clicked", Callable(self, "_on_clicked"))
+	file_item_list.connect("clicked_property", Callable(self, "_on_clicked_property"))
+	reload_button.connect("pressed", Callable(self, "_on_reload_button_pressed"))
+	window_dialog.connect("about_to_popup", Callable(self, "_about_to_popup"))
+	window_dialog.connect("popup_hide", Callable(self, "_popup_hide"))
+	line_edit.connect("text_changed", Callable(self, "_on_finder_text_changed"))
+	tool_button.connect("pressed", Callable(self, "popup_centered"))
 
 	tool_button.icon = _editor_interface.get_base_control().get_icon("Search", "EditorIcons")
 
@@ -75,21 +75,21 @@ func _process(_delta):
 	if matching_files.size() == 0:
 		return
 
-	matching_files.sort_custom(relevance_sorter, "sort")
+	matching_files.sort_custom(Callable(relevance_sorter, "sort"))
 	for item in matching_files:
 		item.sort_properties(relevance_sorter)
 		file_item_list.add_item(item)
 
 
-func _unhandled_key_input(event: InputEventKey):
-	if window_dialog.visible && event.scancode == KEY_F && Input.is_key_pressed(KEY_CONTROL):
+func _unhandled_key_input(event: InputEvent):
+	if window_dialog.visible && event.keycode == KEY_F && Input.is_key_pressed(KEY_CTRL):
 		line_edit.call_deferred("grab_focus")
 
 
 func _filter_files() -> Array:
 	var matching_files := []
 
-	if not _current_search.empty():
+	if not _current_search.is_empty():
 		for file in _files:
 			file.clear_matching_properties()
 
@@ -117,7 +117,7 @@ func _on_finder_text_changed(new_text):
 		file_item_list.clear()
 
 
-func _about_to_show():
+func _about_to_popup():
 	file_item_list.set_editor_interface(_editor_interface)
 	file_item_list.set_previous_focus(line_edit)
 	file_item_list.set_active(true)
@@ -155,5 +155,5 @@ func _on_clicked_property(file, property):
 
 func _on_reload_button_pressed():
 	emit_signal("rebuild")
-	if _current_search == null or _current_search.empty():
+	if _current_search == null or _current_search.is_empty():
 		return

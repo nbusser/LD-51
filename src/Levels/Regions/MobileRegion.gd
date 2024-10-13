@@ -1,22 +1,23 @@
 extends Region
 
 var anchor_point = 0
-onready var path = $Line2D
-onready var tween = $MobileTween
+@onready var path = $Line2D
+@onready var tween = $MobileTween
 var backwards = false
 var is_moving = false
 var next_anchor_point = 1
 var segment
 var speed = 200
-onready var docks = []
-onready var static_regions = $"../../StaticAreas"
-onready var mobile_regions = $"../../MobileAreas"
-onready var g_characters = $"../../Characters"
-onready var walkable_map = $WalkableMap
+@onready var docks = []
+@onready var static_regions = $"../../StaticAreas"
+@onready var mobile_regions = $"../../MobileAreas"
+@onready var g_characters = $"../../Characters"
+@onready var walkable_map = $WalkableMap
 
 var docked_regions = []
 
-func _init().():
+func _init():
+	super()
 	pass
 
 func _ready():
@@ -99,10 +100,10 @@ func refresh_undock():
 
 func update_docked_regions():
 	for d in docks:
-		var world_loc = walkable_map.to_global(walkable_map.map_to_world(d))
+		var world_loc = walkable_map.to_global(walkable_map.map_to_local(d))
 		for s in static_regions.get_children():
 			var local = s.to_local(world_loc)
-			if (s.walkable_map.get_cellv(s.walkable_map.world_to_map(local)) == Globals.WALKABLE.DOCK):
+			if (s.walkable_map.get_cellv(s.walkable_map.local_to_map(local)) == Globals.WALKABLE.DOCK):
 				docked_regions.append(s)
 				s.dock(self)
 				continue

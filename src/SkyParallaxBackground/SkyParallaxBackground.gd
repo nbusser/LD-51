@@ -1,6 +1,6 @@
 extends ParallaxBackground
 
-export var follow_mouse: bool = false
+@export var follow_mouse: bool = false
 
 func _update_parallax(duration: float):
 	if follow_mouse:

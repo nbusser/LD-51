@@ -1,9 +1,9 @@
 extends Node2D
 
-onready var hud = get_node("../UI/HUD")
-onready var characters = $Characters
-onready var enemy = preload("res://src/Character/Enemy/Enemy.tscn")
-onready var player = characters.player
+@onready var hud = get_node("../UI/HUD")
+@onready var characters = $Characters
+@onready var enemy = preload("res://src/Character/Enemy/Enemy.tscn")
+@onready var player = characters.player
 
 func _ready():
 	var cats_count = 0
@@ -61,7 +61,7 @@ func room_alert(region, room):
 func spawn_monster(spawner):
 	var region = spawner.get_parent().get_parent()
 	var region_infos = Globals.GET_REGION_INFOS(region)
-	var mob = enemy.instance()
+	var mob = enemy.instantiate()
 	$Characters.add_character(mob, region, spawner.global_position)
 	spawner.queue_free()
 
