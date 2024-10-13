@@ -2,3 +2,11 @@ res://default_env.tres
 res://src/SceneManager/SceneManager.tscn
 res://theme.tres
 res://src/AudioBankPlayer.gd
+res://src/Levels/Regions/CeilingMap.tscn
+res://src/Levels/Regions/Region.tscn
+res://src/Levels/Level1/Level1.tscn
+res://src/Levels/Level1/Map1.tscn
+res://src/Levels/Level.tscn
+res://src/Levels/Map.tscn
+res://src/Levels/Regions/MobileRegion.tscn
+res://src/Levels/Regions/MobileRegion.gd

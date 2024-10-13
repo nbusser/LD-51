@@ -1,68 +1,49 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=10 format=3 uid="uid://ctirpi7a8112o"]
 
-[ext_resource path="res://src/Levels/Regions/Rooms.gd" type="Script" id=1]
-[ext_resource path="res://assets/sprites/walkableset.tres" type="TileSet" id=2]
-[ext_resource path="res://assets/sprites/floorset.tres" type="TileSet" id=3]
-[ext_resource path="res://assets/sprites/floordecorationset.tres" type="TileSet" id=4]
-[ext_resource path="res://assets/sprites/walldecorationset.tres" type="TileSet" id=5]
-[ext_resource path="res://assets/sprites/tallset.tres" type="TileSet" id=6]
-[ext_resource path="res://src/Levels/Regions/Region.gd" type="Script" id=7]
-[ext_resource path="res://src/Levels/Regions/CeilingMap.tscn" type="PackedScene" id=8]
-[ext_resource path="res://src/Interactibles/Door/Doors.gd" type="Script" id=9]
+[ext_resource type="Script" path="res://src/Levels/Regions/Rooms.gd" id="1"]
+[ext_resource type="TileSet" path="res://assets/sprites/walkableset.tres" id="2"]
+[ext_resource type="TileSet" path="res://assets/sprites/floorset.tres" id="3"]
+[ext_resource type="TileSet" path="res://assets/sprites/floordecorationset.tres" id="4"]
+[ext_resource type="TileSet" path="res://assets/sprites/walldecorationset.tres" id="5"]
+[ext_resource type="TileSet" path="res://assets/sprites/tallset.tres" id="6"]
+[ext_resource type="Script" path="res://src/Levels/Regions/Region.gd" id="7"]
+[ext_resource type="PackedScene" uid="uid://3e46bcgj1vow" path="res://src/Levels/Regions/CeilingMap.tscn" id="8"]
+[ext_resource type="Script" path="res://src/Interactibles/Door/Doors.gd" id="9"]
 
 [node name="Region" type="Node2D"]
-script = ExtResource( 7 )
+script = ExtResource("7")
 
-[node name="WalkableMap" type="TileMap" parent="."]
+[node name="WalkableMap" type="TileMapLayer" parent="."]
 visible = false
-z_index = -100
-tile_set = ExtResource( 2 )
-cell_size = Vector2( 32, 32 )
-bake_navigation = true
-format = 1
-tile_data = PackedInt32Array( 327707, 36, 524288, 655377, 36, 524288, 1769520, 36, 524288, 1966129, 36, 524288 )
+use_parent_material = true
+tile_set = ExtResource("2")
 
-[node name="FloorMap" type="TileMap" parent="."]
-z_index = -10
-tile_set = ExtResource( 3 )
-cell_size = Vector2( 32, 32 )
-bake_navigation = true
-format = 1
+[node name="FloorMap" type="TileMapLayer" parent="."]
+use_parent_material = true
+tile_set = ExtResource("3")
 
-[node name="FloorDecorationMap" type="TileMap" parent="."]
-z_index = -5
-tile_set = ExtResource( 4 )
-cell_size = Vector2( 32, 32 )
-bake_navigation = true
-format = 1
-tile_data = PackedInt32Array( 327707, 36, 524288, 655377, 36, 524288, 1769520, 36, 524288, 1966129, 36, 524288 )
+[node name="FloorDecorationMap" type="TileMapLayer" parent="."]
+use_parent_material = true
+tile_set = ExtResource("4")
 
-[node name="TallMap" type="TileMap" parent="."]
-z_index = 1
-tile_set = ExtResource( 6 )
-cell_size = Vector2( 32, 32 )
-bake_navigation = true
-format = 1
+[node name="TallMap" type="TileMapLayer" parent="."]
+use_parent_material = true
+tile_set = ExtResource("6")
 
-[node name="WallDecorationMap" type="TileMap" parent="."]
-z_index = 1
-tile_set = ExtResource( 5 )
-cell_size = Vector2( 32, 32 )
-bake_navigation = true
-format = 1
-tile_data = PackedInt32Array( 327707, 36, 524288, 655377, 36, 524288, 1769520, 36, 524288, 1966129, 36, 524288 )
+[node name="WallDecorationMap" type="TileMapLayer" parent="."]
+use_parent_material = true
+tile_set = ExtResource("5")
 
-[node name="CeilingMap" parent="." instance=ExtResource( 8 )]
+[node name="CeilingMap" parent="." instance=ExtResource("8")]
 light_mask = 0
 z_index = 100
-bake_navigation = false
 
 [node name="Rooms" type="Node2D" parent="."]
-script = ExtResource( 1 )
+script = ExtResource("1")
 
 [node name="Spawners" type="Node2D" parent="."]
 
 [node name="Characters" type="Node2D" parent="."]
 
 [node name="Doors" type="Node2D" parent="."]
-script = ExtResource( 9 )
+script = ExtResource("9")

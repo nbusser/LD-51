@@ -1,28 +1,25 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=3 format=3 uid="uid://cnekemxftj6px"]
 
-[ext_resource path="res://src/Levels/Regions/Region.tscn" type="PackedScene" id=1]
-[ext_resource path="res://src/Levels/Regions/MobileRegion.gd" type="Script" id=2]
+[ext_resource type="PackedScene" uid="uid://ctirpi7a8112o" path="res://src/Levels/Regions/Region.tscn" id="1"]
+[ext_resource type="Script" path="res://src/Levels/Regions/MobileRegion.gd" id="2"]
 
-[node name="MobileRegion" instance=ExtResource( 1 )]
-script = ExtResource( 2 )
+[node name="MobileRegion" instance=ExtResource("1")]
+script = ExtResource("2")
 
 [node name="WalkableMap" parent="." index="0"]
 tile_set = null
-tile_data = PackedInt32Array(  )
 
 [node name="FloorMap" parent="." index="1"]
 tile_set = null
 
 [node name="FloorDecorationMap" parent="." index="2"]
 tile_set = null
-tile_data = PackedInt32Array(  )
 
 [node name="TallMap" parent="." index="3"]
 tile_set = null
 
 [node name="WallDecorationMap" parent="." index="4"]
 tile_set = null
-tile_data = PackedInt32Array(  )
 
 [node name="CeilingMap" parent="." index="5"]
 tile_set = null
@@ -30,5 +27,13 @@ tile_set = null
 [node name="Line2D" type="Line2D" parent="." index="7"]
 
 [node name="MobileTween" type="Tween" parent="." index="8"]
-
-[connection signal="tween_completed" from="MobileTween" to="." method="_on_MobileTween_tween_completed"]
+_import_path = NodePath("")
+unique_name_in_owner = false
+process_mode = 0
+process_priority = 0
+process_physics_priority = 0
+process_thread_group = 0
+physics_interpolation_mode = 0
+auto_translate_mode = 0
+editor_description = ""
+script = null

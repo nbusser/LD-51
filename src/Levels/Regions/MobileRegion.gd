@@ -17,7 +17,7 @@ var speed = 200
 var docked_regions = []
 
 func _init():
-	super()
+	# super() TODO Commented out as part of the upgrade to Godot 4
 	pass
 
 func _ready():

@@ -1,11 +1,9 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=3 format=3 uid="uid://3e46bcgj1vow"]
 
-[ext_resource path="res://assets/sprites/floorset.tres" type="TileSet" id=1]
-[ext_resource path="res://src/Levels/Regions/CeilingMap.gd" type="Script" id=2]
+[ext_resource type="TileSet" path="res://assets/sprites/floorset.tres" id="1"]
+[ext_resource type="Script" path="res://src/Levels/Regions/CeilingMap.gd" id="2"]
 
-[node name="CeilingMap" type="TileMap" groups=["ceiling_tilemaps"]]
-tile_set = ExtResource( 1 )
-cell_size = Vector2( 32, 32 )
-bake_navigation = true
-format = 1
-script = ExtResource( 2 )
+[node name="CeilingMap" type="TileMapLayer" groups=["ceiling_tilemaps"]]
+use_parent_material = true
+tile_set = ExtResource("1")
+script = ExtResource("2")
